@@ -1,0 +1,455 @@
+﻿@model CMS.Models.Repositories.Db.Complaint
+
+<link href="~/Content/StyleForm.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-chosen.css" rel="stylesheet" />
+<style>
+    #fullName, #lastName, #race, #id_number,
+    #dob, #age, #cellphone, #gender, #nat,
+    #headsmen, #village
+    {
+        border-color: #000000
+    }
+
+    #resAddr, #postAddr,
+    #PosCode1, #posCode2, #w2Addr, #w2Phone, #w2Name {
+        border-color: #0026ff
+    }
+</style>
+
+@Scripts.Render("~/bundles/modernizr")
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
+
+@using (Html.BeginForm("LodgeComplaint", "Complaint", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <nav class="nav nav-tabs">
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active " id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Personal Details</a>
+            <a class="nav-item nav-link" id="nav-Address-tab" data-toggle="tab" href="#nav-Address" role="tab" aria-controls="nav-Address" aria-selected="false">Address Details</a>
+            <a class="nav-item nav-link" id="nav-Incident-tab" data-toggle="tab" href="#nav-Incident" role="tab" aria-controls="nav-Incident" aria-selected="false">Incident Details</a>
+            <a class="nav-item nav-link" id="nav-Witness-tab" data-toggle="tab" href="#nav-Witness" role="tab" aria-controls="nav-Witness" aria-selected="false">Witness Details</a>
+            <a class="nav-item nav-link" id="nav-Status-tab" data-toggle="tab" href="#nav-Status" role="tab" aria-controls="nav-Status" aria-selected="false">Case Status </a>
+
+        </div>
+
+    </nav>
+    <button type="button" class="btn btn-success float-right"><i class="fa fa-comment"></i> Existing Complaints</button>
+
+    <div class="note mt-3 mb-3">
+        <p> Complaint Application</p>
+    </div>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="col-xl-12 col-md-12">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="container register-form">
+
+                        <div class="alert alert-primary" role="alert">
+                            <div class="form-group col-md-4">
+                                <label for="inputRoomNum">Complaint For?</label>
+                                @Html.DropDownList("ComplForId", ViewBag.ComplForId as SelectList, htmlAttributes: new { @class = "form-control", @id = "complFor" })
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <label id="name" for="inputRoomNum">Full Name(s)</label>
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @id = "fullName" } })
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <label id="lName" for="inputRoomNum">Last Name</label>
+                                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @id = "lastName" } })
+                            </div>
+
+
+                            <div class="form-group col-md-3">
+                                <label for="inputRoomNum">Race</label>
+                                @Html.DropDownList("RaceId", ViewBag.RaceId as SelectList, htmlAttributes: new { @class = "form-control", @id = "race" })
+
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <label for="inputRoomNum">ID Number</label>
+                                @Html.EditorFor(model => model.Id_Number, new { htmlAttributes = new { @class = "form-control", @id = "id_number" } })
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <label for="inputRoomNum">Date of Birth</label>
+                                @Html.EditorFor(model => model.Date_of_Birth, new { htmlAttributes = new { @class = "form-control", @id = "dob",@type="date" } })
+                            </div>
+
+                            <div class="form-group col-md-3">
+                            </div>
+
+                            <div class="form-group col-md-3">
+
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <label for="inputRoomNum">Cellphone</label>
+                                @Html.EditorFor(model => model.Cellphone, new { htmlAttributes = new { @class = "form-control", @id = "cellphone" } })
+                            </div>
+
+                            <div class="form-group col-md-2">
+                                <label for="inputRoomNum">Age</label>
+                                @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control", @id = "age" } })
+                            </div>
+
+                            <div class="form-group col-md-4">
+
+                            </div>
+
+                            <div class="form-group col-md-4">
+
+                            </div>
+
+                            <div class="form-group col-md-2">
+                                <label for="inputRoomNum">Gender</label>
+                                @Html.DropDownList("GenderId", ViewBag.GenderId as SelectList, htmlAttributes: new { @class = "form-control", @id = "gender" })
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="inputRoomNum">Email</label>
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @id = "email" } })
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="inputRoomNum">Alternative Contact</label>
+                                @Html.EditorFor(model => model.Alternative_Contact, new { htmlAttributes = new { @class = "form-control", @id = "altCont" } })
+                            </div>
+
+
+
+                            <div class="form-group col-md-4">
+                                <label for="inputRoomNum">Whose Number Is It?</label>
+                                @Html.EditorFor(model => model.WhoseNumber, new { htmlAttributes = new { @class = "form-control", @id = "whoseNum" } })
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="tab-pane fade" id="nav-Address" role="tabpanel" aria-labelledby="nav-Address-tab">
+            <div class="col-xl-12 col-md-12">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="container register-form">
+                        <div class="form-row">
+
+                            <div class="form-group col-md-6">
+                                <label for="inputRoomNum">Residential Address</label>
+                                @Html.EditorFor(model => model.Residential_Address, new { htmlAttributes = new { @class = "form-control", @id = "resAddr" } })
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="inputRoomNum">Postal Address</label>
+                                @Html.EditorFor(model => model.Postal_Address, new { htmlAttributes = new { @class = "form-control", @id = "postAddr" } })
+                            </div>
+
+                            <div class="form-group col-md-2">
+                                <label for="inputRoomNum">Postal Code</label>
+                                @Html.EditorFor(model => model.Postal_Code_Residential, new { htmlAttributes = new { @class = "form-control", @id = "PosCode1" } })
+                            </div>
+
+                            <div class="form-group col-md-8">
+                            </div>
+
+                            <div class="form-group col-md-2">
+                                <label for="inputRoomNum">Postal Code</label>
+                                @Html.EditorFor(model => model.Postal_Code_Postal, new { htmlAttributes = new { @class = "form-control", @id = "posCode2" } })
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="nav-Incident" role="tabpanel" aria-labelledby="nav-Incident-tab">
+            <div class="col-xl-12 col-md-12">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="container register-form">
+                        <div class="form-row">
+
+                            <div class="form-group col-md-4">
+                                <label for="inputName">Incident Date</label>
+                                @Html.EditorFor(model => model.IncidentDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label for="inputLastName">Incident Location</label>
+                                @Html.EditorFor(model => model.IncidentLocation, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+
+                            <div class="form-group col-md-3">
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="inputCell">Alleged Offender</label>
+                                @Html.EditorFor(model => model.AllegedOffenderName, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label for="inputRoomNum">Alleged Offender Address</label>
+                                @Html.EditorFor(model => model.AllegedOffenderAddress, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+
+                            <div class="form-group col-md-9">
+                                <label for="VillType">Nature of Complaint</label>
+                                @Html.EditorFor(model => model.NatureOfComplaint, new { htmlAttributes = new { @class = "form-control",@id="nat" } })
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="nav-Witness" role="tabpanel" aria-labelledby="nav-Witness-tab">
+            <div class="col-xl-12 col-md-12">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="container register-form">
+
+                        <div class="form-group alert alert-danger col-md-11 ml-2" role="alert">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="chkWitness" name="chkWitness">
+                                <label class="form-check-label text-danger" for="chkWitness">
+                                    No Witness?
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="row" id="wit1">
+                            <div class="form-group col-md-4">
+                                <label for="inputRoomNum">Name & Surname</label>
+                                @Html.EditorFor(model => model.Witness1Name, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputRoomNum">Cellphone</label>
+                                @Html.EditorFor(model => model.Witness1Phone, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="form-group col-md-8">
+                                <label for="inputRoomNum">Address</label>
+                                @Html.EditorFor(model => model.Witness1Address, new { htmlAttributes = new { @class = "form-control", @id = "witAdd" } })
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row" id="witness2">
+                            <div class="form-group col-md-4">
+                                <label for="inputRoomNum">Name & Surname</label>
+                                @Html.EditorFor(model => model.Witness2Name, new { htmlAttributes = new { @class = "form-control", @id = "w2Name" } })
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputRoomNum">Cellphone</label>
+                                @Html.EditorFor(model => model.Witness2Phone, new { htmlAttributes = new { @class = "form-control", @id = "w2Phone" } })
+                            </div>
+                            <div class="form-group col-md-8">
+                                <label for="inputRoomNum">Address</label>
+                                @Html.EditorFor(model => model.Witness2Address, new { htmlAttributes = new { @class = "form-control", @id = "w2Addr" } })
+                            </div>
+                        </div>
+                        <br />
+                        <button type="button" class="btn btn-outline-warning float-right mr-2" id="addMore"><i class="fa fa-plus-circle"></i> Add more</button>
+                        <button type="button" class="btn btn-outline-danger float-right mr-2" id="rem"><i class="fa fa-trash"></i> Remove Witness</button>
+
+                    </div>
+                    <br />
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="nav-Status" role="tabpanel" aria-labelledby="nav-Status-tab">
+            <div class="col-xl-12 col-md-12">
+                <div class="card border-left-primary shadow h-100 py-2">
+
+                    <div class="form-group alert alert-danger col-md-11 ml-2" role="alert">
+                        <div class="form-check">
+                            @Html.EditorFor(model => model.NeedsInterpreter)
+                            <label class="form-check-label text-danger" for="chkAgr">
+                                Needs Interpreter?
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            @Html.EditorFor(model => model.IsMatterReported, new { htmlAttributes = new { @id = "isReported" } })
+                            <label class="form-check-label text-danger" for="chkAgr">
+                                Is Matter Reported?
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="container register-form">  
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label id="towhoml" for="">Reported To?</label>
+                                @Html.EditorFor(model => model.ToWhom, new { htmlAttributes = new { @class = "form-control", @id = "toWhom" } })
+                            </div>
+                            <div class="form-group col-md-6">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputRoomNum">Applicable Village</label>
+                                @Html.DropDownList("VillageId", null, htmlAttributes: new { @class = "form-control",@id="village" })
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputRoomNum">Applicable Headsmen</label>
+                                @Html.DropDownList("HeadsmenId", null, htmlAttributes: new { @class = "form-control" ,@id="headsmen"})
+                            </div>
+                        </div>
+
+                            <div style="background-color:whitesmoke" class="mt-3 pull-right">
+                                <button type="submit" id="btnSubmit" value="Create" onclick="return validateData()" class="btn btn-outline-success pull-right"><i class="fa fa-comment"></i> Lodge Complaint</button>
+                                <button type="button" id="btnReset" class="btn btn-outline-warning pull-right"><i class="fa fa-redo"></i> Reset</button>
+                                <button type="button" id="btnReset" class="btn btn-outline-danger float-right"><i class="fa fa-window-close"></i> Close</button>
+                            </div>
+                        </div>
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    @section scripts{
+        <script>
+            $(function () {
+
+                $("#dwellerId").chosen();
+                $("#municipalityId").chosen();
+                $("#witness2").hide();
+                $("#rem").hide();
+                $("#towhoml").hide();
+                $("#toWhom").hide();
+
+                $("#btnSubmit").click(function () {
+
+                    if ($("#inputOcc").val() == "") {
+                        swal("Dweller Registration", "Error: Occupant Number Required!", "error");
+                        return false;
+
+                    }
+                    if ($("#inputName").val() == "") {
+                        swal("Dweller Registration", "Error: Dweller Full Name required!", "error");
+                        return false;
+
+                    }
+                    if ($("#inputSurname").val() == "") {
+                        swal("Dweller Registration", "Error: Dweller LastName Required!", "error");
+                        return false;
+
+                    }
+                    if ($("#LName").val() == "") {
+                        swal("Dweller Registration", "Error: Owner Last Name is a required field!", "error");
+                        return false;
+                    }
+                    if ($("#inputCell").val() == "") {
+                        swal("Dweller Registration", "Error: Cellphone Number is a required field!", "error");
+                        return false;
+                    }
+                    if ($("#inputIdNum").val() == "") {
+                        swal("Dweller Registration", "Error: Owner ID Number/Passport Number is a required field!", "error");
+                        return false;
+                    }
+                    else {
+                        swal("Dweller Registration", "Dweller Successfully Registered", "success");
+                        return true;
+                    }
+                });
+
+                $("#addMore").click(function () {
+
+                    $("#witness2").show();
+                    $("#addMore").hide();
+                    $("#rem").show();
+
+                });
+                $("#rem").click(function () {
+
+                    $("#witness2").hide();
+                    $("#addMore").show();
+                    $("#rem").hide();
+
+                });
+                $(document).ready(function () {
+
+                    $('#complFor').on('change', function () {
+                        var selectedItem = $("#complFor").find('option:selected').text();
+                        if (selectedItem == 'Myself') {
+                            $("#name").text('Full Name');
+                            $("#dob").prop("disabled", false);
+                            $("#lastName").prop("disabled", false);
+                            $("#race").prop("disabled", false);
+                            $("#id_number").prop("disabled", false);
+                            $("#age").prop("disabled", false);
+                            $("#gender").prop("disabled", false);
+                            return;
+                        }
+                        if (selectedItem == 'Organization') {
+
+                            $("#name").text('Organization Name');
+                            $("#dob").prop("disabled", true);
+                            $("#lastName").prop("disabled", true);
+                            $("#race").prop("disabled", true);
+                            $("#id_number").prop("disabled", true);
+                            $("#age").prop("disabled", true);
+                            $("#gender").prop("disabled", true);
+
+                            return;
+                        }
+                        if (selectedItem == 'Someone') {
+                            $("#name").text('Full Name');
+                            $("#lName").text('Last Name');
+
+                            $("#dob").prop("disabled", false);
+                            $("#lastName").prop("disabled", false);
+                            $("#race").prop("disabled", false);
+                            $("#id_number").prop("disabled", false);
+                            $("#age").prop("disabled", false);
+                            $("#gender").prop("disabled", false);
+
+
+
+                            return;
+                        }
+                        
+                        else {
+                    
+                            return;
+                        }
+                    });
+
+                });
+                $(document).ready(function () {
+                    $("#chkWitness").on("click", function () {
+                        if (this.checked) {
+                            $("#wit1").hide();
+                        } else {
+                            $("#wit1").show();
+                        }
+                    });
+                });
+                $(document).ready(function () {
+                    $("#isReported").on("click", function () {
+                        if (this.checked) {
+                            $("#towhoml").show();
+                            $("#toWhom").show();
+                        } else {
+                            $("#towhoml").hide();
+                            $("#toWhom").hide();
+
+                        }
+                    });
+                });
+            });
+
+        </script>
+    }
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+}
+
+

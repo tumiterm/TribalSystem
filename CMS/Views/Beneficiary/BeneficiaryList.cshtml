@@ -1,0 +1,36 @@
+﻿@model IEnumerable<CMS.Models.Repositories.Db.Beneficiary>
+@using GridMvc.Html
+
+@{
+    ViewBag.Title = "Index";
+
+
+}
+
+<link href="~/Content/Gridmvc.css" rel="stylesheet" />
+<p>
+    @Html.ActionLink("Back", "DwellerCollection","Dweller", null, new { @class = "btn btn-outline-success" })
+
+</p>
+<div class="row">
+    <div class="col-md-12">
+
+        @Html.Grid(Model).Named("BeneficiaryTbl").Columns(c =>
+   {
+       c.Add(x => x.FullName).Titled("Name & Surname").Filterable(true).Sortable(true);
+       c.Add(x => x.Cellphone1).Titled("Cellphone").Filterable(true).Sortable(true);
+       c.Add(x => x.Dweller.Name
+       ).Titled("Benefactor").Filterable(true).Sortable(true);
+       c.Add(x => x.Relationship.Type).Titled("Relationship").Filterable(true).Sortable(true);
+       c.Add(x => x.ID_Number).Titled("ID Number");
+       c.Add().Encoded(false).Sanitized(false).SetWidth(20).
+       RenderValueAs(model => Html.ActionLink("Modify", "ModifyRecord", new { id = model.Id }, new { @class = "btn btn-outline-primary fas fa-edit" }));
+
+   }).WithPaging(10).EmptyText("Error: Record not found!")
+
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/Gridmvc")
+}

@@ -1,0 +1,136 @@
+﻿@model CMS.Models.Dispute
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Dispute</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Individual)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Individual)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LodgedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LodgedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Resolution)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Resolution)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AttendedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AttendedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsSuccessfullyHandled)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsSuccessfullyHandled)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HasBeenElevated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HasBeenElevated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Community.Ward)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Community.Ward)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DisputeType.DisputeType1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DisputeType.DisputeType1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Leadership.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Leadership.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Severity.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Severity.Description)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

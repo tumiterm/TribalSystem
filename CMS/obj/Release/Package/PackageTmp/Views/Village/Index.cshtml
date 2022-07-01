@@ -1,0 +1,59 @@
+﻿@model IEnumerable<CMS.Models.Repositories.Db.Village>
+@using GridMvc.Html
+@using CMS.Helpers
+
+@{
+    ViewBag.Title = "Index";
+
+
+}
+
+<link href="~/Content/Gridmvc.css" rel="stylesheet" />
+<p>
+    <li class="btn btn-outline-primary "><a href="@Url.Action("RegisterVillage", "Village")"><i class="fa fa-plus-circle"></i> Add Village</a></li>
+</p>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Total Registerd Villages</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+
+            <div class="col-xl-12 col-md-12 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            @Html.Grid(Model).Named("VillageTbl").Columns(c =>
+                       {
+                           c.Add(x => x.Name).Titled("Village Name").Filterable(true).Sortable(true);
+                           c.Add(x => x.Country.Country1).Titled("Country").Filterable(true).Sortable(true);
+                           c.Add(x => x.Province.Province1).Titled("Province").Filterable(true).Sortable(true);
+                           c.Add(x => x.Municipality.Name).Titled("Municipality").Filterable(true).Sortable(true);
+                           c.Add(x => x.CreatedBy).Titled("CreateBy").Filterable(true).Sortable(true);
+                           c.Add(x => x.IsActive).Titled("Is Active").Filterable(true).Sortable(true);
+                           c.Add().Encoded(false).Sanitized(false).SetWidth(20).
+
+                           RenderValueAs(o => Html.ActionLink("Modify", "ModifyVillage", new { id = o.Id }, new { @class = "btn btn-outline-primary fas fa-edit" }));
+                       }).WithPaging(10).EmptyText("Error: Village not found!")
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<button type="button" id="btnPrint" class="btn btn-outline-danger"><i class="fa fa-file-pdf"></i> Get Villages</button>
+<button type="button" id="btnReset" class="btn btn-outline-warning"><i class="fa fa-arrow-circle-left"></i> Reset</button>
+
+
+@section scripts{
+    @Scripts.Render("~/bundles/Gridmvc")
+
+}

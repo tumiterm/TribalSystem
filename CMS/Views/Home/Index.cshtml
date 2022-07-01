@@ -1,0 +1,372 @@
+﻿@model CMS.Models.Applicant
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <style>
+        .note {
+            text-align: center;
+            height: 50px;
+            background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+            color: #fff;
+            font-weight: bold;
+            line-height: 50px;
+        }
+
+        .form-content {
+            padding: 5%;
+            border: 1px solid #ced4da;
+            margin-bottom: 2%;
+        }
+
+        .form-control {
+            border-radius: 1.5rem;
+        }
+
+        .btnSubmit {
+            border: none;
+            border-radius: 1.5rem;
+            padding: 1%;
+            width: 20%;
+            cursor: pointer;
+            background: #0062cc;
+            color: #fff;
+        }
+    </style>
+</head>
+@using (Html.BeginForm("Create", "Applicant", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <body>
+        <div class="container register-form">
+            <div class="form">
+                <div class="note">
+                    <p> Household Information</p>
+                </div>
+                <br />
+
+                <div class="accordion" id="accordionExample">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    1) Property Information
+                                </button>
+                            </h2>
+                        </div>
+
+                        <div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <form>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            <label for="HouseNumInput">House Number</label>
+                                            @Html.EditorFor(model => model.HouseNumber, new { htmlAttributes = new { @class = "form-control", @id = "HouseNumInput" } })
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="inputProvince">Province</label>
+                                            @Html.DropDownList("ProvinceId", null, htmlAttributes: new { @class = "form-control", @id = "inputProvince" })
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label for="inputCountry">Country</label>
+                                            @Html.DropDownList("CountryId", null, htmlAttributes: new { @class = "form-control", @id = "inputCountry" })
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            <label for="inputStreet">Street Name</label>
+                                            @Html.EditorFor(model => model.StreetName, new { htmlAttributes = new { @class = "form-control", @id = "inputStreet" } })
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label for="inputCity">City</label>
+                                            @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control", @id = "inputCity" } })
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label for="inputPostal">Area Code</label>
+                                            @Html.EditorFor(model => model.PostalCode, new { htmlAttributes = new { @class = "form-control", @id = "inputPostal" } })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            <label for="inputSettlement">Settlement Type</label>
+                                            @Html.DropDownList("SettlementHierachyId", null, htmlAttributes: new { @class = "form-control", @id = "inputSettlement" })
+                                        </div>
+
+                                        <div class="form-group col-md-2">
+                                            <label for="inputOccupant">Occupants No</label>
+                                            @Html.EditorFor(model => model.OccupantsNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.OccupantsNumber, "", new { @class = "text-danger", @id = "inputOccupant" })
+                                        </div>
+
+                                        <div class="form-group col-md-6">
+                                            <label for="inputMunic">Municipality</label>
+                                            @Html.EditorFor(model => model.Municipality, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Municipality, "", new { @class = "text-danger", @id = "inputMunic" })
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            <label for="inputQuarter">Living Quarter</label>
+                                            @Html.DropDownList("LivingQuatersId", null, htmlAttributes: new { @class = "form-control", @id = "inputQuarter" })
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="inputTenure">Tenure Status</label>
+                                            @Html.DropDownList("TenureStatusId", null, htmlAttributes: new { @class = "form-control", @id = "inputTenure" })
+
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label for="inputPropAge">Property Age</label>
+                                            @Html.DropDownList("PropertyAgeId", null, htmlAttributes: new { @class = "form-control", @id = "inputPropAge" })
+                                        </div>
+
+                                        <div class="form-group col-md-1">
+                                            <label for="inputRoomNum">Rooms</label>
+                                            @Html.EditorFor(model => model.NumberOfRooms, new { htmlAttributes = new { @class = "form-control", @id = "inputRoomNum" } })
+                                            @Html.ValidationMessageFor(model => model.NumberOfRooms, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="accordion" id="accordionExample">
+                    <div class="card">
+                        <div class="card-header" id="headingDemographics">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseDemographic" aria-expanded="true" aria-controls="collapseTwo">
+                                    2) Applicant Demographic Profile
+                                </button>
+                            </h2>
+                        </div>
+
+                        <div id="collapseDemographic" class="collapse" aria-labelledby="headingDemographics" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <form>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            <label for="inputName">Full Name(s)</label>
+                                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @id = "inputName" } })
+                                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="inputSurname">Last Name</label>
+                                            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @id = "inputSurname" } })
+                                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label for="inputGender">Gender</label>
+                                            @Html.DropDownList("GenderId", null, htmlAttributes: new { @class = "form-control", @id = "inputGender" })
+
+                                        </div>
+
+
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            <label for="inputRace">Race</label>
+                                            @Html.DropDownList("RaceId", null, htmlAttributes: new { @class = "form-control", @id = "inputRace" })
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label for="inputMarital">Marital Status</label>
+                                            @Html.DropDownList("MaritalStatusId", null, htmlAttributes: new { @class = "form-control", @id = "inputMarital" })
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label for="inputIdNum">ID/Passport Num</label>
+                                            @Html.EditorFor(model => model.IDNumber, new { htmlAttributes = new { @class = "form-control", @id = "inputIdNum" } })
+                                            @Html.ValidationMessageFor(model => model.IDNumber, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            <label for="inputCell">Cellphone Number</label>
+                                            @Html.EditorFor(model => model.Cellphone1, new { htmlAttributes = new { @class = "form-control", @id = "inputCell" } })
+                                            @Html.ValidationMessageFor(model => model.Cellphone1, "", new { @class = "text-danger" })
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label for="inputCell2">Alternative Cellphone</label>
+                                            @Html.EditorFor(model => model.Cellphone2, new { htmlAttributes = new { @class = "form-control", @id = "inputCell2" } })
+                                            @Html.ValidationMessageFor(model => model.Cellphone2, "", new { @class = "text-danger" })
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label for="inputMail">Email Address</label>
+                                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @id = "inputMail" } })
+                                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            <label for="inputComm">Preferred Method of Communication</label>
+                                            @Html.DropDownList("PreferredMethodOfComId", null, htmlAttributes: new { @class = "form-control", @id = "inputComm" })
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label for="inputLang">Native Language</label>
+                                            @Html.DropDownList("PreferredLanguageId", null, htmlAttributes: new { @class = "form-control", @id = "inputLang" })
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label for="inputId">Unique Identifier</label>
+                                            @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @placeholder = "xxxx-xx-xx" } })
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label for="inputId">Disability Status</label>
+                                            @Html.DropDownList("DisabilityId", null, htmlAttributes: new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="accordion" id="accordionExample">
+                    <div class="card">
+                        <div class="card-header" id="headingSpouse">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseSpouse" aria-expanded="true" aria-controls="collapseSpouse">
+                                    3) Spousal Details <span class="badge badge-warning ml-25">Almost</span>
+                                </button>
+                            </h2>
+                        </div>
+
+                        <div id="collapseSpouse" class="collapse" aria-labelledby="headingSpouse" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <form>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="inputSpouseName">Spouse Name</label>
+                                            @Html.EditorFor(model => model.SpouseName, new { htmlAttributes = new { @class = "form-control", @id = "inputSpouseName" } })
+                                            @Html.ValidationMessageFor(model => model.SpouseName, "", new { @class = "text-danger" })                                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="inputSpouseSurname"> Spouse Last Name</label>
+                                            @Html.EditorFor(model => model.SpouseLastName, new { htmlAttributes = new { @class = "form-control", @id = "inputSpouseSurname" } })
+                                            @Html.ValidationMessageFor(model => model.SpouseLastName, "", new { @class = "text-danger" })
+                                        </div>
+
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="inputSpouId">Spouse ID Number</label>
+                                            @Html.EditorFor(model => model.SpouseId, new { htmlAttributes = new { @class = "form-control", @id = "inputSpouId" } })
+                                            @Html.ValidationMessageFor(model => model.SpouseId, "", new { @class = "text-danger" })
+                                        </div>
+
+                                        <div class="form-group col-md-6">
+                                            <label for="inputSpouCell">Spouse Cellphone</label>
+                                            @Html.EditorFor(model => model.SpousePhone, new { htmlAttributes = new { @class = "form-control", @id = "inputSpouCell" } })
+                                            @Html.ValidationMessageFor(model => model.SpousePhone, "", new { @class = "text-danger" })
+                                        </div>
+
+
+                                    </div>
+
+
+                                </form>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <br />
+
+                <div class="accordion" id="accordionExample">
+                    <div class="card">
+                        <div class="card-header" id="headingEmp">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseEmp" aria-expanded="true" aria-controls="collapseEmp">
+                                    4) Employment & Educational Details <span class="badge badge-success">Finished</span>
+                                </button>
+                            </h2>
+                        </div>
+
+                        <div id="collapseEmp" class="collapse" aria-labelledby="headingEmp" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <form>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            <label for="inputOcc">Occupation</label>
+                                            @Html.EditorFor(model => model.Occupation, new { htmlAttributes = new { @class = "form-control", @id = "inputOcc" } })
+                                            @Html.ValidationMessageFor(model => model.Occupation, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="inputWork">Employment Type</label>
+                                            @Html.DropDownList("WorkTypeId", null, htmlAttributes: new { @class = "form-control", @id = "inputWork" })
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label for="inputEmployer">Employer</label>
+                                            @Html.EditorFor(model => model.EmployerName, new { htmlAttributes = new { @class = "form-control", @id = "inputEmployer" } })
+                                            @Html.ValidationMessageFor(model => model.EmployerName, "", new { @class = "text-danger" })
+                                        </div>
+
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            <label for="inputIncome">Income Source</label>
+                                            @Html.DropDownList("IncomeSourceId", null, htmlAttributes: new { @class = "form-control", @id = "inputIncome" })
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label for="inputEduLevel">Education Level</label>
+                                            @Html.DropDownList("EduLeveId", null, htmlAttributes: new { @class = "form-control", @id = "inputEduLevel" })
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label for="inputBus">Business Activity</label>
+                                            @Html.EditorFor(model => model.BusinessActivity, new { htmlAttributes = new { @class = "form-control", @id = "inputBus" } })
+                                            @Html.ValidationMessageFor(model => model.BusinessActivity, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <br />
+                    <button type="submit" class="btn btn-outline-success pull-right"><i class="fa fa-user-plus"></i> Register</button>
+                    <button type="button" class="btn btn-outline-warning pull-right"><i class="fa fa-redo"></i> Reset</button>
+            </div>
+        </div>
+    </body>
+}
+
+</html>

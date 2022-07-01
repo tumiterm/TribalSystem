@@ -1,0 +1,50 @@
+﻿@using CMS.Models.Repositories.Db
+@model dynamic
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<table class="table">
+    <tr>
+        <th>
+            Disability
+        </th>
+        <th>
+            Is Active?
+        </th>
+        <th>
+            Created By
+        </th>
+        <th>
+            Created On
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (Disability disability in Model.Disabilities)
+    {
+        <tr>
+            <td>
+                @disability.Disability1
+            </td>
+            <td>
+                @disability.IsActive
+            </td>
+            <td>
+                @disability.CreatedBy
+            </td>
+            <td>
+                @disability.CreatedOn
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = disability.Id }) |
+
+            </td>
+        </tr>
+    }
+
+</table>
+

@@ -1,0 +1,153 @@
+﻿@model IEnumerable<CMS.Models.Repositories.Db.Property>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.HouseNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RentAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CashPaid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Size)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Owner_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Owner_LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Owner_Cellphone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Owner_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Unique_Identifier)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Municipality)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Condition.Condition1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Headsman.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LivingQuater.LivingQuaters)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PropertyAge.Age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PropertyStatu.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PropertyType.type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Province.Province1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RentLease.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SettlementHierachy.SettlementHierachy1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TenureStatu.TenureStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Village.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.HouseNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RentAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CashPaid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Size)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Owner_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Owner_LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Owner_Cellphone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Owner_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Unique_Identifier)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Municipality)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Condition.Condition1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Headsman.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LivingQuater.LivingQuaters)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropertyAge.Age)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropertyStatu.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropertyType.type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Province.Province1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RentLease.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SettlementHierachy.SettlementHierachy1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenureStatu.TenureStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Village.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

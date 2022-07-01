@@ -1,0 +1,156 @@
+﻿@using CMS.Models.Repositories.Db;
+@model dynamic
+
+
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href="~/Content/StyleForm.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-chosen.css" rel="stylesheet" />
+
+
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
+</head>
+@using (Html.BeginForm("UserRole", "Role", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <body>
+
+        <div class="container register-form">
+            <div class="form">
+                <div class="note">
+                    <p>Add User Role</p>
+                </div>
+                <br />
+                <div class="col-xl-12 col-md-12 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+
+                            <form>
+
+                                <div class="form-group col-md-6">
+                                    <label for="inputName">Role</label>
+                                    <input class="form-control text-box" type="text" name="RoleName" id="RoleName" required />
+
+                                </div>
+
+                                <div style="background-color:whitesmoke">
+                                    <button type="submit" onclick="return validateData()" id="btnSubmit" value="Create" class="btn btn-outline-success"><i class="fa fa-save"></i> Save Role</button>
+                                    <button type="reset" id="btnReset" class="btn btn-outline-warning pull-right"><i class="fa fa-redo"></i> Reset</button>
+                                    <button type="button" id="btnClose" class="btn btn-outline-danger float-right"><i class="fa fa-window-close"></i> Close</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+
+                @section scripts{
+
+                    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+                    <link href="cdn.datatables.net/1.11.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+                    <script src="~/Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
+                    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+
+                    <script>
+                        $(function () {
+
+                            ////Basic functionality
+                            $("#btnSubmit").click(function () {
+
+                                if ($("#RoleName").val() == "") {
+                                    swal("Role Addition", "Error: Role Name is Required!", "error");
+                                    return false;
+
+                                }
+                                else {
+                                    swal("Role Addition", "Role Added Successfully", "success");
+                                    return true;
+                                }
+
+                            });
+
+
+                        });
+
+                        $(document).ready(function () {
+                            $('#roleTbl').DataTable();
+                        });
+                    </script>
+                }
+                <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+                @Scripts.Render("~/bundles/jquery")
+                @Scripts.Render("~/bundles/bootstrap")
+
+            </div>
+        </div>
+    </body>
+
+}
+</html>
+
+<div id="accordion">
+    <div class="card">
+        <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+                <button class="btn btn-link" onclick="$('#collapsed-chevronSpouse').toggleClass('fa-rotate-180')" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <i class="fa fa-chevron-circle-up" id="collapsed-chevronSpouse"></i>
+                    All Roles
+                </button>
+            </h5>
+        </div>
+
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+                <table class="table table-striped " id="roleTbl">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Role</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    @foreach (Role role in Model.Roles)
+                    {
+                        <tr>
+                            <td>@role.RoleName</td>
+                            <td>
+                                <div class="btn-group">
+                                    <li class="btn btn-outline-warning "><a href="@Url.Action("ModifyUserRole", "Role", new { id =role.Id})"><i class="fa fa-edit"></i> Modify Role</a></li>
+                                    <li class="btn btn-outline-danger "><a href="@Url.Action("RemoveUserRole", "Role", new { id =role.Id})"><i class="fa fa-trash"></i> Remove Role</a></li>
+                                </div>
+                            </td>
+
+
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

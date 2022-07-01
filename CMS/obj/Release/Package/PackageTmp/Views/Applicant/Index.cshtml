@@ -1,0 +1,39 @@
+﻿@model IEnumerable<CMS.Models.Applicant>
+@using GridMvc.Html
+
+@{
+    ViewBag.Title = "Index";
+
+
+}
+
+<link href="~/Content/Gridmvc.css" rel="stylesheet" />
+<p>
+    @Html.ActionLink("Create New", "Create",null, new { @class = "btn btn-outline-success" })
+    
+    <button type="button" value="Create" class="btn btn-success pull-right"><i class="fa fa-download"></i> Excel</button>
+    <button type="button" class="btn btn-primary pull-right"><i class="fa fa-file-download"></i> Word</button>
+    <button type="button" class="btn btn-danger pull-right"><i class="fa fa-file-download"></i> PDF</button>
+
+</p>
+<div class="row">
+    <div class="col-md-12">
+    
+        @Html.Grid(Model).Named("ApplicantTbl").Columns(c =>
+   {
+       c.Add(x => x.Name).Titled("Full Name").Filterable(true).Sortable(true);
+       c.Add(x => x.LastName).Titled("Last Name").Filterable(true).Sortable(true);
+       c.Add(x => x.Cellphone1).Titled("Cellphone").Filterable(true).Sortable(true);
+       c.Add(x => x.Province.Province1).Titled("Province").Filterable(true).Sortable(true);
+       c.Add(x => x.MarriageStatu.MaritalStatus).Titled("Marital Status");
+       c.Add().Encoded(false).Sanitized(false).SetWidth(20).
+       RenderValueAs(model => Html.ActionLink("Open", "Edit", new { id = model.IDNumber }, new { @class = "btn btn-outline-primary fas fa-edit" }));
+
+   }).WithPaging(10).EmptyText("Error: Record not found!")
+
+    </div> 
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/Gridmvc")
+}

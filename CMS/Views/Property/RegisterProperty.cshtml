@@ -1,0 +1,209 @@
+﻿@model CMS.Models.Repositories.Db.Property
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <style>
+        .note {
+            text-align: center;
+            height: 50px;
+            background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+            color: #fff;
+            font-weight: bold;
+            line-height: 50px;
+        }
+
+        .form-content {
+            padding: 5%;
+            border: 1px solid #ced4da;
+            margin-bottom: 2%;
+        }
+
+        .form-control {
+            border-radius: 1.5rem;
+         
+        }
+
+        .btnSubmit {
+            border: none;
+            border-radius: 1.5rem;
+            padding: 1%;
+            width: 20%;
+            cursor: pointer;
+            background: #0062cc;
+            color: #fff;
+        }
+
+        .chosen-container {
+            width: 95% !important;
+        }
+
+        .chosen-container-single .chosen-single {
+            height: 50px;
+            border-radius: 30px;
+            border: 1px solid #CCCCCC;
+        }
+    </style>
+    <link href="~/Content/bootstrap-chosen.css" rel="stylesheet" />
+
+
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
+</head>
+@using (Html.BeginForm("RegisterProperty", "Property", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+<body>
+    <li class="btn btn-outline-dark ml-4 mb-2"><a href="#"><i class="fa fa-home"></i> Existing Property</a></li>
+    <div class="container register-form">
+        <div class="form">
+            <div class="note">
+                <p> Property Registration</p>
+            </div>
+            <br />
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link" type="button" onclick="$('#collapsed-chevron').toggleClass('fa-rotate-180')" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <i class="fa fa-chevron-circle-up" id="collapsed-chevron"></i>
+                                1) Property Information
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div class="card-body">
+
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="PropType">Property Type</label>
+                                    @Html.DropDownList("PropertyTypeId", null, htmlAttributes: new { @class = "form-control" })
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="inputProvince">Property Status</label>
+                                    @Html.DropDownList("PropertyStatusId", null, htmlAttributes: new { @class = "form-control" })
+
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label for="inputTenure">Property Condition</label>
+                                    @Html.DropDownList("ConditionId", null, htmlAttributes: new { @class = "form-control" })
+                                </div>
+
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="inputStreet">Applicable Village</label>
+                                    @Html.DropDownList("VillageTypeId", null, htmlAttributes: new { @class = "form-control" })
+
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label for="inputSettlement">Lease Or Rent</label>
+                                    @Html.DropDownList("LeaseRentId", null, htmlAttributes: new { @class = "form-control" })
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label for="inputHouse">House Number</label>
+                                    @Html.EditorFor(model => model.HouseNumber, new { htmlAttributes = new { @class = "form-control", @id = "inputHouse" } })
+
+                                </div>
+                            </div>
+                            <div class="form-row">
+
+                                <div class="form-group col-md-4">
+                                    <label for="inputAmount">Amount Paid</label>
+                                    @Html.EditorFor(model => model.CashPaid, new { htmlAttributes = new { @class = "form-control", @id = "inputAmount" } })
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="inputRent">Rent Amount</label>
+                                    @Html.EditorFor(model => model.RentAmount, new { htmlAttributes = new { @class = "form-control", @id = "inputRent" } })
+                                </div>
+
+
+                                <div class="form-group col-md-4">
+                                    <label for="inputSize">Property/Plot Size</label>
+                                    @Html.EditorFor(model => model.Size, new { htmlAttributes = new { @class = "form-control", @id = "inputSize" } })
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <br />
+                <button type="submit" id="btnSubmit" value="Create" onclick="return validateData()" class="btn btn-outline-success pull-right"><i class="fa fa-home"></i> Register Property</button>
+                <button type="button" id="btnReset" class="btn btn-outline-warning pull-right"><i class="fa fa-redo"></i> Reset</button>
+            </div>
+
+        </div>
+
+
+        @section scripts{
+            <script>
+                $(function () {
+
+                    // $("#inputSize").chosen();
+
+
+                    ////Basic functionality
+                    $("#btnSubmit").click(function () {
+                        //swal("It works");
+                        //  swal("Applicant Registration!", "Applicant Successfully Registered", "error");
+
+
+                        if ($("#inputSize").val() == "") {
+                            swal("Register Property", "Error: House Number required!", "error");
+                            return false;
+
+                        } if ($("#inputAmount").val() == "") {
+                            swal("Register Property", "Error: Name is a required field!", "error");
+                            return false;
+
+                        }
+                        if ($("#inputHouse").val() == "") {
+                            swal("Register Property", "Error: Last Name is a required field!", "error");
+                            return false;
+                        }
+                        else {
+                            swal("Register Property", "Property Registered Successfully", "success");
+                            return true;
+                        }
+
+                    });
+                });
+            </script>
+        }
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+</div>
+    
+</body>
+
+}
+
+
+</html>
+
+
+
+

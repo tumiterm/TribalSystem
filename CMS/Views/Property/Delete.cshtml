@@ -1,0 +1,192 @@
+﻿@model CMS.Models.Repositories.Db.Property
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Property</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.HouseNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HouseNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RentAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RentAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CashPaid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CashPaid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Size)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Size)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Owner_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Owner_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Owner_LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Owner_LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Owner_Cellphone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Owner_Cellphone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Owner_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Owner_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Unique_Identifier)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Unique_Identifier)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Municipality)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Municipality)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Condition.Condition1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Condition.Condition1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Headsman.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Headsman.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LivingQuater.LivingQuaters)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LivingQuater.LivingQuaters)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PropertyAge.Age)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PropertyAge.Age)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PropertyStatu.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PropertyStatu.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PropertyType.type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PropertyType.type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Province.Province1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Province.Province1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RentLease.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RentLease.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SettlementHierachy.SettlementHierachy1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SettlementHierachy.SettlementHierachy1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenureStatu.TenureStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenureStatu.TenureStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Village.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Village.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

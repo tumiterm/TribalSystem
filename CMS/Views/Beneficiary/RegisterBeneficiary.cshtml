@@ -1,0 +1,278 @@
+﻿@using CMS.Models.Repositories.Db;
+@model dynamic
+
+<link href="~/Content/StyleForm.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-chosen.css" rel="stylesheet" />
+<link href="~/Content/TableStyle.css" rel="stylesheet" />
+
+@Scripts.Render("~/bundles/modernizr")
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
+<style>
+    #FullName, #Percentage, #Cellphone2{
+ 
+        border-color: #000000;
+    }
+</style>
+
+@using (Html.BeginForm("RegisterBeneficiary", "Beneficiary", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <nav class="nav nav-tabs">
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active " id="nav-home-tab" data-toggle="tab" href="#nav-beneficiary" role="tab" aria-controls="nav-beneficiary" aria-selected="true">Beneficiary</a>
+            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-agreement" role="tab" aria-controls="nav-agreement" aria-selected="false">Agreement</a>
+
+        </div>
+
+    </nav>
+    <button type="button" class="btn btn-success float-right"><i class="fa fa-home"></i> Register Dweller</button>
+
+    <div class="note mt-3 mb-3">
+
+        <p> Beneficiary Registration [Benefactor: @ViewData["UserName"] @ViewData["UserLastName"]]</p>
+    </div>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-beneficiary" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <div class="col-xl-12 col-md-12">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="container register-form">
+                        @Html.TextBox("DwellerId", ViewData["Id"], new { htmlAttributes = new { @class = "form-control", @id = "DwellerId", @required = "required", @name = "DwellerId" } })
+                        <div class="form-row">
+
+                            <div class="form-group col-md-4">
+                                <label for="inputName">Full Name & LastName</label>
+                                <input class="form-control text-box" type="text" name="FullName" id="FullName" required />
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputLastName">RSA ID/Passport</label>
+                                <input class="form-control text-box" type="number" name="ID_Number" id="ID_Number" required />
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="VillType">Gender</label>
+                                @Html.DropDownList("GenderId", null, htmlAttributes: new { @class = "form-control chosen-select", @id = "inputGender" })
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputCell">Relationship with Benefactor</label>
+                                @Html.DropDownList("RelationshipId", null, htmlAttributes: new { @class = "form-control chosen-select", @id = "inputRace" })
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputRoomNum">Allocated Percentage</label>
+                                <input class="form-control text-box" type="number" name="Percentage" id="Percentage" required />
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputRoomNum">Primary Cell</label>
+                                <input class="form-control text-box" type="number" name="Cellphone1" id="Cellphone1" required />
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="inputRoomNum">Alternative Cell</label>
+                                <input class="form-control text-box" type="number" name="Cellphone2" id="Cellphone2" />
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-check ml-2 mt-1">
+                <input class="form-check-input" type="checkbox" value="" id="chkView" name="chkView">
+                <label class="form-check-label text-danger" for="chkView">
+                    Show Beneficiary/ies?
+                </label>
+            </div>
+        </div>
+
+
+
+
+        <div class="tab-pane fade" id="nav-agreement" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="col-xl-12 col-md-12">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="container register-form">
+
+                        <div class="alert alert-danger" role="alert">
+                            Beneficiary Agreement Notice!
+                        </div>
+
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-danger">Indemnity Clause</h6>
+                            </div>
+                            <div class="card-body">
+                                <p>
+                                    I hereby fully consent and agree to the stipulated clause
+                                    and fully understand its implications and lack thereof.
+
+                                    I subject myself fully to the prerogative of the agreement between
+                                    Beneficiary/Benefactor.
+
+                                    I agree to the terms and conditions unconditionally.
+                                </p>
+                                <p class="mb-0 text-danger">
+                                    If agreement is not signed, the form wont submit
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="chkAgree" name="chkAgree">
+                            <label class="form-check-label text-danger" for="chkAgree">
+                                I Agree
+                            </label>
+                        </div>
+
+                        <br />
+
+                        <div style="border-bottom-color:red">
+                            <button type="submit" disabled id="btnSubmit" value="Create" onclick="return validateData()" class="btn btn-outline-success pull-right"><i class="fa fa-user-plus"></i> Add Beneficiary</button>
+                            <button type="button" id="btnReset" class="btn btn-outline-warning pull-right"><i class="fa fa-redo"></i> Reset</button>
+                            <button type="button" id="btnBack" class="btn btn-outline-danger float-right"><i class="fa fa-close"></i> Close</button>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    @section scripts{
+
+        <script>
+
+            $(function () {
+
+                $("#dwellerId").chosen();
+                $("#municipalityId").chosen();
+                $("#DwellerId").hide();
+                $("#accordion").hide();
+
+
+                $("#btnSubmit").click(function () {
+
+                    if ($("#benName").val() == "") {
+                        swal("Beneficiary Addition", "Error: Beneficiary Name and Last Name Required!", "error");
+                        $("#benName").focus();
+                        return false;
+
+                    }
+                    if ($("#benId").val() == "") {
+                        swal("Beneficiary Addition", "Error: Beneficiary ID/Passport number required!", "error");
+                        $("#benId").focus();
+                        return false;
+
+                    }
+                    if ($("#benPerc").val() == "") {
+                        swal("Beneficiary Addition", "Error: Percentage Allocation is required!", "error");
+                        $("#benPerc").focus();
+                        return false;
+
+                    }
+                    if ($("#benCell").val() == "") {
+                        swal("Beneficiary Addition", "Error: Cellphone Number Required!", "error");
+                        $("#benCell").focus();
+                        return false;
+                    }
+
+                    else {
+                        swal("Beneficiary Addition", "Beneficiary Successfully Added", "success");
+                        return true;
+                    }
+
+                });
+
+                $(document).ready(function () {
+                    $("#chkAgree").on("click", function () {
+                        if (this.checked) {
+                            $('#btnSubmit').prop('disabled', false);
+                        } else {
+                            $('#btnSubmit').prop('disabled', 'disabled');
+                        }
+                    });
+
+
+                });
+
+                $(document).ready(function () {
+                    $("#chkView").on("click", function () {
+                        if (this.checked) {
+                            $("#accordion").show();
+                        } else {
+                            $("#accordion").hide();
+                        }
+                    });
+
+
+                });
+
+
+            });
+
+        </script>
+
+    }
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+}
+
+<br />
+
+<div id="accordion">
+    <div class="card">
+        <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+                <button class="btn btn-link" onclick="$('#collapsed-chevronSpouse').toggleClass('fa-rotate-180')" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <i class="fa fa-chevron-circle-up" id="collapsed-chevronSpouse"></i>
+                    List of Beneficiaries
+                </button>
+            </h5>
+        </div>
+
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+                <table class="table table-striped" id="beneficiaryTbl">
+                    <thead>
+                        <tr>
+                            <th>Full Name & LastName</th>
+                            <th>ID Number</th>
+                            <th>Relationship</th>
+                            <th>Cellphone</th>
+                            <th>Allocation</th>
+                        </tr>
+                    </thead>
+
+                    @foreach (Beneficiary beneficiary in Model.Beneficiaries)
+                    {
+                        <tr>
+                            <td>@beneficiary.FullName</td>
+                            <td>@beneficiary.ID_Number</td>
+                            <td>@beneficiary.Relationship.Type</td>
+                            <td>@beneficiary.Cellphone1</td>
+                            <td>@beneficiary.Percentage %</td>
+                            <td class="btn-group">
+                                <li class="btn btn-outline-warning "><a href="@Url.Action("ModifyRecord", "Beneficiary", new { id =beneficiary.Id})"><i class="fa fa-edit"></i> Edit</a></li>
+                                <li class="btn btn-outline-danger "><a href="@Url.Action("ModifyRecord", "Beneficiary", new { id =beneficiary.Id})"><i class="fa fa-trash"></i> Revoke</a></li>
+
+                            </td>
+
+
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

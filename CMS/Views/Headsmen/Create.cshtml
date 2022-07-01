@@ -1,0 +1,313 @@
+﻿@using CMS.Models.Repositories.Db;
+@model dynamic
+
+
+<link href="~/Content/StyleForm.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-chosen.css" rel="stylesheet" />
+
+
+@Scripts.Render("~/bundles/modernizr")
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
+<style>
+    #fullNames, #inputTribe, #inputGender{
+        border-color: black;
+    }
+</style>
+
+
+@using (Html.BeginForm("Create", "Headsmen", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <nav class="nav nav-tabs">
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active " id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Personal Info</a>
+            <a class="nav-item nav-link" id="nav-address-tab" data-toggle="tab" href="#nav-address" role="tab" aria-controls="nav-address" aria-selected="false">Address</a>
+            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact Details</a>
+            <a class="nav-item nav-link" id="nav-appointment-tab" data-toggle="tab" href="#nav-appointment" role="tab" aria-controls="nav-appointment" aria-selected="false">Appointment Details </a>
+            <a class="nav-item nav-link" id="nav-attach-tab" data-toggle="tab" href="#nav-attach" role="tab" aria-controls="nav-attach" aria-selected="false">Attachments </a>
+
+        </div>
+
+    </nav>
+    <button type="button" class="btn btn-success float-right"><i class="fa fa-home"></i> Existing Headsmen</button>
+
+    <div class="note mt-3 mb-3">
+        <p> Headman Registration Information</p>
+    </div>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="col-xl-12 col-md-12">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="container register-form">
+
+                        <div class="form-row">
+
+                            <div class="form-group col-md-4">
+                                <label for="inputRoomNum">User Title</label>
+                                @Html.DropDownList("TitleId", null, htmlAttributes: new { @class = "form-control", @id = "inputRel" })
+                            </div>
+
+                            <div class="form-group col-md-4 mt-1">
+                                <label for="inputRoomNum">Full Name(s)</label>
+                                <input type="text" placeholder="Full Name(s)" id="fullNames" class="form-control" name="Name" />
+                            </div>
+
+                            <div class="form-group col-md-4 mt-1">
+                                <label for="inputRoomNum">Last Name</label>
+                                <input type="text" placeholder="Last Name" id="LName" class="form-control" name="LastName" />
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="inputRoomNum">Tribe</label>
+                                @Html.DropDownList("TribeId", null, htmlAttributes: new { @class = "form-control", @id = "inputTribe" })
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="inputRoomNum">Clan</label>
+                                @Html.DropDownList("ClanId", null, htmlAttributes: new { @class = "form-control", @id = "inputRel" })
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="inputRoomNum">Gender</label>
+                                @Html.DropDownList("GenderId", null, htmlAttributes: new { @class = "form-control", @id = "inputGender" })
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="tab-pane fade" id="nav-address" role="tabpanel" aria-labelledby="nav-address-tab">
+            <div class="col-xl-12 col-md-12">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="container register-form">
+                        <div class="form-row">
+
+                            <div class="form-group col-md-4">
+                                <label for="inputName">Country</label>
+                                @Html.DropDownList("CountryId", null, htmlAttributes: new { @class = "form-control chosen-select", @id = "inputGender" })
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputLastName">Province</label>
+                                @Html.DropDownList("ProvinceId", null, htmlAttributes: new { @class = "form-control chosen-select", @id = "inputGender" })
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="VillType">Village</label>
+                                @Html.DropDownList("VillageId", null, htmlAttributes: new { @class = "form-control chosen-select", @id = "inputGender" })
+                            </div>
+                            <div class="form-group col-md-8">
+                                <label for="inputCell">Full Address</label>
+                                <textarea name="Address" placeholder="Address Here..." class="form-control"></textarea>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+            <div class="col-xl-12 col-md-12">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="container register-form">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="inputName">Cellphone Number</label>
+                                <input type="number" placeholder="Cellphone" id="cell1" class="form-control" name="Cellphone" />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputName">Alternative Cell</label>
+                                <input type="number" placeholder="Alternative Cell" id="cell2" class="form-control" name="Cellphone2" />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputName">Email Address</label>
+                                <input type="text" placeholder="Email Address" id="email" class="form-control" name="Email" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="nav-appointment" role="tabpanel" aria-labelledby="nav-appointment-tab">
+            <div class="col-xl-12 col-md-12">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="container register-form">
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="inputRoomNum">Appointed By</label>
+                                <input type="text" placeholder="Appointed By" id="AppointedBy" class="form-control" name="AppointedBy" />
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputRoomNum">Appointed On</label>
+                                <input type="date" id="AppointedOn" class="form-control" name="AppointedOn" />
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputRoomNum">Appointed Till</label>
+                                <input type="date" id="AppointedTill" class="form-control" name="AppointedTill" />
+                            </div>
+
+                        </div>
+                        <div style="background-color:whitesmoke" class="mt-3 pull-right">
+                            <button type="submit" id="btnSubmit" value="Create" onclick="return validateData()" class="btn btn-outline-success pull-right"><i class="fa fa-home"></i> Register Dweller</button>
+                            <button type="reset" id="btnReset" class="btn btn-outline-warning pull-right"><i class="fa fa-redo"></i> Reset</button>
+                        </div>
+                    </div>
+                    <br />
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="nav-attach" role="tabpanel" aria-labelledby="nav-attach-tab">
+            <div class="col-xl-12 col-md-12">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="container register-form">
+
+                        <div class="row">
+
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-danger">Required Documentation</h6>
+                                </div>
+                                <div class="card-body">
+                                    <p>
+                                        <ul>
+                                            <li>Valid Identity Document (RSA)</li>
+                                            <li>Valid Passport Document (Non-RSA)</li>
+                                            <li>Marriage Certificate (If Married)</li>
+                                        </ul>
+                                    </p>
+                                    <p class="mb-0">
+                                        NB* All sections must be filled correctly and in utmost accuracy.
+                                        Inadherence to such could render your registration null and void.
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+
+
+    @section scripts{
+
+        <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+        <link href="cdn.datatables.net/1.11.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+        <script src="~/Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
+        <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+
+        <script>
+            $(function () {
+
+                $("#inputChief").chosen();
+                $("#inputProvince").chosen();
+                $("#inputCountry").chosen();
+
+
+                ////Basic functionality
+                $("#btnSubmit").click(function () {
+
+                    if ($("#inputName").val() == "") {
+                        swal("Village Registration!", "Error: Village Name is Required!", "error");
+                        return false;
+
+                    } if ($("#inputVillage").val() == "") {
+                        swal("Village Registration!", "Error: Village Location is a required field!", "error");
+                        return false;
+
+                    }
+                    else {
+                        swal("Village Registration", "Village Added Successfully", "success");
+                        return true;
+                    }
+
+                });
+
+                $(function () {
+
+                    $(document).ready(function () {
+                        $('#tblHeadsmen').DataTable();
+                    });
+
+                });
+
+
+            });
+        </script>
+    }
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+}
+
+<br />
+<div id="accordion">
+    <div class="card">
+        <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+                <button class="btn btn-link" onclick="$('#collapsed-chevronSpouse').toggleClass('fa-rotate-180')" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <i class="fa fa-chevron-circle-up" id="collapsed-chevronSpouse"></i>
+                    Registered Headsmen
+                </button>
+            </h5>
+        </div>
+
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+                <table class="table table-striped" id="tblHeadsmen">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Name</th>
+                            <th>Last Name</th>
+                            <th>Province</th>
+                            <th>Village</th>
+                            <th>Cellphone</th>
+                            <th></th>
+
+                        </tr>
+                    </thead>
+
+                    @foreach (Headsman headsman in Model.HeadsmenList)
+                    {
+                        <tr>
+                            <td>@headsman.Name</td>
+                            <td>@headsman.LastName</td>
+                            <td>@headsman.Province.Province1</td>
+                            <td>@headsman.Village.Name</td>
+                            <td>@headsman.Cellphone</td>
+
+                            <td>
+                                <li class="btn btn-outline-warning "><a href="@Url.Action("Edit", "Headsmen", new { id =headsman.Id})"><i class="fa fa-edit"></i> Modify</a></li>
+                            </td>
+
+
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<CMS.Models.Repositories.Db.Case>
+@using GridMvc.Html
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<link href="~/Content/Gridmvc.css" rel="stylesheet" />
+<p>
+    @Html.ActionLink("New Case", "LodgeCase", null, new { @class = "btn btn-outline-success" })
+
+    <button type="button" value="Create" class="btn btn-outline-success float-right"><i class="fa fa-file-excel"></i> Excel</button>
+    <button type="button" class="btn btn-outline-primary float-right mr-1"><i class="fa fa-file-word"></i> Word</button>
+    <button type="button" class="btn btn-outline-danger float-right mr-1"><i class="fa fa-file-pdf"></i> PDF</button>
+
+</p>
+<div class="row">
+    <div class="col-md-12">
+
+        @Html.Grid(Model).Named("CaseTbl").Columns(c =>
+   {
+       c.Add(x => x.Name).Titled("Case Name").Filterable(true).Sortable(true);
+       c.Add(x => x.DateFilled).Titled("Date Filled").Filterable(true).Sortable(true);
+       c.Add(x => x.FilledBy).Titled("Filled By").Filterable(true).Sortable(true);
+       c.Add(x => x.CaseNumber).Titled("Case Number").Filterable(true).Sortable(true);
+       c.Add(x => x.Severity.Description).Titled("Priority").Sortable(true);
+       c.Add(x => x.IsActive).Titled("Is Active?").Sortable(true); ;
+       c.Add().Encoded(false).Sanitized(false).SetWidth(20).
+       RenderValueAs(model => Html.ActionLink("Edit", "CaseRegistry", new { id = model.Id }, new { @class = "btn btn-outline-primary fa fa-edit" }));
+
+   }).WithPaging(10).EmptyText("Error: Record not found!")
+
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/Gridmvc")
+}

@@ -1,0 +1,138 @@
+﻿@model CMS.Models.Plot
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Plot</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PlotNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlotNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hectare)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hectare)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsLeased)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsLeased)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LeasePeriodId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LeasePeriodId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GPSCoordinate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GPSCoordinate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Condition.Condition1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Condition.Condition1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Country.Country1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country.Country1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Province.Province1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Province.Province1)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

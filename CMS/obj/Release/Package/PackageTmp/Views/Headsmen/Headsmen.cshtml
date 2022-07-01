@@ -1,0 +1,220 @@
+﻿@model CMS.Models.Repositories.Db.Headsman
+
+
+
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href="~/Content/StyleForm.css" rel="stylesheet" />
+
+    <link href="~/Content/bootstrap-chosen.css" rel="stylesheet" />
+
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
+</head>
+
+<body>
+
+    <div ng-app="myApp">
+        <div ng-controller="myCntrl">
+            <div class="container register-form">
+                <div class="form">
+                    <div class="note">
+                        <p>Add Headsmen</p>
+                    </div>
+                    <br />
+                    <div class="col-xl-12 col-md-12 mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+
+                                <form>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="inputName">Full Name(s)</label>
+                                            <input type="text" class="form-control col-md-6" ng-model="Name" />
+
+                                        </div>
+
+                                        <div class="form-group col-md-6">
+                                            <label for="inputSection">Last Name</label>
+                                            <input type="text" class="form-control col-md-6" ng-model="LastName" />
+
+                                        </div>
+
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="inputProvince">Applicable Village</label>
+                                            @Html.DropDownList("VillageId", null, htmlAttributes: new { @class = "form-control" })
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="inputCountry">Province</label>
+                                            @Html.DropDownList("ProvinceId", null, htmlAttributes: new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="inputWard">Country</label>
+                                            @Html.DropDownList("CountryId", null, htmlAttributes: new { @class = "form-control" })
+                                        </div>
+
+                                        <div class="form-group col-md-6">
+                                            <label for="inputWard">Tribe</label>
+                                            @Html.DropDownList("TribeId", null, htmlAttributes: new { @class = "form-control" })
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-3">
+                                            <label for="inputWard">Clan</label>
+                                            @Html.DropDownList("ClanId", null, htmlAttributes: new { @class = "form-control" })
+                                        </div>
+
+                                        <div class="form-group col-md-3">
+                                            <label for="inputWard">Gender</label>
+                                            @Html.DropDownList("GenderId", null, htmlAttributes: new { @class = "form-control" })
+                                        </div>
+
+                                        <div class="form-group col-md-3">
+                                            <label for="inputWard">Cellphone</label>
+                                            <input type="text" class="form-control col-md-6" ng-model="Cellphone" />
+                                        </div>
+
+                                        <div class="form-group col-md-3">
+                                            <label for="inputWard">Alternative Cell</label>
+                                            <input type="text" class="form-control col-md-6" ng-model="Cellphone2" />
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            <label for="inputWard">Email</label>
+                                            <input type="text" class="form-control col-md-6" ng-model="Email" />
+                                        </div>
+
+                                        <div class="form-group col-md-8">
+                                            <label for="inputWard">Address</label>
+                                            <input type="text" class="form-control col-md-6" ng-model="Address" />
+                                        </div>
+
+                                    </div>
+
+                                    <button type="submit" onclick="return validateData()" id="btnSubmit" value="Submit" ng-click="InsertHeadsmen()" class="btn btn-outline-success"><i class="fa fa-save"></i> Save Village</button>
+                                    <button type="button" id="btnReset" class="btn btn-outline-warning pull-right"><i class="fa fa-redo"></i> Reset</button>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+
+                    <script src="~/Scripts/angular.js"></script>
+                    <script src="~/Scripts/HeadsmenScript.js"></script>
+
+
+                    @section scripts{
+                        <script>
+                            $(function () {
+
+                                $("#inputChief").chosen();
+                                $("#inputProvince").chosen();
+                                $("#inputCountry").chosen();
+
+
+                                ////Basic functionality
+                                $("#btnSubmit").click(function () {
+
+                                    if ($("#inputName").val() == "") {
+                                        swal("Village Registration!", "Error: Village Name is Required!", "error");
+                                        return false;
+
+                                    } if ($("#inputVillage").val() == "") {
+                                        swal("Village Registration!", "Error: Village Location is a required field!", "error");
+                                        return false;
+
+                                    }
+                                    else {
+                                        swal("Village Registration", "Village Added Successfully", "success");
+                                        return true;
+                                    }
+
+                                });
+
+
+                            });
+                        </script>
+                    }
+                    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+                    @Scripts.Render("~/bundles/jquery")
+                    @Scripts.Render("~/bundles/bootstrap")
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
+
+<div ng-init="Index()">
+    <table class="table">
+        <tr>
+            <th>
+                Full Name(s)
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Address
+            </th>
+            <th>Action</th>
+        </tr>
+
+
+        <tr ng-repeat="Std in Headsman">
+            <td>{{Std.Name}}</td>
+            <td>
+                {{Std.LastName}}
+            </td>
+            <td>
+                {{Std.Email}}
+            </td>
+            <td>
+                {{Std.Address}}
+            </td>
+            <td>
+                <input type="button" ng-click="UpdateHeadsmen(Std)" value="Update" />
+                <input type="button" ng-click="DeleteHeadsmen(Std)" value="Delete" />
+            </td>
+        </tr>
+
+
+    </table>
+</div>
+
+
+
+

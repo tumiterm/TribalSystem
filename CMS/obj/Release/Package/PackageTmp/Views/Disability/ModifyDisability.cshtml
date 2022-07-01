@@ -1,0 +1,108 @@
+﻿@model CMS.Models.Repositories.Db.Disability
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+<link href="~/Content/StyleForm.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-chosen.css" rel="stylesheet" />
+
+
+@Scripts.Render("~/bundles/modernizr")
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
+@using (Html.BeginForm("ModifyDisability", "Disability", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <button type="button" class="btn btn-success float-right"><i class="fa fa-wheelchair"></i> View Disabilities</button>
+
+    <div class="note mt-3 mb-3">
+        <p>Modify Disability</p>
+    </div>
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="col-xl-12 col-md-12">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="container register-form">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <br />
+                        <label for="PropType">State Disability</label>
+                        @Html.EditorFor(model => model.Disability1, new { htmlAttributes = new { @class = "form-control", @id = "disability" } })
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group col-md-4 ml-2">
+                @Html.EditorFor(model => model.IsActive)
+                <label for="inputIsActive">Is Active?</label>
+            </div>
+
+            <div style="background-color:whitesmoke" class="mt-3 pull-right ml-1 mr-1">
+                <button type="submit" id="btnSubmit" value="Create" onclick="return validateData()" class="btn btn-outline-dark ml-3"><i class="fa fa-wheelchair"></i> Save Disability</button>
+            </div>
+        </div>
+
+    </div>
+
+    <br />
+
+
+    @section scripts{
+        <script>
+
+                    $(function () {
+                        GetDisabilityList();
+
+
+                    $(function () {
+                        $("#btnSubmit").click(function () {
+
+                            if ($("#disability").val() == "") {
+                                swal("Add Disability", "Error: Disability Required!", "error");
+                                return false;
+                            }
+
+                            else {
+                                swal("Add Disability", "Disability successfully registered", "success");
+                                return true;
+                            }
+
+                        });
+                    });
+
+                    function GetDisabilityList() {
+                        $.ajax({
+                            contentType: 'application/json; charset=utf-8',
+                            dataType: 'json',
+                            type: 'Get',
+                            url: "/Disability/Index",
+                            success: function (data) {
+                                $("#trDiv").html('');
+                                var tdContent = '';
+                                for (var i = 0; i < data.length; i++) {
+                                    tdContent += '<tr><td>' + data[i].Disability1 + '</td><td>' + data[i].IsActive + '</td>' + '<td>' + '<td><a href="#" onclick="Edit(' + data[i].Id + ",'" + data[i].Disability1 + "','" + data[i].IsActive + ');">Edit</a></td></tr>';
+
+                                }
+                                $("#trDiv").append(tdContent);
+                            },
+                            error: function () {
+                                alert("Error!")
+                            }
+                        });
+                    }
+
+        </script>
+    }
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+}
+
+
+

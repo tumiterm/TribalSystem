@@ -1,0 +1,34 @@
+﻿@model IEnumerable<CMS.Models.Repositories.Db.Property>
+@using GridMvc.Html
+
+@{
+    ViewBag.Title = "Index";
+
+
+}
+
+<link href="~/Content/Gridmvc.css" rel="stylesheet" />
+
+<div class="row">
+    <div class="col-md-12">
+
+        @Html.Grid(Model).Named("PropTbl").Columns(c =>
+   {
+       c.Add(x => x.PropertyType.PropertyType1).Titled("Property Type").Filterable(true).Sortable(true);
+       c.Add(x => x.Headsman.Name).Titled("Headsmen").Filterable(true).Sortable(true);
+       c.Add(x => x.Village.Name
+       ).Titled("Village Name").Filterable(true).Sortable(true);
+       c.Add(x => x.StandNo).Titled("Stand Number").Filterable(true).Sortable(true);
+       c.Add(x => x.IsActive).Titled("Is Active").Filterable(true).Sortable(true);
+
+       c.Add().Encoded(false).Sanitized(false).SetWidth(20).
+       RenderValueAs(model => Html.ActionLink("Modify", "ModifyProperty", new { id = model.Id }, new { @class = "btn btn-outline-primary fas fa-edit" }));
+
+   }).WithPaging(10).EmptyText("Error: Property not found!")
+
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/Gridmvc")
+}

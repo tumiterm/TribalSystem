@@ -1,0 +1,249 @@
+﻿@model IEnumerable<CMS.Models.Repositories.Db.Complaint>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Race)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date_of_Birth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Residential_Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Postal_Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Postal_Code_Residential)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Postal_Code_Postal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cellphone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Alternative_Contact)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WhoseNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ComplainedFor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IncidentDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IncidentLocation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NatureOfComplaint)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AllegedOffenderName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AllegedOffenderAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Witness1Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Witness1Phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Witness1Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Witness2Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Witness2Phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Witness2Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsMatterReported)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ToWhom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NeedsInterpreter)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedOn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModifiedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CaseStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Headsman.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Village.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id_Number)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Race)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date_of_Birth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Age)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Residential_Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Postal_Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Postal_Code_Residential)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Postal_Code_Postal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cellphone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Alternative_Contact)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WhoseNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ComplainedFor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IncidentDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IncidentLocation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NatureOfComplaint)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AllegedOffenderName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AllegedOffenderAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Witness1Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Witness1Phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Witness1Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Witness2Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Witness2Phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Witness2Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsMatterReported)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ToWhom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NeedsInterpreter)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedOn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModifiedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CaseStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Headsman.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Village.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,152 @@
+﻿@model CMS.Models.Repositories.Db.Municipality
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Municipality</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MayorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MayorName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MayorLastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MayorLastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Country.Country1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country.Country1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Municipality1.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Municipality1.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Municipality2.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Municipality2.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Municipality11.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Municipality11.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Municipality3.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Municipality3.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Province.Province1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Province.Province1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Section.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Section.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserTitle1.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserTitle1.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ward.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ward.Description)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

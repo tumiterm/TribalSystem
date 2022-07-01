@@ -1,0 +1,330 @@
+﻿@model CMS.Models.Applicant
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Applicant</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cellphone1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cellphone1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cellphone2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cellphone2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpouseName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpouseName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpouseLastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpouseLastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpousePhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpousePhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpouseId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpouseId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Occupation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Occupation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BusinessActivity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BusinessActivity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Municipality)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Municipality)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HouseNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HouseNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StreetName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StreetName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PostalCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PostalCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OccupantsNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OccupantsNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberOfRooms)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfRooms)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Country.Country1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country.Country1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Disability.Disability1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Disability.Disability1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Education.Level)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Education.Level)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender.Gender1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender.Gender1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IncomeSource.IncomeSource1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IncomeSource.IncomeSource1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LivingQuater.LivingQuaters)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LivingQuater.LivingQuaters)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MarriageStatu.MaritalStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MarriageStatu.MaritalStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NativeLanguage.Language)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NativeLanguage.Language)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PreferredCommunication.CommunicationMethod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PreferredCommunication.CommunicationMethod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PropertyAge.Age)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PropertyAge.Age)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Province.Province1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Province.Province1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Race.Race1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Race.Race1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SettlementHierachy.SettlementHierachy1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SettlementHierachy.SettlementHierachy1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenureStatu.TenureStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenureStatu.TenureStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkType.WorkType1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkType.WorkType1)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDNumber }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

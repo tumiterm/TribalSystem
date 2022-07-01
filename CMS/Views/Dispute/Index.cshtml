@@ -1,0 +1,66 @@
+﻿@model IEnumerable<CMS.Models.Dispute>
+@using GridMvc.Html
+
+@{
+    ViewBag.Title = "Index";
+
+
+}
+
+<style>
+
+    .pagination > li > a {
+        background-color: white;
+        color: #5A4181;
+    }
+
+        .pagination > li > a:focus,
+        .pagination > li > a:hover,
+        .pagination > li > span:focus,
+        .pagination > li > span:hover {
+            color: #5a5a5a;
+            background-color: #eee;
+            border-color: #ddd;
+        }
+
+    .pagination > .active > a {
+        color: white;
+        background-color: #5A4181 !Important;
+        border: solid 1px #5A4181 !Important;
+    }
+
+        .pagination > .active > a:hover {
+            background-color: #5A4181 !Important;
+            border: solid 1px #5A4181;
+        }
+</style>
+
+
+<link href="~/Content/Gridmvc.css" rel="stylesheet" />
+<p>
+    @Html.ActionLink("Create New", "Create",null, new { @class = "btn btn-outline-success" })
+</p>
+<div class="row">
+    <div class="col-md-12">
+
+        @Html.Grid(Model).Named("DisputeTbl").Columns(c =>
+   {
+       c.Add(x => x.DisputeType.DisputeType1).Titled("Dispute Type").Filterable(true).Sortable(true);
+       c.Add(x => x.IsSuccessfullyHandled).Titled("Is Handled?").Filterable(true).Sortable(true);
+       c.Add(x => x.Severity.Description).Titled("Severity").Filterable(true).Sortable(true);
+       c.Add(x => x.Individual).Titled("Complainant").Filterable(true).Sortable(true);
+       c.Add(x => x.HasBeenElevated).Titled("Is Elevated?").Filterable(true).Sortable(true);
+       c.Add(x => x.IsActive).Titled("Is Active");
+       c.Add().Encoded(false).Sanitized(false).SetWidth(20).
+       RenderValueAs(o => Html.ActionLink("Update", "Edit", new { id = o.Id }, new { @class = "btn btn-outline-primary" }));
+
+   }).WithPaging(4).EmptyText("Error: Record not found!")
+
+    </div>
+</div>
+
+
+@section scripts{
+    @Scripts.Render("~/bundles/Gridmvc")
+}
+

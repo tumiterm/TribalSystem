@@ -1,0 +1,1996 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ApplicantFilling">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Beneficiary">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="FullName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ID_Number" Type="varchar" MaxLength="13" Nullable="false" />
+    <Property Name="GenderId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Cellphone1" Type="varchar" MaxLength="13" Nullable="false" />
+    <Property Name="Cellphone2" Type="varchar" MaxLength="13" />
+    <Property Name="RelationshipId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Percentage" Type="float" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+    <Property Name="DwellerId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Case">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CourtType" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CaseTypeId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="CaseStatus" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Lawyer" Type="varchar" MaxLength="50" />
+    <Property Name="DateFilled" Type="datetime" Nullable="false" />
+    <Property Name="FilledBy" Type="varchar" MaxLength="50" />
+    <Property Name="PersonFillingId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PriorityId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Phone" Type="varchar" MaxLength="13" />
+    <Property Name="CaseNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="varchar(max)" Nullable="false" />
+    <Property Name="PaymentTypeId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Payee" Type="varchar" MaxLength="50" />
+    <Property Name="Amount" Type="money" />
+    <Property Name="PaymentForId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="FirstHearingDate" Type="datetime" Nullable="false" />
+    <Property Name="NextHearingDate" Type="datetime" Nullable="false" />
+    <Property Name="Judge" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="CaseStatus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="CaseType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Chief">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="TitleId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ClanId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="TribeId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Cellphone1" Type="varchar" MaxLength="12" Nullable="false" />
+    <Property Name="Cellphone2" Type="varchar" MaxLength="12" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Address" Type="varchar" MaxLength="50" />
+    <Property Name="GenderId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="VillageId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+    <Property Name="AppointedBy" Type="varchar" MaxLength="50" />
+    <Property Name="AppointedOn" Type="datetime" />
+    <Property Name="AppointedTill" Type="datetime" />
+    <Property Name="ID_Number" Type="varchar" MaxLength="13" />
+  </EntityType>
+  <EntityType Name="Clan">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Complaint">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Id_Number" Type="nvarchar" MaxLength="13" Nullable="false" />
+    <Property Name="Race" Type="int" />
+    <Property Name="Date-of-Birth" Type="date" />
+    <Property Name="Age" Type="int" />
+    <Property Name="Gender" Type="int" />
+    <Property Name="Residential_Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="Postal_Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="Postal_Code_Residential" Type="nvarchar" MaxLength="8" />
+    <Property Name="Postal_Code_Postal" Type="nvarchar" MaxLength="8" />
+    <Property Name="Cellphone" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Alternative_Contact" Type="nvarchar" MaxLength="12" />
+    <Property Name="WhoseNumber" Type="varchar" MaxLength="50" />
+    <Property Name="ComplainedFor" Type="int" Nullable="false" />
+    <Property Name="IncidentDate" Type="varchar" MaxLength="20" />
+    <Property Name="IncidentLocation" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="NatureOfComplaint" Type="nvarchar" MaxLength="50" />
+    <Property Name="AllegedOffenderName" Type="nvarchar" MaxLength="50" />
+    <Property Name="AllegedOffenderAddress" Type="nvarchar" MaxLength="50" />
+    <Property Name="Witness1Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Witness1Phone" Type="nvarchar" MaxLength="12" />
+    <Property Name="Witness1Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="Witness2Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Witness2Phone" Type="nvarchar" MaxLength="12" />
+    <Property Name="Witness2Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsMatterReported" Type="bit" Nullable="false" />
+    <Property Name="ToWhom" Type="varchar" MaxLength="50" />
+    <Property Name="NeedsInterpreter" Type="bit" Nullable="false" />
+    <Property Name="VillageId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="HeadsmenId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="varchar" MaxLength="50" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+    <Property Name="CaseStatus" Type="int" />
+  </EntityType>
+  <EntityType Name="Condition">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Condition" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Country" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Court">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="TypeId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="varchar" MaxLength="50" />
+    <Property Name="Tel" Type="varchar" MaxLength="13" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="CourtType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Disability">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Disability" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Dispute">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="DisputeTypeId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Description" Type="varchar(max)" />
+    <Property Name="LodgedById" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Individual" Type="varchar" MaxLength="50" />
+    <Property Name="LodgedOn" Type="datetime" Nullable="false" />
+    <Property Name="SeverityId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Resolution" Type="varchar(max)" />
+    <Property Name="AttendedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="AttendedOn" Type="datetime" />
+    <Property Name="IsSuccessfullyHandled" Type="bit" Nullable="false" />
+    <Property Name="HasBeenElevated" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="DisputeType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="DisputeType" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Dweller">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ID_Number" Type="varchar" MaxLength="13" Nullable="false" />
+    <Property Name="GenderId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="HeadsmenId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="VillageId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="MaritalStatusId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RaceId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Cellphone" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Cellphone2" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="SpouseName" Type="varchar" MaxLength="50" />
+    <Property Name="SpouseLastName" Type="varchar" MaxLength="50" />
+    <Property Name="SpouseCell" Type="varchar" MaxLength="50" />
+    <Property Name="RelationshipId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="EmployerName" Type="varchar" MaxLength="50" />
+    <Property Name="WorkTypeId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Occupation" Type="varchar" MaxLength="50" />
+    <Property Name="IncomeSourceId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="BusinessActivity" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+    <Property Name="DisabilityId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="EducationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="AddressLine1" Type="varchar" MaxLength="50" />
+    <Property Name="AddressLine2" Type="varchar" MaxLength="50" />
+    <Property Name="City" Type="varchar" MaxLength="50" />
+    <Property Name="PostalCode" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Education">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Level" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Gender">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Gender" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Headsmen">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="TitleId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="VillageId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProvinceId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CountryId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="TribeId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ClanId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="GenderId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Cellphone" Type="varchar" MaxLength="13" Nullable="false" />
+    <Property Name="Cellphone2" Type="varchar" MaxLength="50" />
+    <Property Name="Address" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+    <Property Name="AppointedBy" Type="varchar" MaxLength="50" />
+    <Property Name="AppointedOn" Type="datetime" />
+    <Property Name="AppointedTill" Type="datetime" />
+    <Property Name="ID_Number" Type="varchar" MaxLength="13" />
+  </EntityType>
+  <EntityType Name="IncomeSource">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IncomeSource" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="LivingQuaters">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LivingQuaters" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="MarriageStatus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="MaritalStatus" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Municipality">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProvinceId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CountryId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="SectionId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="WardId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="MayorName" Type="varchar" MaxLength="50" />
+    <Property Name="MayorLastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserTitle" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="NativeLanguage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Language" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PaymentFor">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Pay" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PaymentType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PlotTbl">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PlotNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="Hectare" Type="float" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="date" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+    <Property Name="IsLeased" Type="bit" Nullable="false" />
+    <Property Name="LeasePeriod" Type="varchar" MaxLength="50" />
+    <Property Name="WardId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="SectionId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProvinceId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CountryId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ConditionId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LeaseStartDate" Type="datetime" />
+    <Property Name="LeaseEndDate" Type="datetime" />
+    <Property Name="LeaseAmount" Type="money" />
+    <Property Name="VillageId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="AmountPaid" Type="money" />
+    <Property Name="MunicipalityId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LeaseCycle" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PreferredCommunication">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CommunicationMethod" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PrevOwner">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="ID_Number" Type="nvarchar" MaxLength="13" />
+    <Property Name="PassportNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="PlotId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Property">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PropertyTypeId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PropertyStatusId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="VillageTypeId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="HouseNumber" Type="varchar" MaxLength="50" />
+    <Property Name="LeaseRentId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RentAmount" Type="money" />
+    <Property Name="CashPaid" Type="money" />
+    <Property Name="Size" Type="varchar" MaxLength="10" />
+    <Property Name="ConditionId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="SectionId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="WardId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="StandNo" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="PropertyAgeId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProvinceId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Municipality" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="SettlementHierachyId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="TenureStausId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="DwellerId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="HeadsmenId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LivingQuartersId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PropertyAge">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Age" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PropertyHistory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PrevOwnerName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PrevOwnerSurname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PrevOwnerID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PrevOwnerCell" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="OwnedFrom" Type="date" Nullable="false" />
+    <Property Name="OwnedTill" Type="date" Nullable="false" />
+    <Property Name="CostOfProp" Type="money" />
+    <Property Name="Unique_Val" Type="varchar" MaxLength="50" />
+    <Property Name="Municipality" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="VillageId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="HeadsmenId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RentedOrBought" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PropertySize" Type="varchar" MaxLength="50" />
+    <Property Name="PropertyTypeId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProvinceId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ConditionId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PropertyStatus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PropertyStatus" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PropertyType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PropertyType" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Province">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Province" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Race">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Race" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Relationship">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RentLease">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Section">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SettlementHierachy">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="SettlementHierachy" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Severity">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TenureStatus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="TenureStatus" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TribalAuthority">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="AuthorityName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Telephone" Type="nchar" MaxLength="10" />
+    <Property Name="ImageFile" Type="varchar(max)" />
+    <Property Name="Address" Type="varchar" MaxLength="50" />
+    <Property Name="POBox" Type="varchar" MaxLength="5" />
+    <Property Name="CountryId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProvinceId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tribe">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="13" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar(max)" Nullable="false" />
+    <Property Name="IsEmailVerified" Type="bit" Nullable="false" />
+    <Property Name="ActivationCode" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ResetPasswordCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedOn" Type="varchar" MaxLength="20" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="20" />
+    <Property Name="LastLoginDate" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="UserRoleMapping">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserTitle">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Village">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProvinceId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CountryId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="WardId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="SectionId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="MunicipalityId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Ward">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WorkType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="WorkType" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Beneficiary_Dweller">
+    <End Role="Dweller" Type="Self.Dweller" Multiplicity="1" />
+    <End Role="Beneficiary" Type="Self.Beneficiary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dweller">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Beneficiary">
+        <PropertyRef Name="DwellerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Beneficiary_Gender">
+    <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+    <End Role="Beneficiary" Type="Self.Beneficiary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Beneficiary">
+        <PropertyRef Name="GenderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Beneficiary_Relationship">
+    <End Role="Relationship" Type="Self.Relationship" Multiplicity="1" />
+    <End Role="Beneficiary" Type="Self.Beneficiary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Relationship">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Beneficiary">
+        <PropertyRef Name="RelationshipId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Case_ApplicantFilling">
+    <End Role="ApplicantFilling" Type="Self.ApplicantFilling" Multiplicity="1" />
+    <End Role="Case" Type="Self.Case" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ApplicantFilling">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Case">
+        <PropertyRef Name="PersonFillingId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Case_Case">
+    <End Role="Case" Type="Self.Case" Multiplicity="1" />
+    <End Role="Case1" Type="Self.Case" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Case">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Case1">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Case_CaseStatus">
+    <End Role="CaseStatus" Type="Self.CaseStatus" Multiplicity="1" />
+    <End Role="Case" Type="Self.Case" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CaseStatus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Case">
+        <PropertyRef Name="CaseStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Case_CaseType">
+    <End Role="CaseType" Type="Self.CaseType" Multiplicity="1" />
+    <End Role="Case" Type="Self.Case" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CaseType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Case">
+        <PropertyRef Name="CaseTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Case_Chief">
+    <End Role="Chief" Type="Self.Chief" Multiplicity="1" />
+    <End Role="Case" Type="Self.Case" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Chief">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Case">
+        <PropertyRef Name="Judge" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Case_CourtType">
+    <End Role="Court" Type="Self.Court" Multiplicity="1" />
+    <End Role="Case" Type="Self.Case" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Court">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Case">
+        <PropertyRef Name="CourtType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Case_PaymentFor">
+    <End Role="PaymentFor" Type="Self.PaymentFor" Multiplicity="1" />
+    <End Role="Case" Type="Self.Case" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentFor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Case">
+        <PropertyRef Name="PaymentForId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Case_PaymentType">
+    <End Role="PaymentType" Type="Self.PaymentType" Multiplicity="1" />
+    <End Role="Case" Type="Self.Case" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Case">
+        <PropertyRef Name="PaymentTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Case_Severity">
+    <End Role="Severity" Type="Self.Severity" Multiplicity="1" />
+    <End Role="Case" Type="Self.Case" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Severity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Case">
+        <PropertyRef Name="PriorityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Chief_Clan">
+    <End Role="Clan" Type="Self.Clan" Multiplicity="1" />
+    <End Role="Chief" Type="Self.Chief" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clan">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Chief">
+        <PropertyRef Name="ClanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Chief_Gender">
+    <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+    <End Role="Chief" Type="Self.Chief" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Chief">
+        <PropertyRef Name="GenderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Chief_Tribe">
+    <End Role="Tribe" Type="Self.Tribe" Multiplicity="1" />
+    <End Role="Chief" Type="Self.Chief" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tribe">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Chief">
+        <PropertyRef Name="TribeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Chief_UserTitle">
+    <End Role="UserTitle" Type="Self.UserTitle" Multiplicity="1" />
+    <End Role="Chief" Type="Self.Chief" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserTitle">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Chief">
+        <PropertyRef Name="TitleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Chief_Village">
+    <End Role="Village" Type="Self.Village" Multiplicity="1" />
+    <End Role="Chief" Type="Self.Chief" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Village">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Chief">
+        <PropertyRef Name="VillageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Complaint_Headsmen">
+    <End Role="Headsmen" Type="Self.Headsmen" Multiplicity="1" />
+    <End Role="Complaint" Type="Self.Complaint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Headsmen">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Complaint">
+        <PropertyRef Name="HeadsmenId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Complaint_Village">
+    <End Role="Village" Type="Self.Village" Multiplicity="1" />
+    <End Role="Complaint" Type="Self.Complaint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Village">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Complaint">
+        <PropertyRef Name="VillageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Court_CourtType">
+    <End Role="CourtType" Type="Self.CourtType" Multiplicity="1" />
+    <End Role="Court" Type="Self.Court" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourtType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Court">
+        <PropertyRef Name="TypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dispute_ApplicantFilling">
+    <End Role="ApplicantFilling" Type="Self.ApplicantFilling" Multiplicity="1" />
+    <End Role="Dispute" Type="Self.Dispute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ApplicantFilling">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Dispute">
+        <PropertyRef Name="LodgedById" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dispute_Chief">
+    <End Role="Chief" Type="Self.Chief" Multiplicity="1" />
+    <End Role="Dispute" Type="Self.Dispute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Chief">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Dispute">
+        <PropertyRef Name="AttendedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dispute_DisputeType">
+    <End Role="DisputeType" Type="Self.DisputeType" Multiplicity="1" />
+    <End Role="Dispute" Type="Self.Dispute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DisputeType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Dispute">
+        <PropertyRef Name="DisputeTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dispute_Severity">
+    <End Role="Severity" Type="Self.Severity" Multiplicity="1" />
+    <End Role="Dispute" Type="Self.Dispute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Severity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Dispute">
+        <PropertyRef Name="SeverityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dweller_Disability">
+    <End Role="Disability" Type="Self.Disability" Multiplicity="1" />
+    <End Role="Dweller" Type="Self.Dweller" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Disability">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Dweller">
+        <PropertyRef Name="DisabilityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dweller_Education">
+    <End Role="Education" Type="Self.Education" Multiplicity="1" />
+    <End Role="Dweller" Type="Self.Dweller" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Education">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Dweller">
+        <PropertyRef Name="EducationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dweller_Gender">
+    <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+    <End Role="Dweller" Type="Self.Dweller" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Dweller">
+        <PropertyRef Name="GenderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dweller_Headsmen">
+    <End Role="Headsmen" Type="Self.Headsmen" Multiplicity="1" />
+    <End Role="Dweller" Type="Self.Dweller" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Headsmen">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Dweller">
+        <PropertyRef Name="HeadsmenId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dweller_IncomeSource">
+    <End Role="IncomeSource" Type="Self.IncomeSource" Multiplicity="1" />
+    <End Role="Dweller" Type="Self.Dweller" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="IncomeSource">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Dweller">
+        <PropertyRef Name="IncomeSourceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dweller_MarriageStatus">
+    <End Role="MarriageStatus" Type="Self.MarriageStatus" Multiplicity="1" />
+    <End Role="Dweller" Type="Self.Dweller" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MarriageStatus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Dweller">
+        <PropertyRef Name="MaritalStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dweller_Race">
+    <End Role="Race" Type="Self.Race" Multiplicity="1" />
+    <End Role="Dweller" Type="Self.Dweller" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Race">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Dweller">
+        <PropertyRef Name="RaceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dweller_Relationship">
+    <End Role="Relationship" Type="Self.Relationship" Multiplicity="1" />
+    <End Role="Dweller" Type="Self.Dweller" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Relationship">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Dweller">
+        <PropertyRef Name="RelationshipId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dweller_Village">
+    <End Role="Village" Type="Self.Village" Multiplicity="1" />
+    <End Role="Dweller" Type="Self.Dweller" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Village">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Dweller">
+        <PropertyRef Name="VillageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dweller_WorkType">
+    <End Role="WorkType" Type="Self.WorkType" Multiplicity="1" />
+    <End Role="Dweller" Type="Self.Dweller" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WorkType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Dweller">
+        <PropertyRef Name="WorkTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Headsmen_Clan">
+    <End Role="Clan" Type="Self.Clan" Multiplicity="1" />
+    <End Role="Headsmen" Type="Self.Headsmen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clan">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Headsmen">
+        <PropertyRef Name="ClanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Headsmen_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="Headsmen" Type="Self.Headsmen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Headsmen">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Headsmen_Gender">
+    <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+    <End Role="Headsmen" Type="Self.Headsmen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Headsmen">
+        <PropertyRef Name="GenderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Headsmen_Province">
+    <End Role="Province" Type="Self.Province" Multiplicity="1" />
+    <End Role="Headsmen" Type="Self.Headsmen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Province">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Headsmen">
+        <PropertyRef Name="ProvinceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Headsmen_Tribe">
+    <End Role="Tribe" Type="Self.Tribe" Multiplicity="1" />
+    <End Role="Headsmen" Type="Self.Headsmen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tribe">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Headsmen">
+        <PropertyRef Name="TribeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Headsmen_UserTitle">
+    <End Role="UserTitle" Type="Self.UserTitle" Multiplicity="1" />
+    <End Role="Headsmen" Type="Self.Headsmen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserTitle">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Headsmen">
+        <PropertyRef Name="TitleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Headsmen_Village">
+    <End Role="Village" Type="Self.Village" Multiplicity="1" />
+    <End Role="Headsmen" Type="Self.Headsmen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Village">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Headsmen">
+        <PropertyRef Name="VillageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Municipality_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="Municipality" Type="Self.Municipality" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Municipality">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Municipality_Municipality">
+    <End Role="Municipality" Type="Self.Municipality" Multiplicity="1" />
+    <End Role="Municipality1" Type="Self.Municipality" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Municipality">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Municipality1">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Municipality_Municipality1">
+    <End Role="Municipality" Type="Self.Municipality" Multiplicity="1" />
+    <End Role="Municipality1" Type="Self.Municipality" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Municipality">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Municipality1">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Municipality_Province">
+    <End Role="Province" Type="Self.Province" Multiplicity="1" />
+    <End Role="Municipality" Type="Self.Municipality" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Province">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Municipality">
+        <PropertyRef Name="ProvinceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Municipality_Section">
+    <End Role="Section" Type="Self.Section" Multiplicity="1" />
+    <End Role="Municipality" Type="Self.Municipality" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Section">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Municipality">
+        <PropertyRef Name="SectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Municipality_UserTitle">
+    <End Role="UserTitle" Type="Self.UserTitle" Multiplicity="1" />
+    <End Role="Municipality" Type="Self.Municipality" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserTitle">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Municipality">
+        <PropertyRef Name="UserTitle" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Municipality_Ward">
+    <End Role="Ward" Type="Self.Ward" Multiplicity="1" />
+    <End Role="Municipality" Type="Self.Municipality" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ward">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Municipality">
+        <PropertyRef Name="WardId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlotTbl_Condition">
+    <End Role="Condition" Type="Self.Condition" Multiplicity="1" />
+    <End Role="PlotTbl" Type="Self.PlotTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Condition">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PlotTbl">
+        <PropertyRef Name="ConditionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlotTbl_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="PlotTbl" Type="Self.PlotTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PlotTbl">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlotTbl_Municipality">
+    <End Role="Municipality" Type="Self.Municipality" Multiplicity="1" />
+    <End Role="PlotTbl" Type="Self.PlotTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Municipality">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PlotTbl">
+        <PropertyRef Name="MunicipalityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlotTbl_Province">
+    <End Role="Province" Type="Self.Province" Multiplicity="1" />
+    <End Role="PlotTbl" Type="Self.PlotTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Province">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PlotTbl">
+        <PropertyRef Name="ProvinceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlotTbl_Section">
+    <End Role="Section" Type="Self.Section" Multiplicity="1" />
+    <End Role="PlotTbl" Type="Self.PlotTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Section">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PlotTbl">
+        <PropertyRef Name="SectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlotTbl_Village">
+    <End Role="Village" Type="Self.Village" Multiplicity="1" />
+    <End Role="PlotTbl" Type="Self.PlotTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Village">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PlotTbl">
+        <PropertyRef Name="VillageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlotTbl_Ward">
+    <End Role="Ward" Type="Self.Ward" Multiplicity="1" />
+    <End Role="PlotTbl" Type="Self.PlotTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ward">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PlotTbl">
+        <PropertyRef Name="WardId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PrevOwner_PlotTbl">
+    <End Role="PlotTbl" Type="Self.PlotTbl" Multiplicity="1" />
+    <End Role="PrevOwner" Type="Self.PrevOwner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PlotTbl">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PrevOwner">
+        <PropertyRef Name="PlotId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Property_Condition">
+    <End Role="Condition" Type="Self.Condition" Multiplicity="1" />
+    <End Role="Property" Type="Self.Property" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Condition">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Property">
+        <PropertyRef Name="ConditionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Property_Dweller">
+    <End Role="Dweller" Type="Self.Dweller" Multiplicity="1" />
+    <End Role="Property" Type="Self.Property" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dweller">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Property">
+        <PropertyRef Name="DwellerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Property_Headsmen">
+    <End Role="Headsmen" Type="Self.Headsmen" Multiplicity="1" />
+    <End Role="Property" Type="Self.Property" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Headsmen">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Property">
+        <PropertyRef Name="HeadsmenId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Property_LivingQuaters">
+    <End Role="LivingQuaters" Type="Self.LivingQuaters" Multiplicity="1" />
+    <End Role="Property" Type="Self.Property" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LivingQuaters">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Property">
+        <PropertyRef Name="LivingQuartersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Property_Municipality">
+    <End Role="Municipality" Type="Self.Municipality" Multiplicity="1" />
+    <End Role="Property" Type="Self.Property" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Municipality">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Property">
+        <PropertyRef Name="Municipality" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Property_PropertyAge">
+    <End Role="PropertyAge" Type="Self.PropertyAge" Multiplicity="1" />
+    <End Role="Property" Type="Self.Property" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PropertyAge">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Property">
+        <PropertyRef Name="PropertyAgeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Property_PropertyStatus">
+    <End Role="PropertyStatus" Type="Self.PropertyStatus" Multiplicity="1" />
+    <End Role="Property" Type="Self.Property" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PropertyStatus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Property">
+        <PropertyRef Name="PropertyStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Property_PropertyType">
+    <End Role="PropertyType" Type="Self.PropertyType" Multiplicity="1" />
+    <End Role="Property" Type="Self.Property" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PropertyType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Property">
+        <PropertyRef Name="PropertyTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Property_Province">
+    <End Role="Province" Type="Self.Province" Multiplicity="1" />
+    <End Role="Property" Type="Self.Property" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Province">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Property">
+        <PropertyRef Name="ProvinceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Property_Section">
+    <End Role="Section" Type="Self.Section" Multiplicity="1" />
+    <End Role="Property" Type="Self.Property" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Section">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Property">
+        <PropertyRef Name="SectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Property_SettlementHierachy">
+    <End Role="SettlementHierachy" Type="Self.SettlementHierachy" Multiplicity="1" />
+    <End Role="Property" Type="Self.Property" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SettlementHierachy">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Property">
+        <PropertyRef Name="SettlementHierachyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Property_TenureStatus">
+    <End Role="TenureStatus" Type="Self.TenureStatus" Multiplicity="1" />
+    <End Role="Property" Type="Self.Property" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TenureStatus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Property">
+        <PropertyRef Name="TenureStausId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Property_Village">
+    <End Role="Village" Type="Self.Village" Multiplicity="1" />
+    <End Role="Property" Type="Self.Property" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Village">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Property">
+        <PropertyRef Name="VillageTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Property_Ward">
+    <End Role="Ward" Type="Self.Ward" Multiplicity="1" />
+    <End Role="Property" Type="Self.Property" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ward">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Property">
+        <PropertyRef Name="WardId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TribalAuthority_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="TribalAuthority" Type="Self.TribalAuthority" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TribalAuthority">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TribalAuthority_Province">
+    <End Role="Province" Type="Self.Province" Multiplicity="1" />
+    <End Role="TribalAuthority" Type="Self.TribalAuthority" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Province">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TribalAuthority">
+        <PropertyRef Name="ProvinceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoleMapping_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="UserRoleMapping" Type="Self.UserRoleMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRoleMapping">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoleMapping_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="UserRoleMapping" Type="Self.UserRoleMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRoleMapping">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Village_Court">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="Village" Type="Self.Village" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Village">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Village_Municipality">
+    <End Role="Municipality" Type="Self.Municipality" Multiplicity="1" />
+    <End Role="Village" Type="Self.Village" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Municipality">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Village">
+        <PropertyRef Name="MunicipalityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Village_Province">
+    <End Role="Province" Type="Self.Province" Multiplicity="1" />
+    <End Role="Village" Type="Self.Village" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Province">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Village">
+        <PropertyRef Name="ProvinceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Village_Section">
+    <End Role="Section" Type="Self.Section" Multiplicity="1" />
+    <End Role="Village" Type="Self.Village" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Section">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Village">
+        <PropertyRef Name="SectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Village_Ward">
+    <End Role="Ward" Type="Self.Ward" Multiplicity="1" />
+    <End Role="Village" Type="Self.Village" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ward">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Village">
+        <PropertyRef Name="WardId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="f_spDwellerVillageInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="_spDwellerVillageInfo" />
+  <EntityContainer Name="CMSModelStoreContainer">
+    <EntitySet Name="ApplicantFilling" EntityType="Self.ApplicantFilling" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Beneficiary" EntityType="Self.Beneficiary" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Case" EntityType="Self.Case" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CaseStatus" EntityType="Self.CaseStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CaseType" EntityType="Self.CaseType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Chief" EntityType="Self.Chief" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Clan" EntityType="Self.Clan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Complaint" EntityType="Self.Complaint" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Condition" EntityType="Self.Condition" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Court" EntityType="Self.Court" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CourtType" EntityType="Self.CourtType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Disability" EntityType="Self.Disability" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Dispute" EntityType="Self.Dispute" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DisputeType" EntityType="Self.DisputeType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Dweller" EntityType="Self.Dweller" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Education" EntityType="Self.Education" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Headsmen" EntityType="Self.Headsmen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="IncomeSource" EntityType="Self.IncomeSource" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LivingQuaters" EntityType="Self.LivingQuaters" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MarriageStatus" EntityType="Self.MarriageStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Municipality" EntityType="Self.Municipality" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NativeLanguage" EntityType="Self.NativeLanguage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PaymentFor" EntityType="Self.PaymentFor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PaymentType" EntityType="Self.PaymentType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PlotTbl" EntityType="Self.PlotTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PreferredCommunication" EntityType="Self.PreferredCommunication" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PrevOwner" EntityType="Self.PrevOwner" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Property" EntityType="Self.Property" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PropertyAge" EntityType="Self.PropertyAge" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PropertyHistory" EntityType="Self.PropertyHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PropertyStatus" EntityType="Self.PropertyStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PropertyType" EntityType="Self.PropertyType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Province" EntityType="Self.Province" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Race" EntityType="Self.Race" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Relationship" EntityType="Self.Relationship" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RentLease" EntityType="Self.RentLease" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Section" EntityType="Self.Section" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SettlementHierachy" EntityType="Self.SettlementHierachy" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Severity" EntityType="Self.Severity" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TenureStatus" EntityType="Self.TenureStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TribalAuthority" EntityType="Self.TribalAuthority" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tribe" EntityType="Self.Tribe" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRoleMapping" EntityType="Self.UserRoleMapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserTitle" EntityType="Self.UserTitle" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Village" EntityType="Self.Village" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ward" EntityType="Self.Ward" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WorkType" EntityType="Self.WorkType" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Beneficiary_Dweller" Association="Self.FK_Beneficiary_Dweller">
+      <End Role="Dweller" EntitySet="Dweller" />
+      <End Role="Beneficiary" EntitySet="Beneficiary" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Beneficiary_Gender" Association="Self.FK_Beneficiary_Gender">
+      <End Role="Gender" EntitySet="Gender" />
+      <End Role="Beneficiary" EntitySet="Beneficiary" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Beneficiary_Relationship" Association="Self.FK_Beneficiary_Relationship">
+      <End Role="Relationship" EntitySet="Relationship" />
+      <End Role="Beneficiary" EntitySet="Beneficiary" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Case_ApplicantFilling" Association="Self.FK_Case_ApplicantFilling">
+      <End Role="ApplicantFilling" EntitySet="ApplicantFilling" />
+      <End Role="Case" EntitySet="Case" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Case_Case" Association="Self.FK_Case_Case">
+      <End Role="Case" EntitySet="Case" />
+      <End Role="Case1" EntitySet="Case" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Case_CaseStatus" Association="Self.FK_Case_CaseStatus">
+      <End Role="CaseStatus" EntitySet="CaseStatus" />
+      <End Role="Case" EntitySet="Case" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Case_CaseType" Association="Self.FK_Case_CaseType">
+      <End Role="CaseType" EntitySet="CaseType" />
+      <End Role="Case" EntitySet="Case" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Case_Chief" Association="Self.FK_Case_Chief">
+      <End Role="Chief" EntitySet="Chief" />
+      <End Role="Case" EntitySet="Case" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Case_CourtType" Association="Self.FK_Case_CourtType">
+      <End Role="Court" EntitySet="Court" />
+      <End Role="Case" EntitySet="Case" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Case_PaymentFor" Association="Self.FK_Case_PaymentFor">
+      <End Role="PaymentFor" EntitySet="PaymentFor" />
+      <End Role="Case" EntitySet="Case" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Case_PaymentType" Association="Self.FK_Case_PaymentType">
+      <End Role="PaymentType" EntitySet="PaymentType" />
+      <End Role="Case" EntitySet="Case" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Case_Severity" Association="Self.FK_Case_Severity">
+      <End Role="Severity" EntitySet="Severity" />
+      <End Role="Case" EntitySet="Case" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Chief_Clan" Association="Self.FK_Chief_Clan">
+      <End Role="Clan" EntitySet="Clan" />
+      <End Role="Chief" EntitySet="Chief" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Chief_Gender" Association="Self.FK_Chief_Gender">
+      <End Role="Gender" EntitySet="Gender" />
+      <End Role="Chief" EntitySet="Chief" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Chief_Tribe" Association="Self.FK_Chief_Tribe">
+      <End Role="Tribe" EntitySet="Tribe" />
+      <End Role="Chief" EntitySet="Chief" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Chief_UserTitle" Association="Self.FK_Chief_UserTitle">
+      <End Role="UserTitle" EntitySet="UserTitle" />
+      <End Role="Chief" EntitySet="Chief" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Chief_Village" Association="Self.FK_Chief_Village">
+      <End Role="Village" EntitySet="Village" />
+      <End Role="Chief" EntitySet="Chief" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Complaint_Headsmen" Association="Self.FK_Complaint_Headsmen">
+      <End Role="Headsmen" EntitySet="Headsmen" />
+      <End Role="Complaint" EntitySet="Complaint" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Complaint_Village" Association="Self.FK_Complaint_Village">
+      <End Role="Village" EntitySet="Village" />
+      <End Role="Complaint" EntitySet="Complaint" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Court_CourtType" Association="Self.FK_Court_CourtType">
+      <End Role="CourtType" EntitySet="CourtType" />
+      <End Role="Court" EntitySet="Court" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dispute_ApplicantFilling" Association="Self.FK_Dispute_ApplicantFilling">
+      <End Role="ApplicantFilling" EntitySet="ApplicantFilling" />
+      <End Role="Dispute" EntitySet="Dispute" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dispute_Chief" Association="Self.FK_Dispute_Chief">
+      <End Role="Chief" EntitySet="Chief" />
+      <End Role="Dispute" EntitySet="Dispute" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dispute_DisputeType" Association="Self.FK_Dispute_DisputeType">
+      <End Role="DisputeType" EntitySet="DisputeType" />
+      <End Role="Dispute" EntitySet="Dispute" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dispute_Severity" Association="Self.FK_Dispute_Severity">
+      <End Role="Severity" EntitySet="Severity" />
+      <End Role="Dispute" EntitySet="Dispute" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dweller_Disability" Association="Self.FK_Dweller_Disability">
+      <End Role="Disability" EntitySet="Disability" />
+      <End Role="Dweller" EntitySet="Dweller" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dweller_Education" Association="Self.FK_Dweller_Education">
+      <End Role="Education" EntitySet="Education" />
+      <End Role="Dweller" EntitySet="Dweller" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dweller_Gender" Association="Self.FK_Dweller_Gender">
+      <End Role="Gender" EntitySet="Gender" />
+      <End Role="Dweller" EntitySet="Dweller" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dweller_Headsmen" Association="Self.FK_Dweller_Headsmen">
+      <End Role="Headsmen" EntitySet="Headsmen" />
+      <End Role="Dweller" EntitySet="Dweller" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dweller_IncomeSource" Association="Self.FK_Dweller_IncomeSource">
+      <End Role="IncomeSource" EntitySet="IncomeSource" />
+      <End Role="Dweller" EntitySet="Dweller" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dweller_MarriageStatus" Association="Self.FK_Dweller_MarriageStatus">
+      <End Role="MarriageStatus" EntitySet="MarriageStatus" />
+      <End Role="Dweller" EntitySet="Dweller" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dweller_Race" Association="Self.FK_Dweller_Race">
+      <End Role="Race" EntitySet="Race" />
+      <End Role="Dweller" EntitySet="Dweller" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dweller_Relationship" Association="Self.FK_Dweller_Relationship">
+      <End Role="Relationship" EntitySet="Relationship" />
+      <End Role="Dweller" EntitySet="Dweller" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dweller_Village" Association="Self.FK_Dweller_Village">
+      <End Role="Village" EntitySet="Village" />
+      <End Role="Dweller" EntitySet="Dweller" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dweller_WorkType" Association="Self.FK_Dweller_WorkType">
+      <End Role="WorkType" EntitySet="WorkType" />
+      <End Role="Dweller" EntitySet="Dweller" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Headsmen_Clan" Association="Self.FK_Headsmen_Clan">
+      <End Role="Clan" EntitySet="Clan" />
+      <End Role="Headsmen" EntitySet="Headsmen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Headsmen_Country" Association="Self.FK_Headsmen_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="Headsmen" EntitySet="Headsmen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Headsmen_Gender" Association="Self.FK_Headsmen_Gender">
+      <End Role="Gender" EntitySet="Gender" />
+      <End Role="Headsmen" EntitySet="Headsmen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Headsmen_Province" Association="Self.FK_Headsmen_Province">
+      <End Role="Province" EntitySet="Province" />
+      <End Role="Headsmen" EntitySet="Headsmen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Headsmen_Tribe" Association="Self.FK_Headsmen_Tribe">
+      <End Role="Tribe" EntitySet="Tribe" />
+      <End Role="Headsmen" EntitySet="Headsmen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Headsmen_UserTitle" Association="Self.FK_Headsmen_UserTitle">
+      <End Role="UserTitle" EntitySet="UserTitle" />
+      <End Role="Headsmen" EntitySet="Headsmen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Headsmen_Village" Association="Self.FK_Headsmen_Village">
+      <End Role="Village" EntitySet="Village" />
+      <End Role="Headsmen" EntitySet="Headsmen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Municipality_Country" Association="Self.FK_Municipality_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="Municipality" EntitySet="Municipality" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Municipality_Municipality" Association="Self.FK_Municipality_Municipality">
+      <End Role="Municipality" EntitySet="Municipality" />
+      <End Role="Municipality1" EntitySet="Municipality" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Municipality_Municipality1" Association="Self.FK_Municipality_Municipality1">
+      <End Role="Municipality" EntitySet="Municipality" />
+      <End Role="Municipality1" EntitySet="Municipality" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Municipality_Province" Association="Self.FK_Municipality_Province">
+      <End Role="Province" EntitySet="Province" />
+      <End Role="Municipality" EntitySet="Municipality" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Municipality_Section" Association="Self.FK_Municipality_Section">
+      <End Role="Section" EntitySet="Section" />
+      <End Role="Municipality" EntitySet="Municipality" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Municipality_UserTitle" Association="Self.FK_Municipality_UserTitle">
+      <End Role="UserTitle" EntitySet="UserTitle" />
+      <End Role="Municipality" EntitySet="Municipality" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Municipality_Ward" Association="Self.FK_Municipality_Ward">
+      <End Role="Ward" EntitySet="Ward" />
+      <End Role="Municipality" EntitySet="Municipality" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlotTbl_Condition" Association="Self.FK_PlotTbl_Condition">
+      <End Role="Condition" EntitySet="Condition" />
+      <End Role="PlotTbl" EntitySet="PlotTbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlotTbl_Country" Association="Self.FK_PlotTbl_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="PlotTbl" EntitySet="PlotTbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlotTbl_Municipality" Association="Self.FK_PlotTbl_Municipality">
+      <End Role="Municipality" EntitySet="Municipality" />
+      <End Role="PlotTbl" EntitySet="PlotTbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlotTbl_Province" Association="Self.FK_PlotTbl_Province">
+      <End Role="Province" EntitySet="Province" />
+      <End Role="PlotTbl" EntitySet="PlotTbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlotTbl_Section" Association="Self.FK_PlotTbl_Section">
+      <End Role="Section" EntitySet="Section" />
+      <End Role="PlotTbl" EntitySet="PlotTbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlotTbl_Village" Association="Self.FK_PlotTbl_Village">
+      <End Role="Village" EntitySet="Village" />
+      <End Role="PlotTbl" EntitySet="PlotTbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlotTbl_Ward" Association="Self.FK_PlotTbl_Ward">
+      <End Role="Ward" EntitySet="Ward" />
+      <End Role="PlotTbl" EntitySet="PlotTbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PrevOwner_PlotTbl" Association="Self.FK_PrevOwner_PlotTbl">
+      <End Role="PlotTbl" EntitySet="PlotTbl" />
+      <End Role="PrevOwner" EntitySet="PrevOwner" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Property_Condition" Association="Self.FK_Property_Condition">
+      <End Role="Condition" EntitySet="Condition" />
+      <End Role="Property" EntitySet="Property" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Property_Dweller" Association="Self.FK_Property_Dweller">
+      <End Role="Dweller" EntitySet="Dweller" />
+      <End Role="Property" EntitySet="Property" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Property_Headsmen" Association="Self.FK_Property_Headsmen">
+      <End Role="Headsmen" EntitySet="Headsmen" />
+      <End Role="Property" EntitySet="Property" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Property_LivingQuaters" Association="Self.FK_Property_LivingQuaters">
+      <End Role="LivingQuaters" EntitySet="LivingQuaters" />
+      <End Role="Property" EntitySet="Property" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Property_Municipality" Association="Self.FK_Property_Municipality">
+      <End Role="Municipality" EntitySet="Municipality" />
+      <End Role="Property" EntitySet="Property" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Property_PropertyAge" Association="Self.FK_Property_PropertyAge">
+      <End Role="PropertyAge" EntitySet="PropertyAge" />
+      <End Role="Property" EntitySet="Property" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Property_PropertyStatus" Association="Self.FK_Property_PropertyStatus">
+      <End Role="PropertyStatus" EntitySet="PropertyStatus" />
+      <End Role="Property" EntitySet="Property" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Property_PropertyType" Association="Self.FK_Property_PropertyType">
+      <End Role="PropertyType" EntitySet="PropertyType" />
+      <End Role="Property" EntitySet="Property" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Property_Province" Association="Self.FK_Property_Province">
+      <End Role="Province" EntitySet="Province" />
+      <End Role="Property" EntitySet="Property" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Property_Section" Association="Self.FK_Property_Section">
+      <End Role="Section" EntitySet="Section" />
+      <End Role="Property" EntitySet="Property" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Property_SettlementHierachy" Association="Self.FK_Property_SettlementHierachy">
+      <End Role="SettlementHierachy" EntitySet="SettlementHierachy" />
+      <End Role="Property" EntitySet="Property" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Property_TenureStatus" Association="Self.FK_Property_TenureStatus">
+      <End Role="TenureStatus" EntitySet="TenureStatus" />
+      <End Role="Property" EntitySet="Property" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Property_Village" Association="Self.FK_Property_Village">
+      <End Role="Village" EntitySet="Village" />
+      <End Role="Property" EntitySet="Property" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Property_Ward" Association="Self.FK_Property_Ward">
+      <End Role="Ward" EntitySet="Ward" />
+      <End Role="Property" EntitySet="Property" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TribalAuthority_Country" Association="Self.FK_TribalAuthority_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="TribalAuthority" EntitySet="TribalAuthority" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TribalAuthority_Province" Association="Self.FK_TribalAuthority_Province">
+      <End Role="Province" EntitySet="Province" />
+      <End Role="TribalAuthority" EntitySet="TribalAuthority" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoleMapping_Role" Association="Self.FK_UserRoleMapping_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="UserRoleMapping" EntitySet="UserRoleMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoleMapping_User" Association="Self.FK_UserRoleMapping_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserRoleMapping" EntitySet="UserRoleMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Village_Court" Association="Self.FK_Village_Court">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="Village" EntitySet="Village" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Village_Municipality" Association="Self.FK_Village_Municipality">
+      <End Role="Municipality" EntitySet="Municipality" />
+      <End Role="Village" EntitySet="Village" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Village_Province" Association="Self.FK_Village_Province">
+      <End Role="Province" EntitySet="Province" />
+      <End Role="Village" EntitySet="Village" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Village_Section" Association="Self.FK_Village_Section">
+      <End Role="Section" EntitySet="Section" />
+      <End Role="Village" EntitySet="Village" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Village_Ward" Association="Self.FK_Village_Ward">
+      <End Role="Ward" EntitySet="Ward" />
+      <End Role="Village" EntitySet="Village" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

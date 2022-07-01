@@ -1,0 +1,287 @@
+﻿@model CMS.Models.Repositories.Db.Case
+
+@{ ViewBag.Title = "Create";
+                Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <link href="~/Content/StyleForm.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-chosen.css" rel="stylesheet" />
+
+
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
+    <style>
+        #CourtType,
+        #CaseTypeId,
+        #CaseName,
+        #Lawyer,
+        #DateFilled,
+        #PriorityId,
+        #NextDate,
+        #PersonFillingId,
+        #CaseStatus {
+            border-color: #000000;
+        }
+
+        #Details {
+            border-bottom-color: blue;
+
+        
+        }
+    </style>
+</head>
+
+
+@using (Html.BeginForm("LodgeCase", "Case", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+@Html.AntiForgeryToken()
+                <body>
+                    <div class="container register-form">
+                        <div class="form">
+                            <div class="note">
+                                <p> Lodge A Case</p>
+                            </div>
+                            <br />
+                            <div class="accordion" id="accordionExample">
+                                <div class="card">
+                                    <div class="card-header" id="headingOne">
+                                        <h2 class="mb-0">
+                                            <button class="btn btn-link" type="button" onclick="$('#collapsed-chevron').toggleClass('fa-rotate-180')" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                <i class="fa fa-chevron-circle-up" id="collapsed-chevron"></i>
+                                                Case Details
+                                            </button>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
+                                        <div class="card-body">
+
+                                            <div class="form-row">
+                                                <div class="form-group col-md-4">
+                                                    <label for="HouseNumInput">Applicable Court</label>
+                                                    @Html.DropDownList("CourtType", null, htmlAttributes: new { @class = "form-control", @id = "CourtType" })
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="inputProvince">Case Type</label>
+                                                    @Html.DropDownList("CaseTypeId", null, htmlAttributes: new { @class = "form-control", @id = "CaseTypeId" })
+
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="inputCountry">Case Name</label>
+                                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @id = "CaseName" } })
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+
+
+                                                <div class="form-group col-md-4">
+                                                    <label for="inputPostal">Lawyer Full Name & Surname</label>
+                                                    @Html.EditorFor(model => model.Lawyer, new { htmlAttributes = new { @class = "form-control", @id = "Lawyer" } })
+
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="inputIdNum">First Hearing Date</label>
+                                                    @Html.EditorFor(model => model.FirstHearingDate, new { htmlAttributes = new { @class = "form-control" } })
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                    <label for="inputCell">Next Hearing Date</label>
+                                                    @Html.EditorFor(model => model.NextHearingDate, new { htmlAttributes = new { @class = "form-control", @id = "NextDate" } })
+                                                </div>
+
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-4">
+                                                    <label for="inputSettlement">Date Filled</label>
+                                                    @Html.EditorFor(model => model.DateFilled, new { htmlAttributes = new { @class = "form-control", @id = "DateFilled" } })
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="inputOccupant">Filled By</label>
+                                                    @Html.EditorFor(model => model.FilledBy, new { htmlAttributes = new { @class = "form-control" } })
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="inputMunic">Filling Criteria</label>
+                                                    @Html.DropDownList("PersonFillingId", null, htmlAttributes: new { @class = "form-control", @id = "PersonFillingId" })
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-3">
+                                                    <label for="inputQuarter">Case Priority</label>
+                                                    @Html.DropDownList("PriorityId", null, htmlAttributes: new { @class = "form-control", @id = "PriorityId" })
+                                                </div>
+
+                                                <div class="form-group col-md-3">
+                                                    <label for="inputPropAge">Filling Person Phone</label>
+                                                    @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control", @id = "phone", @type = "number" } })
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    <label for="inputRoomNum">Case Number</label>
+                                                    @Html.EditorFor(model => model.CaseNumber, (String)ViewBag.caseNum, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                </div>
+
+                                                <div class="form-group col-md-3">
+                                                    <label for="inputCity">Case Status</label>
+                                                    @Html.DropDownList("CaseStatus", null, htmlAttributes: new { @class = "form-control", @id = "CaseStatus" })
+
+                                                </div>
+
+                                                <div class="form-group col-md-12">
+                                                    <label for="inputRoomNum">Case Full Details</label>
+                                                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @id = "Details" } })
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="accordion" id="accordionExample">
+                                <div class="card">
+                                    <div class="card-header" id="headingDemographics">
+                                        <h2 class="mb-0">
+                                            <button class="btn btn-link" onclick="$('#collapsed-chevron2').toggleClass('fa-rotate-180')" type="button" data-toggle="collapse" data-target="#collapseDemographic" aria-expanded="true" aria-controls="collapseTwo">
+                                                <i class="fa fa-chevron-circle-up" id="collapsed-chevron2"></i>
+                                                Client & Account Details
+                                            </button>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseDemographic" class="collapse" aria-labelledby="headingDemographics" data-parent="#accordionExample">
+                                        <div class="card-body">
+
+                                            <div class="form-row">
+
+                                                <div class="form-group col-md-4">
+                                                    <label for="inputSurname">Payment Type</label>
+                                                    @Html.DropDownList("PaymentTypeId", null, htmlAttributes: new { @class = "form-control" })
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="inputGender">Payee</label>
+                                                    @Html.EditorFor(model => model.Payee, new { htmlAttributes = new { @class = "form-control" } })
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                    <label for="inputRace">Amount Payed</label>
+                                                    @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-4">
+                                                    <label for="inputMarital">Payment For</label>
+                                                    @Html.DropDownList("PaymentForId", null, htmlAttributes: new { @class = "form-control" })
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                    <label for="inputCell2">Preciding Officer</label>
+                                                    @Html.DropDownList("Judge", null, htmlAttributes: new { @class = "form-control" })
+                                                </div>
+                                            </div>
+
+                                            <div class="checkbox">
+                                                @Html.EditorFor(model => model.IsActive)
+                                                <label class="form-check-label" for="defaultCheck1">
+                                                    Is Active?
+                                                </label>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <button type="submit" id="btnSubmit" value="Create" onclick="return validateData()" class="btn btn-outline-success pull-right"><i class="fa fa-save"></i> Save Case</button>
+                            <button type="button" id="btnReset" class="btn btn-outline-warning pull-right"><i class="fa fa-redo"></i> Reset</button>
+                            <button type="button" id="btnClose" class="btn btn-outline-danger float-right"><i class="fa fa-window-close"></i> Close</button>
+
+                        </div>
+
+                    </div>
+
+
+                    @section scripts{
+                        <script>$(function () {
+
+                $("#inputProvince").chosen();
+                $("#inputCountry").chosen();
+                $("#inputGender").chosen();
+                $("#inputRace").chosen();
+                $("#inputMarital").chosen();
+
+                ////Basic functionality
+                $("#btnSubmit").click(function () {
+                    //swal("It works");
+                    //  swal("Applicant Registration!", "Applicant Successfully Registered", "error");
+
+
+                    if ($("#HouseNumInput").val() == "") {
+                      swal("Register Case", "Error: House Number required!", "error");
+                        return false;
+
+                    } if ($("#inputName").val() == "") {
+                        swal("Register Case", "Error: Name is a required field!", "error");
+                        return false;
+
+                    }
+                    if ($("#inputSurname").val() == "") {
+                        swal("Register Case", "Error: Last Name is a required field!", "error");
+                        return false;
+
+                    } if ($("#inputIdNum").val() == "") {
+                        swal("Register Case", "Error: ID is a required field!", "error");
+                        return false;
+
+
+                    }
+                    if ($("#inputCell").val() == "") {
+                        swal("Register Case", "Error: Cell Number is a required field!", "error");
+                        return false;
+                    }
+
+
+                    else {
+                        swal("Case Application", "Case successfully Lodged", "success");
+                        return true;
+                    }
+                });
+
+                function isValidEmail() {
+
+                    var emailId = $("#inputMail").val();
+                    atpos = emailId.indexOf("@@");
+                    dotpos = emailId.lastIndexOf(".");
+
+                    if (atpos < 1 || (dotpos - atpos < 2)) {
+                        swal("Applicant Registration!", "Error: Error: Email Invalid!", "error");
+                        return false;
+                    }
+                    return (true);
+
+
+                }
+            });</script>
+                    }
+                    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+                    @Scripts.Render("~/bundles/jquery")
+                    @Scripts.Render("~/bundles/bootstrap")
+
+                </body>
+                }
+</html>
+
+
+
+

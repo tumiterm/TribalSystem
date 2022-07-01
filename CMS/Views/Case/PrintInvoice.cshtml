@@ -1,0 +1,95 @@
+﻿
+<link href="~/Content/StyleInvoice.css" rel="stylesheet" />
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container bootstrap snippets bootdeys">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default invoice" id="invoice">
+                <div class="panel-body">
+                    <div class="invoice-ribbon"><div class="ribbon-inner">PAID</div></div>
+                    <div class="row">
+
+                        <div class="col-sm-6 top-left">
+                            <i class="fa fa-home"></i>
+                        </div>
+
+                        <div class="col-sm-6 top-right">
+                            <h3 class="marginright">INVOICE-1234578</h3>
+                            <span class="marginright">14 August 2021</span>
+                        </div>
+
+                    </div>
+                    <hr>
+                    <div class="row">
+
+                        <div class="col-xs-4 from">
+                            <p class="lead marginbottom">From : Dynofy</p>
+                            <p>350 Rhode Island Street</p>
+                            <p>Suite 240, San Francisco</p>
+                            <p>California, 94103</p>
+                            <p>Phone: 415-767-3600</p>
+                            <p>Email: contact@dynofy.com</p>
+                        </div>
+
+         
+
+                        <div class="col-xs-4 text-right payment-details">
+                            <p class="lead marginbottom payment-info">Payment details</p>
+                            <p>Date: @DateTime.Now.ToString("ddd, dd MMM yyy HH':'mm':'ss 'GMT'")</p>
+                            <p>VAT: DK888-777 </p>
+                            <p>Total Amount: R25</p>
+                            <p>Total For: Proof of Residence</p>
+                            <p>Account Name: IF Oliphant</p>
+                        </div>
+
+                    </div>
+
+                    <div class="row table-row">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" style="width:5%">#</th>
+                                    <th style="width:50%">Item</th>
+                                    <th class="text-right" style="width:15%">Quantity</th>
+                                    <th class="text-right" style="width:15%">Unit Price</th>
+                                    <th class="text-right" style="width:15%">Total Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">1</td>
+                                    <td>Proof of Residence</td>
+                                    <td class="text-right">10</td>
+                                    <td class="text-right">R20</td>
+                                    <td class="text-right">R200</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">2</td>
+                                    <td>Proof of Residence Copy</td>
+                                    <td class="text-right">6</td>
+                                    <td class="text-right">R2</td>
+                                    <td class="text-right">R12</td>
+                                </tr>
+                                
+                                
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6 margintop">
+                            <p class="lead marginbottom">THANK YOU!</p>
+
+                            <button class="btn btn-success" id="invoice-print"><i class="fa fa-print"></i> Print Invoice</button>
+                            <button class="btn btn-danger"><i class="fa fa-envelope-o"></i> Mail Invoice</button>
+                        </div>
+                        
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+﻿@model IEnumerable<CMS.Models.Repositories.Db.Property>
+@using GridMvc.Html
+
+@{
+    ViewBag.Title = "Index";
+
+
+}
+
+<link href="~/Content/Gridmvc.css" rel="stylesheet" />
+
+<p class="row">
+    <li class="btn btn-outline-secondary ml-2"><a href="@Url.Action("PropertyRegistration", "Property")"><i class="fas fa-home"></i> Add Property</a></li>
+    <li class="btn btn-outline-danger mr-2 float-right"><a href="@Url.Action("PropertyRegistration", "Property")"><i class="fa fa-window-close"></i> Close</a></li>
+
+</p>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">List of All Registered Properties</h6>
+    </div>
+    <div class="card-body">
+
+        <div class="row">
+            <div class="col-md-12">
+
+                @Html.Grid(Model).Named("PropTbl").Columns(c =>
+           {
+               c.Add(x => x.PropertyType.PropertyType1).Titled("Property Type").Filterable(true).Sortable(true);
+               c.Add(x => x.Headsman.Name).Titled("Headsmen").Filterable(true).Sortable(true);
+               c.Add(x => x.Village.Name
+               ).Titled("Village Name").Filterable(true).Sortable(true);
+               c.Add(x => x.StandNo).Titled("Stand Number").Filterable(true).Sortable(true);
+               c.Add(x => x.IsActive).Titled("Is Active").Filterable(true).Sortable(true);
+
+               c.Add().Encoded(false).Sanitized(false).SetWidth(20).
+               RenderValueAs(model => Html.ActionLink("Modify", "ModifyProperty", new { id = model.Id }, new { @class = "btn btn-outline-primary fas fa-edit" }));
+
+           }).WithPaging(10).EmptyText("Error: Property not found!")
+
+            </div>
+        </div>
+
+        </div>
+    </div>
+
+        @section scripts{
+            @Scripts.Render("~/bundles/Gridmvc")
+        }

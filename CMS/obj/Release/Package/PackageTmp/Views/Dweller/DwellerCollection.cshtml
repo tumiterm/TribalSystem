@@ -1,0 +1,93 @@
+﻿@model IEnumerable<CMS.Models.Repositories.Db.Dweller>
+@using GridMvc.Html
+
+@{
+    ViewBag.Title = "Index";
+
+
+}
+
+<p class="row">
+    <li class="btn btn-outline-secondary ml-2"><a href="@Url.Action("RegisterDweller", "Dweller")"><i class="fas fa-plus"></i> Add New Dweller</a></li>
+    <li class="btn btn-outline-danger mr-2 float-right"><a href="@Url.Action("RegisterDweller", "Dweller")"><i class="fa fa-window-close"></i> Close</a></li>
+
+</p>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">List of All Dwellers/Residents</h6>
+    </div>
+    <div class="card-body">
+        <div class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table thead-dark" id="DwellerTbl">
+                <thead>
+                    <tr>
+                        <th>
+                            Full Name
+                        </th>
+                        <th>
+                            Last Name
+                        </th>
+                        <th>
+                            RSA ID
+                        </th>
+                        <th>
+                            Village
+                        </th>
+                        <th>
+                            IsActive?
+                        </th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                @foreach (var item in Model)
+                {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID_Number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Village.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsActive)
+                </td>
+                <td class="btn-group">
+                    <li class="btn btn-outline-success "><a href="@Url.Action("ModifyDwellerRecord", "Dweller", new { id = item.Id})"><i class="fa fa-edit"></i> Modify</a></li>
+                </td>
+            </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="cdn.datatables.net/1.11.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+
+    <script>
+
+        $(function () {
+
+            $(document).ready(function () {
+                $('#DwellerTbl').DataTable();
+            });
+
+        });
+
+    </script>
+}
+

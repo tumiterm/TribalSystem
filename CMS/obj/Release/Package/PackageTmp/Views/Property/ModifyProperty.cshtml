@@ -1,0 +1,310 @@
+﻿@model CMS.Models.Repositories.Db.Property
+
+<style>
+    .note {
+        text-align: center;
+        height: 50px;
+        background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+        color: #fff;
+        font-weight: bold;
+        line-height: 50px;
+    }
+
+    .form-content {
+        padding: 5%;
+        border: 1px solid #ced4da;
+        margin-bottom: 2%;
+    }
+
+    .form-control {
+        border-radius: 1.5rem;
+    }
+
+    .btnSubmit {
+        border: none;
+        border-radius: 1.5rem;
+        padding: 1%;
+        width: 20%;
+        cursor: pointer;
+        background: #0062cc;
+        color: #fff;
+    }
+
+    .chosen-container {
+        width: 95% !important;
+    }
+
+    .chosen-container-single .chosen-single {
+        height: 50px;
+        border-radius: 30px;
+        border: 1px solid #CCCCCC;
+    }
+</style>
+<link href="~/Content/bootstrap-chosen.css" rel="stylesheet" />
+
+
+@Scripts.Render("~/bundles/modernizr")
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
+@using (Html.BeginForm("ModifyProperty", "Property", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active " id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Property Registration</a>
+            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Geo-Location</a>
+            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Property Config & Assign</a>
+
+        </div>
+
+    </nav>
+    <button type="button" class="btn btn-success float-right"><i class="fa fa-home"></i> Existing Property</button>
+
+    <div class="note mt-3 mb-3">
+        <p> Property Registration</p>
+    </div>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="col-xl-12 col-md-12">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="container register-form">
+                        <div class="form-row">
+                            @Html.HiddenFor(model => model.Id)
+                            <div class="form-group col-md-4">
+                                <label for="PropType">Property Type</label>
+                                @Html.DropDownList("PropertyTypeId", null, htmlAttributes: new { @class = "form-control" })
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="PropStatus">Property Status</label>
+                                @Html.DropDownList("PropertyStatusId", null, htmlAttributes: new { @class = "form-control", @id = "PropStatus" })
+
+                            </div>
+
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="HouseNum">House Number</label>
+                                @Html.EditorFor(model => model.HouseNumber, new { htmlAttributes = new { @class = "form-control", @id = "houseNo" } })
+
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="inputRent">Rent Amount (if applicable)</label>
+                                @Html.EditorFor(model => model.RentAmount, new { htmlAttributes = new { @class = "form-control" } })
+
+                            </div>
+
+
+                            <div class="form-group col-md-4">
+                                <label for="AmountPaid">Amount Paid (If Cash)</label>
+                                @Html.EditorFor(model => model.CashPaid, new { htmlAttributes = new { @class = "form-control", @id = "amount" } })
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="PropSiza">Property Size (Hectares/2<sub>M</sub>)</label>
+                                @Html.EditorFor(model => model.Size, new { htmlAttributes = new { @class = "form-control", @id = "propSize" } })
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="PropCondition">Property Condition</label>
+                                @Html.DropDownList("ConditionId", null, htmlAttributes: new { @class = "form-control" })
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="inputStandNo">Stand Number</label>
+                                @Html.EditorFor(model => model.StandNo, new { htmlAttributes = new { @class = "form-control", @id = "inputStandNo", @readonly = "readonly" } })
+                            </div>
+
+
+                            <div class="form-group col-md-4">
+                                <label for="inputRoomNum">Property Age</label>
+                                @Html.DropDownList("PropertyAgeId", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.PropertyAgeId, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="inputRoomNum">Tenure Status</label>
+                                @Html.DropDownList("TenureStausId", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.TenureStausId, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group col-md-2">
+                                @Html.EditorFor(model => model.IsActive)
+                                <label for="inputIsActive">Is Active?</label>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <div class="col-xl-12 col-md-12">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="container register-form">
+                        <div class="form-row">
+
+                            <div class="form-group col-md-4">
+                                <label for="inputName">Province</label>
+                                @Html.DropDownList("ProvinceId", null, htmlAttributes: new { @class = "form-control", @id = "ProvinceId" })
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputLastName">Municipality</label>
+                                @Html.DropDownList("Municipality", null, htmlAttributes: new { @class = "form-control", @id = "municipalityId" })
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="VillType">Applicable Village</label>
+                                @Html.DropDownList("VillageTypeId", null, htmlAttributes: new { @class = "form-control" })
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputCell">Section (If Applicable)</label>
+                                @Html.DropDownList("SectionId", null, htmlAttributes: new { @class = "form-control" })
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputRoomNum">Ward</label>
+                                @Html.DropDownList("WardId", null, htmlAttributes: new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+            <div class="col-xl-12 col-md-12">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="container register-form">
+                        <div class="row">
+
+
+                            <div class="form-group col-md-4">
+                                <label for="inputRoomNum">Settlement Hierachy</label>
+                                @Html.DropDownList("SettlementHierachyId", null, htmlAttributes: new { @class = "form-control" })
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputRoomNum">Applicable Headsmen</label>
+                                @Html.DropDownList("HeadsmenId", null, htmlAttributes: new { @class = "form-control" })
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputRoomNum">Living Quarters</label>
+                                @Html.DropDownList("LivingQuartersId", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.LivingQuartersId, "", new { @class = "text-danger" })
+                            </div>
+
+
+                            <div class="form-group col-md-4" style="color:lightblue">
+                                <label>Assign To Dweller:</label>
+                                @Html.DropDownList("DwellerId", null, htmlAttributes: new { @class = "form-control", @style = "color:lightblue", @id = "dwellerId" })
+                                @Html.ValidationMessageFor(model => model.LivingQuartersId, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+                        <div style="background-color:whitesmoke" class="mt-3 pull-right">
+                            <button type="submit" id="btnSubmit" value="Create" onclick="return validateData()" class="btn btn-outline-success pull-right"><i class="fa fa-save"></i> Save Property</button>
+                            <button type="button" id="btnReset" class="btn btn-outline-warning pull-right"><i class="fa fa-redo"></i> Reset</button>
+                            <button type="button" class="btn btn-outline-primary float-right ml-2"><i class="fa fa-eye"></i> View All Property</button>
+                            <button type="button" class="btn btn-outline-danger float-right"><i class="fa fa-file-pdf"></i> Proof of Registration</button>
+                        </div>
+                    </div>
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section scripts{
+        <script>
+
+            $(function () {
+
+                $("#dwellerId").chosen();
+                $("#municipalityId").chosen();
+
+                $("#btnSubmit").click(function () {
+
+                    if ($("#name").val() == "") {
+                        swal("Property Registration", "Error: Owner Full Name Required!", "error");
+                        return false;
+
+
+                    }
+
+                    if ($("#houseNo").val() == "") {
+                        swal("Property Registration", "Error: House Number required!", "error");
+                        return false;
+
+                    }
+                    if ($("#propSize").val() == "") {
+                        swal("Property Registration", "Error: Property Size Required!", "error");
+                        return false;
+
+                    }
+
+                    if ($("#LName").val() == "") {
+                        swal("Property Registration", "Error: Owner Last Name is a required field!", "error");
+                        return false;
+                    }
+
+                    if ($("#municipality").val() == "") {
+                        swal("Property Registration", "Error: Owner Last Name is a required field!", "error");
+                        return false;
+                    }
+
+                    if ($("#cell").val() == "") {
+                        swal("Property Registration", "Error: Owner Cellphone Number is a required field!", "error");
+                        return false;
+                    }
+
+                    if ($("#ownerID").val() == "") {
+                        swal("Property Registration", "Error: Owner ID Number/Passport Number is a required field!", "error");
+                        return false;
+                    }
+                    else {
+                        swal("Property Registration", "Property Registered Successfully Should you have any beneficiaries, they can also be added.", "success");
+                        return true;
+                    }
+
+                });
+
+                function isValidEmail() {
+
+                    var emailId = $("#inputMail").val();
+                    atpos = emailId.indexOf("@@");
+                    dotpos = emailId.lastIndexOf(".");
+
+                    if (atpos < 1 || (dotpos - atpos < 2)) {
+                        swal("Property Registration!", "Error: Error: Email Invalid!", "error");
+                        return false;
+                    }
+                    return (true);
+                }
+
+                $(document).ready(function () {
+
+                    $('#PropStatus').on('change', function () {
+
+                        var val = $(this).val();
+                        if (val == 8) {
+                            $("#amount").prop("disabled", true);
+                        } else {
+                            $("#amount").prop("disabled", false);
+                        }
+                    });
+
+                });
+
+
+            });
+
+        </script>
+    }
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+}
+
+

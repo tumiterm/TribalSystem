@@ -1,0 +1,242 @@
+﻿@model CMS.Models.Leadership
+
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <style>
+        .note {
+            text-align: center;
+            height: 50px;
+            background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+            color: #fff;
+            font-weight: bold;
+            line-height: 50px;
+        }
+
+        .form-content {
+            padding: 5%;
+            border: 1px solid #ced4da;
+            margin-bottom: 2%;
+        }
+
+        .form-control {
+            border-radius: 1.5rem;
+        }
+
+        .btnSubmit {
+            border: none;
+            border-radius: 1.5rem;
+            padding: 1%;
+            width: 20%;
+            cursor: pointer;
+            background: #0062cc;
+            color: #fff;
+        }
+
+
+    </style>
+    <link href="~/Content/bootstrap-chosen.css" rel="stylesheet" />
+
+
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
+</head>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<body>
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="container register-form">
+        <div class="form">
+            <div class="note">
+                <p> Update Record</p>
+            </div>
+            <br />
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link" type="button" onclick="$('#collapsed-chevron').toggleClass('fa-rotate-180')" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <i class="fa fa-chevron-circle-up" id="collapsed-chevron"></i>
+                                Personal Information
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div class="card-body">
+
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="Title">Title</label>
+                                    @Html.DropDownList("TitleId", null, htmlAttributes: new { @class = "form-control", @id = "Title" })
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="inputName">Full Name</label>
+                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = @Html.DisplayNameFor(m => m.Name), @id = "inputName" } })
+
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="inputLName">Last Name</label>
+                                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", placeholder = @Html.DisplayNameFor(m => m.LastName), @id = "inputLName" } })
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="inputCell">Cellphone</label>
+                                    @Html.EditorFor(model => model.Cellphone1, new { htmlAttributes = new { @class = "form-control", @required = "required", placeholder = @Html.DisplayNameFor(m => m.Cellphone1), @id = "inputCell" } })
+
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="inputCell2">Alternative Cell</label>
+                                    @Html.EditorFor(model => model.Cellphone2, new { htmlAttributes = new { @class = "form-control", @required = "required", placeholder = @Html.DisplayNameFor(m => m.Cellphone2), @id = "inputCell2" } })
+
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="inputMail">Email</label>
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @required = "required", placeholder = @Html.DisplayNameFor(m => m.Email), @id = "inputMail" } })
+
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="inputID">ID Number</label>
+                                    @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "form-control", @required = "required", placeholder = @Html.DisplayNameFor(m => m.Id), @id = "inputID" } })
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label for="inputGender">Gender</label>
+                                    @Html.DropDownList("GenderId", null, htmlAttributes: new { @class = "form-control", @id = "inputGender" })
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label for="inputTribe">Tribe</label>
+                                    @Html.DropDownList("TribeId", null, htmlAttributes: new { @class = "form-control", @id = "inputTribe" })
+                                </div>
+                            </div>
+                            <div class="form-row">
+
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="inputClan">Clan</label>
+                                    @Html.DropDownList("ClanId", null, htmlAttributes: new { @class = "form-control", @id = "inputClan" })
+
+                                </div>
+
+                                <div class="form-group col-md-8">
+                                    <label for="inputAddress">Address</label>
+                                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @required = "required", placeholder = @Html.DisplayNameFor(m => m.Address), @id = "inputAddress" } })
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+                <button type="submit" id="btnSubmit" value="Create" class="btn btn-outline-success pull-right"><i class="fa fa-save"></i> Save Record</button>
+                <button type="button" id="btnReset" class="btn btn-outline-warning pull-right"><i class="fa fa-redo"></i> Reset</button>
+            </div>
+            <br />
+
+            @section scripts{
+                <script>
+                    $(function () {
+
+                        //$("#inputProvince").chosen();
+
+                        ////Basic functionality
+                        $("#btnSubmit").click(function () {
+                            //swal("It works");
+                            //  swal("Applicant Registration!", "Applicant Successfully Registered", "error");
+
+
+                            if ($("#Title").val() == "") {
+                                swal("Applicant Registration!", "Error: Title NOT Supplied!", "error");
+                                return false;
+
+                            } if ($("#inputName").val() == "") {
+                                swal("Applicant Registration!", "Error: Name is a required field!", "error");
+                                return false;
+
+                            }
+                            if ($("#inputLName").val() == "") {
+                                swal("Applicant Registration!", "Error: Last Name is a required field!", "error");
+                                return false;
+
+                            } if ($("#inputCell").val() == "") {
+                                swal("Applicant Registration!", "Error: Cellphone is a required field!", "error");
+                                return false;
+
+
+                            }
+                            if ($("#inputAddress").val() == "") {
+                                swal("Applicant Registration!", "Error: Address is a required field!", "error");
+                                return false;
+                            }
+
+
+                            else {
+                                return true;
+                                swal("Applicant Registration!", "Leader Added Successfully", "success");
+
+
+                            }
+                        });
+
+                        function isValidEmail() {
+
+                            var emailId = $("#inputMail").val();
+                            atpos = emailId.indexOf("@@");
+                            dotpos = emailId.lastIndexOf(".");
+
+                            if (atpos < 1 || (dotpos - atpos < 2)) {
+                                swal("Applicant Registration!", "Error: Error: Email Invalid!", "error");
+                                return false;
+                            }
+                            return (true);
+
+
+                        }
+                    });
+                </script>
+            }
+            <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+            @Scripts.Render("~/bundles/jquery")
+            @Scripts.Render("~/bundles/bootstrap")
+
+
+        </div>
+
+    </div>
+</body>
+
+}
+
+
+</html>
+
+
+
+

@@ -1,0 +1,57 @@
+﻿<link href="~/Content/StyleForm.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "BuyPlot";
+}
+
+@if (ViewData["plotRecord"] == null)
+{
+    <div class="alert alert-dark" role="alert">
+        Unfortunately we ran into a problem!
+        Our Technicians have been alerted about it however.
+
+        <a class="btn btn-outline-danger" @Html.Action("Index", "Plot")><i class="fa fa-undo"></i> Back</a>
+    </div>
+}
+else
+{
+    <button type="button" class="btn btn-success float-right"><i class="fa fa-home"></i> Existing Plots</button>
+
+    <div class="note mt-3 mb-3">
+        <p>Plot Purchasing</p>
+    </div>
+
+    <div class="col-xl-12 col-md-12">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="container register-form">
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="PropType">Plot Number</label>
+                        @Html.TextBox("Number", ViewData["plotNum"], new { @class = "form-control", @readonly = "readonly" })
+
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="PropType">Amount</label>
+                        @Html.TextBox("Amount", ViewData["Amount"], new { @class = "form-control", @readonly = "readonly" })
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="PropType">Plot Size</label>
+                        @Html.TextBox("Size", ViewData["Size"], new { @class = "form-control", @readonly = "readonly" })
+                    </div>
+
+
+                    <div class="form-group col-md-6">
+                        <label for="PropType">Municipality</label>
+                        @Html.TextBox("Muni", ViewData["Muni"], new { @class = "form-control", @readonly = "readonly" })
+                    </div>
+
+                </div>
+                <a class="btn btn-outline-dark"><i class="fa fa-dollar-sign"></i> Buy Plot</a>
+                <a class="btn btn-outline-danger float-right"><i class="fa fa-window-close"></i> Exit</a>
+
+            </div>
+        </div>
+    </div>
+}

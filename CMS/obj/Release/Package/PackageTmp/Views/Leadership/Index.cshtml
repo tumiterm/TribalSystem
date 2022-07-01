@@ -1,0 +1,64 @@
+﻿@model IEnumerable<CMS.Models.Repositories.Db.Chief>
+@using GridMvc.Html
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+
+    .pagination > li > a {
+        background-color: white;
+        color: #5A4181;
+    }
+
+        .pagination > li > a:focus,
+        .pagination > li > a:hover,
+        .pagination > li > span:focus,
+        .pagination > li > span:hover {
+            color: #5a5a5a;
+            background-color: #eee;
+            border-color: #ddd;
+        }
+
+    .pagination > .active > a {
+        color: white;
+        background-color: #5A4181 !Important;
+        border: solid 1px #5A4181 !Important;
+    }
+
+        .pagination > .active > a:hover {
+            background-color: #5A4181 !Important;
+            border: solid 1px #5A4181;
+        }
+</style>
+
+
+<link href="~/Content/Gridmvc.css" rel="stylesheet" />
+<p>
+    @Html.ActionLink("Add Leader", "Create", null, new { @class = "btn btn-outline-success" })
+</p>
+<div class="row">
+    <div class="col-md-12">
+
+        @Html.Grid(Model).Named("LeaderTbl").Columns(c =>
+   {
+       c.Add(x => x.UserTitle.Title).Titled("Title").Filterable(true).Sortable(true);
+       c.Add(x => x.LastName).Titled("Last Name").Filterable(true).Sortable(true);
+       c.Add(x => x.Name).Titled("Full Name").Filterable(true).Sortable(true);
+       c.Add(x => x.Cellphone1).Titled("Phone").Filterable(true).Sortable(true);
+       c.Add(x => x.Email).Titled("Email").Filterable(true).Sortable(true);
+       c.Add(x => x.Tribe.description).Titled("Tribe").Sortable(true);
+       c.Add().Encoded(false).Sanitized(false).SetWidth(20).
+       RenderValueAs(o => Html.ActionLink("Update", "Edit", new { id = o.Id }, new { @class = "btn btn-outline-primary" }));
+
+   }).WithPaging(4).EmptyText("Error: Record not found!")
+
+    </div>
+</div>
+
+
+@section scripts{
+    @Scripts.Render("~/bundles/Gridmvc")
+}
+
