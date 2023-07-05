@@ -8,6 +8,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using CMS.App_Start;
 using CMS.Models;
 using CMS.Models.DAL;
 using CMS.Models.Repositories;

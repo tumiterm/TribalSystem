@@ -3,6 +3,8 @@ using CMS.Models.Repositories.Db;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using CMS.App_Start;
+
 using System.Linq;
 using System.Web;
 

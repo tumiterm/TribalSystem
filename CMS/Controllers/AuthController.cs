@@ -1,4 +1,5 @@
 ﻿
+using CMS.App_Start;
 using CMS.Helpers;
 using CMS.Mail_Config;
 using CMS.Models.DAL;
@@ -95,19 +96,19 @@ namespace CMS.Controllers
             bool Status = false;
             string message = "";
 
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
 
                 #region 
  
-                var doesExist = await _userRepository.IsValidMail(user.Email);
+                //var doesExist = await _userRepository.IsValidMail(user.Email);
 
-                if (doesExist)
-                {
-                    ModelState.AddModelError("EmailExist", "Email already exist");
-                    return View();
+                //if (doesExist)
+                //{
+                //    ModelState.AddModelError("EmailExist", "Email already exist");
+                //    return View();
 
-                }
+                //}
 
                 #endregion
 

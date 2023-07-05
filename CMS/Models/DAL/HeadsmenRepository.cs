@@ -2,6 +2,7 @@
 using CMS.Models.Repositories.Db;
 using System;
 using System.Collections.Generic;
+using CMS.App_Start;
 using System.Data.Entity;
 using System.Threading.Tasks;
 

@@ -1,4 +1,5 @@
-﻿using CMS.Models.Repositories;
+﻿using CMS.App_Start;
+using CMS.Models.Repositories;
 using CMS.Models.Repositories.Db;
 using System;
 using System.Collections.Generic;

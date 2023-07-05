@@ -1,5 +1,7 @@
 ﻿using CMS.Models.Repositories;
 using CMS.Models.Repositories.Db;
+using CMS.App_Start;
+
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

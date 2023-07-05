@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using CMS.App_Start;
 using CMS.Models;
 using CMS.Models.Repositories.Db;
 

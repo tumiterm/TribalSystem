@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using CMS.Models.Repositories.Db;
 using CMS.Models.Repositories;
 using CMS.Models.DAL;
+using CMS.App_Start;
 
 namespace CMS.Controllers
 {

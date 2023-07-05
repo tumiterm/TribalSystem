@@ -11,6 +11,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Dynamic;
+using CMS.App_Start;
 
 namespace CMS.Controllers
 {
@@ -74,38 +75,38 @@ namespace CMS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> RegisterTribalAuth(TribalAuthority tribalAuthority)
-        {
-            string fileName = Path.GetFileNameWithoutExtension(tribalAuthority.FileBase.FileName);
+        //public async Task<ActionResult> RegisterTribalAuth(TribalAuthority tribalAuthority)
+        //{
+        //    string fileName = Path.GetFileNameWithoutExtension(tribalAuthority.FileBase.FileName);
 
-            string extension = Path.GetExtension(tribalAuthority.FileBase.FileName);
+        //    string extension = Path.GetExtension(tribalAuthority.FileBase.FileName);
 
-            fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+        //    fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
 
-            tribalAuthority.ImageFile = "~/TribalImage/" + fileName;
+        //    tribalAuthority.ImageFile = "~/TribalImage/" + fileName;
 
-            fileName = Path.Combine(Server.MapPath("~/TribalImage/"), fileName);
+        //    fileName = Path.Combine(Server.MapPath("~/TribalImage/"), fileName);
 
-            tribalAuthority.FileBase.SaveAs(fileName);
+        //    tribalAuthority.FileBase.SaveAs(fileName);
 
 
-            if (ModelState.IsValid)
-            {
-                tribalAuthority.Id = Helpers.Helper.GenerateGuid();
+        //    if (ModelState.IsValid)
+        //    {
+        //        tribalAuthority.Id = Helpers.Helper.GenerateGuid();
 
-                _tribalRepository.InsertRecordAsync(tribalAuthority);
+        //        _tribalRepository.InsertRecordAsync(tribalAuthority);
 
-                await _tribalRepository.SaveAsync();
+        //        await _tribalRepository.SaveAsync();
 
-                return RedirectToAction("ModifyTribalRecord", new { @tribalId = tribalAuthority.Id });
-            }
+        //        return RedirectToAction("ModifyTribalRecord", new { @tribalId = tribalAuthority.Id });
+        //    }
 
-            ViewBag.CountryId = new SelectList(_tribalRepository.OnGetCountry(), "Id", "Country1", tribalAuthority.CountryId);
+        //    ViewBag.CountryId = new SelectList(_tribalRepository.OnGetCountry(), "Id", "Country1", tribalAuthority.CountryId);
 
-            ViewBag.ProvinceId = new SelectList(_tribalRepository.OnGetProvince(), "Id", "Province1", tribalAuthority.ProvinceId);
+        //    ViewBag.ProvinceId = new SelectList(_tribalRepository.OnGetProvince(), "Id", "Province1", tribalAuthority.ProvinceId);
 
-            return View(tribalAuthority);
-        }
+        //    return View(tribalAuthority);
+        //}
         public async Task<ActionResult> ModifyTribalRecord(Guid? tribalId)
         {
             if (tribalId == null)

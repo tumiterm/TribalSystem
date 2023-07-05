@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\NUnit3TestAdapter.4.5.0\build\net462\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.4.5.0\build\net462\NUnit3TestAdapter.props')" />
+  <Import Project="..\packages\NUnit.3.13.3\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.13.3\build\NUnit.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -83,6 +85,9 @@
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.13.3.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.13.3\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Swashbuckle.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cd1bb07a5ac7c7bc, processorArchitecture=MSIL">
       <HintPath>..\packages\Swashbuckle.Core.5.6.0\lib\net40\Swashbuckle.Core.dll</HintPath>
@@ -172,10 +177,187 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\ApplicantFilling.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\Beneficiary.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\Case.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\CaseStatu.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\CaseType.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\Chief.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\Clan.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\CMS.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CMS.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\CMS.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\CMS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CMS.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\Complaint.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\Condition.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\Country.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\Court.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\CourtType.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\Disability.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\Dispute.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\DisputeType.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\Dweller.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\Education.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\EmergencyContact.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\Gender.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\Headsman.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\IncomeSource.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\LivingQuater.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\MarriageStatu.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\Municipality.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\NativeLanguage.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\PaymentFor.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\PaymentType.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\PlotTbl.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\PreferredCommunication.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\PrevOwner.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\Property.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\PropertyAge.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\PropertyHistory.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\PropertyStatu.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\PropertyType.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\Province.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\Race.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\Relationship.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\RentLeas.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\Role.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Section.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\SettlementHierachy.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\Severity.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\Speciality.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\SwaggerConfig.cs" />
+    <Compile Include="App_Start\sysdiagram.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\TenureStatu.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\TribalAuthority.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\Tribe.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\User.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\UserRoleMapping.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\UserTitle.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\Village.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\Ward.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\WorkType.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
     <Compile Include="CMSDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -239,183 +421,6 @@
     <Compile Include="Models\DAL\VillageRepository.cs" />
     <Compile Include="Models\Email.cs" />
     <Compile Include="Models\Extensions\User.cs" />
-    <Compile Include="Models\Repositories\Db\ApplicantFilling.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\Beneficiary.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\Case.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\CaseStatu.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\CaseType.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\Chief.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\Clan.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\Complaint.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\Condition.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\Country.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\Court.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\CourtType.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\DBModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\DBModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\DBModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\Disability.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\Dispute.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\DisputeType.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\Dweller.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\Education.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\EmergencyContact.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\f_spDwellerVillageInfo_Result.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\Gender.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\Headsman.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\IncomeSource.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\LivingQuater.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\MarriageStatu.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\Municipality.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\NativeLanguage.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\PaymentFor.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\PaymentType.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\PlotTbl.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\PreferredCommunication.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\PrevOwner.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\Property.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\PropertyAge.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\PropertyHistory.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\PropertyStatu.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\PropertyType.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\Province.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\Race.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\Relationship.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\RentLease.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\Role.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\Section.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\SettlementHierachy.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\Severity.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\Speciality.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\TenureStatu.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\TribalAuthority.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\Tribe.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\User.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\UserRoleMapping.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\UserTitle.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\Village.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\Ward.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Repositories\Db\WorkType.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Repositories\IRepository.cs" />
     <Compile Include="Models\Repositories\IUserRepository.cs" />
     <Compile Include="Models\UserRoleProvider.cs" />
@@ -427,6 +432,16 @@
     <Compile Include="TribalAPI.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Start\CMS.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CMS.edmx</DependentUpon>
+      <LastGenOutput>CMS.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_Start\CMS.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CMS.edmx</DependentUpon>
+      <LastGenOutput>CMS.cs</LastGenOutput>
+    </Content>
     <Content Include="bin\Antlr3.Runtime.dll" />
     <Content Include="bin\EntityFramework.dll" />
     <Content Include="bin\EntityFramework.SqlServer.dll" />
@@ -2332,16 +2347,6 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Img\DisplayPic.svg" />
-    <Content Include="Models\Repositories\Db\DBModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBModel.edmx</DependentUpon>
-      <LastGenOutput>DBModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Repositories\Db\DBModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBModel.edmx</DependentUpon>
-      <LastGenOutput>DBModel.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\alertify.js" />
     <Content Include="Scripts\alertify.min.js" />
     <Content Include="Scripts\angular-mocks.js" />
@@ -2531,13 +2536,6 @@
     <Content Include="Content\bootstrap-chosen.scss" />
     <Content Include="Content\bootstrap-chosen.less" />
     <Content Include="Grid.mvc.readme" />
-    <EntityDeploy Include="Models\Repositories\Db\DBModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DBModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Repositories\Db\DBModel.edmx.diagram">
-      <DependentUpon>DBModel.edmx</DependentUpon>
-    </Content>
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\angular-route.min.js.map" />
     <Content Include="DwellerDS.xsc">
@@ -2545,6 +2543,13 @@
     </Content>
     <Content Include="CMSDataSet.xsc">
       <DependentUpon>CMSDataSet.xsd</DependentUpon>
+    </Content>
+    <EntityDeploy Include="App_Start\CMS.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CMS.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="App_Start\CMS.edmx.diagram">
+      <DependentUpon>CMS.edmx</DependentUpon>
     </Content>
     <None Include="CMSDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
@@ -2887,6 +2892,8 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\NUnit.3.13.3\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.13.3\build\NUnit.props'))" />
+    <Error Condition="!Exists('..\packages\NUnit3TestAdapter.4.5.0\build\net462\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.4.5.0\build\net462\NUnit3TestAdapter.props'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

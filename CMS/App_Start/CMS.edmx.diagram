@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e5319ffd237d46728e0098d48a97f039" Name="Diagram1">
+        <EntityTypeShape EntityType="CMSModel.ApplicantFilling" Width="1.5" PointX="16.5" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.Beneficiary" Width="1.5" PointX="16.5" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.Case" Width="1.5" PointX="21.75" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.CaseStatu" Width="1.5" PointX="19.5" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.CaseType" Width="1.5" PointX="19.5" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.Chief" Width="1.5" PointX="16.5" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.Clan" Width="1.5" PointX="0.75" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.Complaint" Width="1.5" PointX="8.25" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.Condition" Width="1.5" PointX="17.25" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.Country" Width="1.5" PointX="0.75" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.Court" Width="1.5" PointX="19.5" PointY="47.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.CourtType" Width="1.5" PointX="17.25" PointY="47.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.Disability" Width="1.5" PointX="9" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.Dispute" Width="1.5" PointX="18.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.DisputeType" Width="1.5" PointX="16.5" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.Dweller" Width="1.5" PointX="11.25" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.Education" Width="1.5" PointX="9" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.EmergencyContact" Width="1.5" PointX="19.5" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.Gender" Width="1.5" PointX="0.75" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.Headsman" Width="1.5" PointX="3" PointY="25.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.IncomeSource" Width="1.5" PointX="9" PointY="35.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.LivingQuater" Width="1.5" PointX="17.25" PointY="32.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.MarriageStatu" Width="1.5" PointX="9" PointY="38.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.Municipality" Width="1.5" PointX="6" PointY="26.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.NativeLanguage" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.PaymentFor" Width="1.5" PointX="19.5" PointY="32.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.PaymentType" Width="1.5" PointX="19.5" PointY="35.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.PlotTbl" Width="1.5" PointX="14.25" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.PreferredCommunication" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.PrevOwner" Width="1.5" PointX="16.5" PointY="28.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.Property" Width="1.5" PointX="19.5" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.PropertyAge" Width="1.5" PointX="17.25" PointY="35.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.PropertyHistory" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.PropertyStatu" Width="1.5" PointX="17.25" PointY="37.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.PropertyType" Width="1.5" PointX="17.25" PointY="40" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.Province" Width="1.5" PointX="0.75" PointY="28.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.Race" Width="1.5" PointX="9" PointY="41.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.Relationship" Width="1.5" PointX="9" PointY="43.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.RentLeas" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.Role" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.Section" Width="1.5" PointX="3.75" PointY="33.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.SettlementHierachy" Width="1.5" PointX="17.25" PointY="42.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.Severity" Width="1.5" PointX="16.5" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.Speciality" Width="1.5" PointX="17.25" PointY="51.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.sysdiagram" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.TenureStatu" Width="1.5" PointX="17.25" PointY="44.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.TribalAuthority" Width="1.5" PointX="3" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.Tribe" Width="1.5" PointX="0.75" PointY="35.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.UserRoleMapping" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.User" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.UserTitle" Width="1.5" PointX="0.75" PointY="37.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.Village" Width="1.5" PointX="14.25" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.Ward" Width="1.5" PointX="3.75" PointY="36.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.WorkType" Width="1.5" PointX="9" PointY="46.375" IsExpanded="true" />
+        <AssociationConnector Association="CMSModel.FK_Case_ApplicantFilling" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Dispute_ApplicantFilling" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Beneficiary_Dweller" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Beneficiary_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Beneficiary_Relationship" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Case_Case" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Case_CaseStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Case_CaseType" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Case_Chief" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Case_CourtType" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Case_PaymentFor" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Case_PaymentType" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Case_Severity" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Chief_Clan" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Chief_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Chief_Tribe" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Chief_UserTitle" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Chief_Village" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Dispute_Chief" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Headsmen_Clan" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Complaint_Headsmen" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Complaint_Village" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_PlotTbl_Condition" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Property_Condition" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Headsmen_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Municipality_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_PlotTbl_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_TribalAuthority_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Village_Court" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Court_CourtType" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Dweller_Disability" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Dispute_DisputeType" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Dispute_Severity" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Dweller_Education" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Dweller_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Dweller_Headsmen" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Dweller_IncomeSource" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Dweller_MarriageStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Dweller_Race" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Dweller_Relationship" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Dweller_Village" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Dweller_WorkType" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Property_Dweller" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_EmergencyContact_Speciality" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_EmergencyContact_Village" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Headsmen_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Headsmen_Province" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Headsmen_Tribe" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Headsmen_UserTitle" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Headsmen_Village" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Property_Headsmen" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Property_LivingQuaters" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Municipality_Municipality" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Municipality_Municipality1" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Municipality_Province" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Municipality_Section" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Municipality_UserTitle" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Municipality_Ward" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_PlotTbl_Municipality" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Property_Municipality" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Village_Municipality" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_PlotTbl_Province" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_PlotTbl_Section" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_PlotTbl_Village" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_PlotTbl_Ward" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_PrevOwner_PlotTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Property_PropertyAge" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Property_PropertyStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Property_PropertyType" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Property_Province" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Property_Section" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Property_SettlementHierachy" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Property_TenureStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Property_Village" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Property_Ward" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_TribalAuthority_Province" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Village_Province" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_UserRoleMapping_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Village_Section" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_UserRoleMapping_User" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Village_Ward" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
