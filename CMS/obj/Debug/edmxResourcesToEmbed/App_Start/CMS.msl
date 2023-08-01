@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="CMSModelStoreContainer" CdmEntityContainer="CMSEntities1">
+  <EntityContainerMapping StorageEntityContainer="CMSModelStoreContainer" CdmEntityContainer="CMSEntities3">
     <EntitySetMapping Name="ApplicantFillings">
       <EntityTypeMapping TypeName="CMSModel.ApplicantFilling">
         <MappingFragment StoreEntitySet="ApplicantFillings">
@@ -120,6 +120,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="ComplainedForTypes">
+      <EntityTypeMapping TypeName="CMSModel.ComplainedForType">
+        <MappingFragment StoreEntitySet="ComplainedForTypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ComplaintType" ColumnName="ComplaintType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Complaints">
       <EntityTypeMapping TypeName="CMSModel.Complaint">
         <MappingFragment StoreEntitySet="Complaints">
@@ -139,7 +147,7 @@
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="Alternative_Contact" ColumnName="Alternative_Contact" />
           <ScalarProperty Name="WhoseNumber" ColumnName="WhoseNumber" />
-          <ScalarProperty Name="ComplainedFor" ColumnName="ComplainedFor" />
+          <ScalarProperty Name="ComplainedForType" ColumnName="ComplainedForType" />
           <ScalarProperty Name="IncidentDate" ColumnName="IncidentDate" />
           <ScalarProperty Name="IncidentLocation" ColumnName="IncidentLocation" />
           <ScalarProperty Name="NatureOfComplaint" ColumnName="NatureOfComplaint" />
@@ -623,6 +631,54 @@
         <MappingFragment StoreEntitySet="Sections">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ServiceFeedbacks">
+      <EntityTypeMapping TypeName="CMSModel.ServiceFeedback">
+        <MappingFragment StoreEntitySet="ServiceFeedbacks">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+          <ScalarProperty Name="ServiceStatusId" ColumnName="ServiceStatusId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="MunicipalityId" ColumnName="MunicipalityId" />
+          <ScalarProperty Name="TribalAuthority" ColumnName="TribalAuthority" />
+          <ScalarProperty Name="ImageFile" ColumnName="ImageFile" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Services">
+      <EntityTypeMapping TypeName="CMSModel.Service">
+        <MappingFragment StoreEntitySet="Services">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DwellerId" ColumnName="DwellerId" />
+          <ScalarProperty Name="ReferenceNumber" ColumnName="ReferenceNumber" />
+          <ScalarProperty Name="VillageId" ColumnName="VillageId" />
+          <ScalarProperty Name="ServiceTypeId" ColumnName="ServiceTypeId" />
+          <ScalarProperty Name="ServiceStatusId" ColumnName="ServiceStatusId" />
+          <ScalarProperty Name="AreaName" ColumnName="AreaName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="WardId" ColumnName="WardId" />
+          <ScalarProperty Name="SectionId" ColumnName="SectionId" />
+          <ScalarProperty Name="TribalAuthorityId" ColumnName="TribalAuthorityId" />
+          <ScalarProperty Name="HeadsmenId" ColumnName="HeadsmenId" />
+          <ScalarProperty Name="ImageFile" ColumnName="ImageFile" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ServiceStatus">
+      <EntityTypeMapping TypeName="CMSModel.ServiceStatu">
+        <MappingFragment StoreEntitySet="ServiceStatus">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ServiceTypes">
+      <EntityTypeMapping TypeName="CMSModel.ServiceType">
+        <MappingFragment StoreEntitySet="ServiceTypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

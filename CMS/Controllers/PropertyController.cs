@@ -1,7 +1,7 @@
 ﻿using CMS.App_Start;
 using CMS.Models.DAL;
 using CMS.Models.Repositories;
-using CMS.Models.Repositories.Db;
+
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -114,6 +114,98 @@ namespace CMS.Controllers
             ViewBag.VillageTypeId = new SelectList(db.Villages, "Id", "Name", property.VillageTypeId);
 
             return View(property);
+        }
+
+        [HttpGet]
+        public ActionResult PropertyType()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PropertyType(PropertyType model)
+        {
+
+            model.Id = Helpers.Helper.GenerateGuid();
+            
+           
+
+            if (ModelState.IsValid)
+            {
+                db.PropertyTypes.Add(model);
+
+                db.SaveChanges();
+
+                return RedirectToAction("PropertyRegistration");
+
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult PropertyAge()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PropertyAge(PropertyAge model)
+        {
+
+            model.Id = Helpers.Helper.GenerateGuid();
+
+
+            if (ModelState.IsValid)
+            {
+                db.PropertyAges.Add(model);
+
+                db.SaveChanges();
+
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult PropertyStatus()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PropertyStatus(PropertyStatu model)
+        {
+
+            model.Id = Helpers.Helper.GenerateGuid();
+
+
+
+            if (ModelState.IsValid)
+            {
+                db.PropertyStatus.Add(model);
+
+                db.SaveChanges();
+
+                return RedirectToAction("PropertyRegistration");
+
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
         }
 
         public async Task<ActionResult> ModifyProperty(Guid id)

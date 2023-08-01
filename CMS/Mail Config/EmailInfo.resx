@@ -118,15 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Password" xml:space="preserve">
-    <value>fortunetel</value>
+    <value>Forek@2020P@55w0rd</value>
   </data>
   <data name="Smtp_Host" xml:space="preserve">
-    <value>smtp.gmail.com</value>
+    <value>smtp.forek.co.za</value>
   </data>
   <data name="Smtp_Port" xml:space="preserve">
     <value>587</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>fortuneismaname@gmail.com</value>
+    <value>ifoliphant@forekinstitute.co.za</value>
   </data>
 </root>

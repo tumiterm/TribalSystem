@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="..\packages\NUnit3TestAdapter.4.5.0\build\net462\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.4.5.0\build\net462\NUnit3TestAdapter.props')" />
   <Import Project="..\packages\NUnit.3.13.3\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.13.3\build\NUnit.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
@@ -50,10 +51,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="GridMvc, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Grid.Mvc.3.0.0\lib\net40\GridMvc.dll</HintPath>
@@ -94,6 +97,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
@@ -214,6 +218,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CMS.edmx</DependentUpon>
     </Compile>
+    <Compile Include="App_Start\ComplainedForType.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\Complaint.cs">
       <DependentUpon>CMS.tt</DependentUpon>
     </Compile>
@@ -318,6 +325,18 @@
     <Compile Include="App_Start\Section.cs">
       <DependentUpon>CMS.tt</DependentUpon>
     </Compile>
+    <Compile Include="App_Start\Service.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\ServiceFeedback.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\ServiceStatu.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\ServiceType.cs">
+      <DependentUpon>CMS.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\SettlementHierachy.cs">
       <DependentUpon>CMS.tt</DependentUpon>
     </Compile>
@@ -363,27 +382,54 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CMSDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\ApplicantFillingController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BeneficiaryController.cs" />
     <Compile Include="Controllers\CaseController.cs" />
+    <Compile Include="Controllers\ClanController.cs" />
+    <Compile Include="Controllers\ComplainedForTypeController.cs" />
     <Compile Include="Controllers\ComplaintController.cs" />
+    <Compile Include="Controllers\ConditionController.cs" />
+    <Compile Include="Controllers\CountryController.cs" />
     <Compile Include="Controllers\CourtController.cs" />
     <Compile Include="Controllers\DisabilityController.cs" />
     <Compile Include="Controllers\DisputeController.cs" />
     <Compile Include="Controllers\DwellerController.cs" />
+    <Compile Include="Controllers\EducationController.cs" />
     <Compile Include="Controllers\EmailData.Designer.cs" />
     <Compile Include="Controllers\EmergencyController.cs" />
+    <Compile Include="Controllers\GenderController.cs" />
     <Compile Include="Controllers\HeadsmenController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IncomeSourceController.cs" />
     <Compile Include="Controllers\LeadershipController.cs" />
+    <Compile Include="Controllers\LivingQuarterController.cs" />
+    <Compile Include="Controllers\MaritalStatuController.cs" />
     <Compile Include="Controllers\MunicipalityController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\PlotController.cs" />
     <Compile Include="Controllers\PropertyController.cs" />
+    <Compile Include="Controllers\ProvinceController.cs" />
+    <Compile Include="Controllers\RaceController.cs" />
+    <Compile Include="Controllers\RelationshipController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\SectionController.cs" />
+    <Compile Include="Controllers\ServiceController.cs" />
+    <Compile Include="Controllers\ServiceFeedbackController.cs" />
+    <Compile Include="Controllers\ServiceStatuController.cs" />
+    <Compile Include="Controllers\ServiceTypeController.cs" />
+    <Compile Include="Controllers\SettingsController.cs" />
+    <Compile Include="Controllers\SettlementHierachyController.cs" />
+    <Compile Include="Controllers\SeverityController.cs" />
     <Compile Include="Controllers\SweetController.cs" />
+    <Compile Include="Controllers\TenureStatusController.cs" />
     <Compile Include="Controllers\TribalAuthorityController.cs" />
+    <Compile Include="Controllers\TribeController.cs" />
     <Compile Include="Controllers\UserRoleMappingController.cs" />
+    <Compile Include="Controllers\UserTitleController.cs" />
     <Compile Include="Controllers\VillageController.cs" />
+    <Compile Include="Controllers\WardController.cs" />
+    <Compile Include="Controllers\WorkTypeController.cs" />
     <Compile Include="DwellerDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -397,6 +443,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Enums.cs" />
     <Compile Include="Helpers\Helper.cs" />
     <Compile Include="Mail Config\EmailInfo.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -416,6 +463,8 @@
     <Compile Include="Models\DAL\PropertyRepository.cs" />
     <Compile Include="Models\DAL\RoleMappingRepository.cs" />
     <Compile Include="Models\DAL\RoleRepository.cs" />
+    <Compile Include="Models\DAL\ServiceFeedbackRepository.cs" />
+    <Compile Include="Models\DAL\ServiceRepository.cs" />
     <Compile Include="Models\DAL\TribalRepository.cs" />
     <Compile Include="Models\DAL\UserRepository.cs" />
     <Compile Include="Models\DAL\VillageRepository.cs" />
@@ -2808,6 +2857,47 @@
     <Content Include="Views\Emergency\Details.cshtml" />
     <Content Include="Views\Emergency\ModifyContact.cshtml" />
     <Content Include="Views\Emergency\ContactList.cshtml" />
+    <Content Include="Views\CourtTypes.cshtml" />
+    <Content Include="Views\Court\CourtTypes.cshtml" />
+    <Content Include="Views\Country\AddCountry.cshtml" />
+    <Content Include="Views\Property\PropertyType.cshtml" />
+    <Content Include="Views\Dispute\AddDisputeType.cshtml" />
+    <Content Include="Views\Case\AddCaseStatus.cshtml" />
+    <Content Include="Views\Case\AddCaseType.cshtml" />
+    <Content Include="Views\Clan\AddClan.cshtml" />
+    <Content Include="Views\Property\PropertyAge.cshtml" />
+    <Content Include="Views\Race\AddRace.cshtml" />
+    <Content Include="Views\Education\AddEducation.cshtml" />
+    <Content Include="Views\Gender\AddGender.cshtml" />
+    <Content Include="Views\MaritalStatu\AddMaritalStatus.cshtml" />
+    <Content Include="Views\Relationship\AddRelationship.cshtml" />
+    <Content Include="Views\IncomeSource\AddIncomeSource.cshtml" />
+    <Content Include="Views\WorkType\AddWorkType.cshtml" />
+    <Content Include="Views\Province\AddProvince.cshtml" />
+    <Content Include="Views\Section\AddSection.cshtml" />
+    <Content Include="Views\Ward\AddWard.cshtml" />
+    <Content Include="Views\UserTitle\AddUserTitle.cshtml" />
+    <Content Include="Views\Tribe\AddTribe.cshtml" />
+    <Content Include="Views\Property\PropertyStatus.cshtml" />
+    <Content Include="Views\Condition\AddCondition.cshtml" />
+    <Content Include="Views\TenureStatus\AddTenureStatus.cshtml" />
+    <Content Include="Views\LivingQuarter\AddLivingQuarter.cshtml" />
+    <Content Include="Views\SettlementHierachy\AddSettlementHierachy.cshtml" />
+    <Content Include="Views\Case\AddCasePriority.cshtml" />
+    <Content Include="Views\Payment\AddPaymentType.cshtml" />
+    <Content Include="Views\Payment\AddPaymentFor.cshtml" />
+    <Content Include="Views\ApplicantFilling\AddFillingCriteria.cshtml" />
+    <Content Include="Views\Settings\SettingsOne.cshtml" />
+    <Content Include="Views\Settings\SettingsTwo.cshtml" />
+    <Content Include="Views\Auth\UserList.cshtml" />
+    <Content Include="Views\Severity\AddSeverity.cshtml" />
+    <Content Include="Views\ComplainedForType\AddComplainedForType.cshtml" />
+    <Content Include="Views\ServiceStatu\AddServiceStatu.cshtml" />
+    <Content Include="Views\ServiceType\AddServiceType.cshtml" />
+    <Content Include="Views\Service\LodgeServiceDelivery.cshtml" />
+    <Content Include="Views\ServiceFeedback\GetServiceFeedback.cshtml" />
+    <Content Include="Views\Service\ServiceDeliveryCollection.cshtml" />
+    <Content Include="Views\Service\ModifyService.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -2894,7 +2984,10 @@
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
     <Error Condition="!Exists('..\packages\NUnit.3.13.3\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.13.3\build\NUnit.props'))" />
     <Error Condition="!Exists('..\packages\NUnit3TestAdapter.4.5.0\build\net462\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.4.5.0\build\net462\NUnit3TestAdapter.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

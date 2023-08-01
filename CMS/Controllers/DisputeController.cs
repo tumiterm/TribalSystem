@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿
+
+
+using CMS.App_Start;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using CMS.App_Start;
-using CMS.Models;
-using CMS.Models.Repositories.Db;
 
 namespace CMS.Controllers
 {
@@ -221,6 +219,39 @@ namespace CMS.Controllers
 
             return RedirectToAction("Index");
         }
+
+
+        [HttpGet]
+        public ActionResult AddDisputeType()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddDisputeType(DisputeType model)
+        {
+
+            model.Id = Helpers.Helper.GenerateGuid();
+            model.CreatedOn = DateTime.Now;
+            model.IsActive = true;
+            model.CreatedBy = "";
+
+            if (ModelState.IsValid)
+            {
+                db.DisputeTypes.Add(model);
+
+                db.SaveChanges();
+
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            return View();
+        }
+
 
         protected override void Dispose(bool disposing)
         {

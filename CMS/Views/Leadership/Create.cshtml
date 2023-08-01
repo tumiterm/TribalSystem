@@ -1,4 +1,4 @@
-﻿@model CMS.Models.Repositories.Db.Chief
+﻿@model CMS.App_Start.Chief
 
 
 @{
@@ -142,9 +142,15 @@
 
                                     </div>
 
-                                    <div class="form-group col-md-8">
+
+                                    <div class="form-group col-md-4">
                                         <label for="inputAddress">Address</label>
                                         @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @required = "required", placeholder = @Html.DisplayNameFor(m => m.Address), @id = "inputAddress" } })
+
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="inputVillage">Village</label>
+                                        @Html.DropDownList("VillageId", null, htmlAttributes: new { @class = "form-control", @id = "inputVillage" })
 
                                     </div>
                                 </div>

@@ -112,6 +112,13 @@
     <Property Name="CreatedOn" Type="datetime" />
     <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="ComplainedForTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ComplaintType" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
   <EntityType Name="Complaints">
     <Key>
       <PropertyRef Name="Id" />
@@ -132,7 +139,7 @@
     <Property Name="Email" Type="nvarchar" MaxLength="50" />
     <Property Name="Alternative_Contact" Type="nvarchar" MaxLength="12" />
     <Property Name="WhoseNumber" Type="varchar" MaxLength="50" />
-    <Property Name="ComplainedFor" Type="int" Nullable="false" />
+    <Property Name="ComplainedForType" Type="int" Nullable="false" />
     <Property Name="IncidentDate" Type="varchar" MaxLength="20" />
     <Property Name="IncidentLocation" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="NatureOfComplaint" Type="nvarchar" MaxLength="50" />
@@ -583,6 +590,50 @@
     </Key>
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
     <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ServiceFeedbacks">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ServiceId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ServiceStatusId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="50" />
+    <Property Name="MunicipalityId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="TribalAuthority" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ImageFile" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Services">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="DwellerId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ReferenceNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="VillageId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ServiceTypeId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ServiceStatusId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="AreaName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="WardId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="SectionId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="TribalAuthorityId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="HeadsmenId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ImageFile" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="ServiceStatus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ServiceTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="SettlementHierachies">
     <Key>
@@ -1689,6 +1740,7 @@
     <EntitySet Name="CaseTypes" EntityType="Self.CaseTypes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Chiefs" EntityType="Self.Chiefs" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Clans" EntityType="Self.Clans" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ComplainedForTypes" EntityType="Self.ComplainedForTypes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Complaints" EntityType="Self.Complaints" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Conditions" EntityType="Self.Conditions" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
@@ -1723,6 +1775,10 @@
     <EntitySet Name="RentLeases" EntityType="Self.RentLeases" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Sections" EntityType="Self.Sections" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ServiceFeedbacks" EntityType="Self.ServiceFeedbacks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ServiceStatus" EntityType="Self.ServiceStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ServiceTypes" EntityType="Self.ServiceTypes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SettlementHierachies" EntityType="Self.SettlementHierachies" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Severities" EntityType="Self.Severities" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Specialities" EntityType="Self.Specialities" Schema="dbo" store:Type="Tables" />

@@ -1,249 +1,103 @@
-﻿@model IEnumerable<CMS.Models.Repositories.Db.Complaint>
+﻿@model IEnumerable<CMS.App_Start.Complaint>
+@using GridMvc.Html
 
 @{
     ViewBag.Title = "Index";
+
+
 }
 
-<h2>Index</h2>
+@*<p class="row">
+        <li class="btn btn-outline-secondary ml-2"><a href="@Url.Action("RegisterDweller", "Dweller")"><i class="fas fa-plus"></i> Add New Dweller</a></li>
+        <li class="btn btn-outline-danger mr-2 float-right"><a href="@Url.Action("RegisterDweller", "Dweller")"><i class="fa fa-window-close"></i> Close</a></li>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Id_Number)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Race)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date_of_Birth)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Age)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Gender)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Residential_Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Postal_Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Postal_Code_Residential)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Postal_Code_Postal)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cellphone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Alternative_Contact)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WhoseNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ComplainedFor)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IncidentDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IncidentLocation)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NatureOfComplaint)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AllegedOffenderName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AllegedOffenderAddress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Witness1Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Witness1Phone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Witness1Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Witness2Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Witness2Phone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Witness2Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsMatterReported)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ToWhom)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NeedsInterpreter)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedOn)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ModifiedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CaseStatus)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Headsman.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Village.Name)
-        </th>
-        <th></th>
-    </tr>
+    </p>*@
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Id_Number)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Race)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date_of_Birth)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Age)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Gender)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Residential_Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Postal_Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Postal_Code_Residential)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Postal_Code_Postal)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cellphone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Alternative_Contact)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WhoseNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ComplainedFor)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IncidentDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IncidentLocation)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NatureOfComplaint)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AllegedOffenderName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AllegedOffenderAddress)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Witness1Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Witness1Phone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Witness1Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Witness2Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Witness2Phone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Witness2Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsMatterReported)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ToWhom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NeedsInterpreter)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsActive)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedOn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ModifiedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CaseStatus)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Headsman.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Village.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">List of All Complaints</h6>
+    </div>
+    <div class="card-body">
+        <div class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table thead-dark table-striped" id="DwellerTbl">
+                <thead>
+                    <tr>
+                        <th>
+                            Full Name
+                        </th>
+                        <th>
+                            LastName
+                        </th>
+                        <th>
+                            ComplainedFor
+                        </th>
+                        <th>
+                            NatureOfComplaint
+                        </th>
+                        <th>
+                            Incident Date
+                        </th>
+                        <th>
+                            Is Matter Reported
+                        </th>
+
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ComplainedForType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NatureOfComplaint)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IncidentDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsMatterReported)
+                        </td>
+
+                        <td class="btn-group">
+                            <li class="btn btn-outline-success "><a href="@Url.Action("UpdateComplaintDetails", "Complaint", new { id = item.Id})"><i class="fa fa-edit"></i> Modify</a></li>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="cdn.datatables.net/1.11.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+
+    <script>
+
+        $(function () {
+
+            $(document).ready(function () {
+                $('#DwellerTbl').DataTable();
+            });
+
+        });
+
+    </script>
 }
 
-</table>

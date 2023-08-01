@@ -68,7 +68,6 @@
 
                         <a class="collapse-item" href="~/TribalAuthority/RegisterTribalAuth">Add Tribal</a>
 
-                        <a class="collapse-item" href="~/Dweller/DwellerCollection">Register Beneficiary</a>
                         <a class="collapse-item" href="~/Village/RegisterVillage">Register Village</a>
                         <a class="collapse-item" href="~/Property/PropertyRegistration">Register Property</a>
                         <a class="collapse-item" href="~/Property/RegisteredProperties">View Property</a>
@@ -119,7 +118,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">House Config</h6>
                         <a class="collapse-item" href="~/Auth/UserSignUp">Register User</a>
-                        <a class="collapse-item" href="#">List of Users</a>
+                        <a class="collapse-item" href="~/Auth/UserList">List of Users</a>
 
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Other Configs</h6>
@@ -142,7 +141,7 @@
                         <h6 class="collapse-header">Legal Matters</h6>
                         <a class="collapse-item" href="~/Case/LodgeCase">Lodge A Case</a>
                         <a class="collapse-item" href="~/Complaint/LodgeComplaint">Lodge Complaint</a>
-                        <a class="collapse-item" href="~/Court/Create">Register Court</a>
+                        <a class="collapse-item" href="~/Court/AddCourt">Register Court</a>
                         <a class="collapse-item" href="#">Add Case Type</a>
 
                     </div>
@@ -183,7 +182,6 @@
                         <a class="collapse-item" href="#">Payment Record</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Other:</h6>
-                        <a class="collapse-item" href="#">Buy Stand</a>
                         <a class="collapse-item" href="#">Outstanding Payment</a>
                         <a class="collapse-item" href="#">Bill Record</a>
                     </div>
@@ -201,6 +199,7 @@
                         <h6 class="collapse-header">Plot Section</h6>
                         <a class="collapse-item" href="~/Plot/Index">Available Plots</a>
                         <a class="collapse-item" href="~/Plot/Index">Purchase Plot</a>
+                        <a class="collapse-item" href="#">Buy Stand</a>
 
                     </div>
                 </div>
@@ -217,26 +216,40 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Proof of Registration</h6>
                         <a class="collapse-item" href="~/Dweller/ReportTemplate">Download Form</a>
-
-
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapsePagesSettings"
+                   aria-expanded="true" aria-controls="collapsePagesSettings">
+                    <i class="fa fa-cog" aria-hidden="true"></i>
+                    <span>Settings</span>
+                </a>
+                <div id="collapsePagesSettings" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Settings</h6>
+                        <a class="collapse-item" href="~/Settings/SettingsOne"> Go To Settings</a>
+                        <a class="collapse-item" href="~/Settings/SettingsTwo"> Go To Settings</a>
                     </div>
                 </div>
             </li>
 
-            <!-- Divider -->
+
+
+            
             <hr class="sidebar-divider d-none d-md-block">
 
-            <!-- Sidebar Toggler (Sidebar) -->
+           
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
 
-            <!-- Sidebar Message -->
-            <div class="sidebar-card d-none d-lg-flex">
+             
+            @*<div class="sidebar-card d-none d-lg-flex">
                 <img class="sidebar-card-illustration mb-2" src="~/Content/AdminStyle/img/Forek-ICT-Services-Logo.svg" alt="...">
                 <p class="text-center mb-2"><strong>ICT Services</strong> Get a range of our product & Services right here</p>
                 <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Buy System</a>
-            </div>
+            </div>*@
 
         </ul>
         <!-- End of Sidebar -->

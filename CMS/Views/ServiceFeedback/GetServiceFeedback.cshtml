@@ -1,0 +1,116 @@
+﻿@using CMS.App_Start
+@model dynamic
+
+<link href="~/Content/StyleForm.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-chosen.css" rel="stylesheet" />
+<link href="~/Content/TableStyle.css" rel="stylesheet" />
+
+@Scripts.Render("~/bundles/modernizr")
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
+<style>
+    #FullName, #Percentage, #Cellphone2 {
+        border-color: #000000;
+    }
+</style>
+
+@using (Html.BeginForm("GetServiceFeedback", "ServiceFeedback", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="tab-content" id="nav-tabContent">
+        <div class="note mt-3 mb-3">
+            <p> Service Feedback [Reference Number: @ViewData["ReferenceNumber"]]</p>
+        </div>
+
+
+        <div class="col-xl-12 col-md-12">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="container register-form">
+                    @Html.TextBox("ServiceId", ViewData["Id"], new { htmlAttributes = new { @class = "form-control", @id = "ServiceId", @required = "required", @name = "ServiceId", @hidden = "hidden" } })
+                    @*<button type="button" class="btn btn-success float-right"><i class="fa fa-home"></i>Add Service</button>*@
+                    <div class="form-row">
+
+                        <div class="form-group col-md-4">
+                            <label for="inputLastName">Description</label>
+                            <input class="form-control text-box" type="text" name="Description" id="Description" required />
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label for="VillType">Service Status</label>
+                            @Html.DropDownList("ServiceStatusId", null, htmlAttributes: new { @class = "form-control chosen-select", @id = "ServiceStatusId" })
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputCell">AttendedBy</label>
+                            @Html.DropDownList("MunicipalityId", null, htmlAttributes: new { @class = "form-control chosen-select", @id = "Municipality" })
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputCell">ApprovedBy</label>
+                            @Html.DropDownList("TribalAuthority", null, htmlAttributes: new { @class = "form-control chosen-select", @id = "TribalAuthority" })
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputProvince">Incident Image</label>
+                            <input class="form-control text-box" type="file" name="FileBase" id="ImageFile" required />
+                        </div>
+
+                    </div>
+                    <br />
+
+                    <div style="border-bottom-color:red">
+                        <button type="submit" id="btnSubmit" value="Create" onclick="return validateData()" class="btn btn-outline-success pull-right"><i class="fa fa-user-plus"></i> Add Beneficiary</button>
+                        <button type="button" id="btnReset" class="btn btn-outline-warning pull-right"><i class="fa fa-redo"></i> Reset</button>
+                        <button type="button" id="btnBack" class="btn btn-outline-danger float-right"><i class="fa fa-close"></i> Close</button>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+
+
+<br />
+
+<div id="accordion">
+    <div class="card">
+        <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+                <button class="btn btn-link" onclick="$('#collapsed-chevronSpouse').toggleClass('fa-rotate-180')" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <i class="fa fa-chevron-circle-up" id="collapsed-chevronSpouse"></i>
+                    Service Resolved
+                </button>
+            </h5>
+        </div>
+
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+                <table class="table table-striped" id="beneficiaryTbl">
+                    <thead>
+                        <tr>
+                            <th>Service Status</th>
+                            <th>Description</th>
+                            <th>AttendedBy</th>
+                            <th>ApprovedBy</th>
+                        </tr>
+                    </thead>
+
+                    @foreach (ServiceFeedback feedback in Model.ServiceFeedbacks)
+                    {
+                        <tr>
+                            <td>@feedback.ServiceStatusId</td>
+                            <td>@feedback.Description</td>
+                            <td>@feedback.MunicipalityId</td>
+                            <td>@feedback.TribalAuthority</td>
+
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

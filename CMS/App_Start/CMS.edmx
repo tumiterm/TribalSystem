@@ -117,6 +117,13 @@
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="ComplainedForTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ComplaintType" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Complaints">
           <Key>
             <PropertyRef Name="Id" />
@@ -137,7 +144,7 @@
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
           <Property Name="Alternative_Contact" Type="nvarchar" MaxLength="12" />
           <Property Name="WhoseNumber" Type="varchar" MaxLength="50" />
-          <Property Name="ComplainedFor" Type="int" Nullable="false" />
+          <Property Name="ComplainedForType" Type="int" Nullable="false" />
           <Property Name="IncidentDate" Type="varchar" MaxLength="20" />
           <Property Name="IncidentLocation" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="NatureOfComplaint" Type="nvarchar" MaxLength="50" />
@@ -588,6 +595,50 @@
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ServiceFeedbacks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ServiceId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ServiceStatusId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
+          <Property Name="MunicipalityId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TribalAuthority" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ImageFile" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Services">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DwellerId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ReferenceNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="VillageId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ServiceTypeId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ServiceStatusId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AreaName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="WardId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SectionId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TribalAuthorityId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="HeadsmenId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ImageFile" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ServiceStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ServiceTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="SettlementHierachies">
           <Key>
@@ -1694,6 +1745,7 @@
           <EntitySet Name="CaseTypes" EntityType="Self.CaseTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Chiefs" EntityType="Self.Chiefs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Clans" EntityType="Self.Clans" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ComplainedForTypes" EntityType="Self.ComplainedForTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Complaints" EntityType="Self.Complaints" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Conditions" EntityType="Self.Conditions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
@@ -1728,6 +1780,10 @@
           <EntitySet Name="RentLeases" EntityType="Self.RentLeases" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sections" EntityType="Self.Sections" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServiceFeedbacks" EntityType="Self.ServiceFeedbacks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServiceStatus" EntityType="Self.ServiceStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServiceTypes" EntityType="Self.ServiceTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SettlementHierachies" EntityType="Self.SettlementHierachies" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Severities" EntityType="Self.Severities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Specialities" EntityType="Self.Specialities" Schema="dbo" store:Type="Tables" />
@@ -2209,6 +2265,13 @@
           <NavigationProperty Name="Chiefs" Relationship="Self.FK_Chief_Clan" FromRole="Clans" ToRole="Chiefs" />
           <NavigationProperty Name="Headsmen" Relationship="Self.FK_Headsmen_Clan" FromRole="Clans" ToRole="Headsmen" />
         </EntityType>
+        <EntityType Name="ComplainedForType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="ComplaintType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
         <EntityType Name="Complaint">
           <Key>
             <PropertyRef Name="Id" />
@@ -2229,7 +2292,7 @@
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Alternative_Contact" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
           <Property Name="WhoseNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ComplainedFor" Type="Int32" Nullable="false" />
+          <Property Name="ComplainedForType" Type="Int32" Nullable="false" />
           <Property Name="IncidentDate" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="IncidentLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="NatureOfComplaint" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -2784,6 +2847,50 @@
           <NavigationProperty Name="PlotTbls" Relationship="Self.FK_PlotTbl_Section" FromRole="Sections" ToRole="PlotTbls" />
           <NavigationProperty Name="Properties" Relationship="Self.FK_Property_Section" FromRole="Sections" ToRole="Properties" />
           <NavigationProperty Name="Villages" Relationship="Self.FK_Village_Section" FromRole="Sections" ToRole="Villages" />
+        </EntityType>
+        <EntityType Name="ServiceFeedback">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="ServiceId" Type="Guid" Nullable="false" />
+          <Property Name="ServiceStatusId" Type="Guid" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MunicipalityId" Type="Guid" Nullable="false" />
+          <Property Name="TribalAuthority" Type="Guid" Nullable="false" />
+          <Property Name="ImageFile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="DwellerId" Type="Guid" Nullable="false" />
+          <Property Name="ReferenceNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VillageId" Type="Guid" Nullable="false" />
+          <Property Name="ServiceTypeId" Type="Guid" Nullable="false" />
+          <Property Name="ServiceStatusId" Type="Guid" Nullable="false" />
+          <Property Name="AreaName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="WardId" Type="Guid" Nullable="false" />
+          <Property Name="SectionId" Type="Guid" Nullable="false" />
+          <Property Name="TribalAuthorityId" Type="Guid" Nullable="false" />
+          <Property Name="HeadsmenId" Type="Guid" Nullable="false" />
+          <Property Name="ImageFile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ServiceStatu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ServiceType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="SettlementHierachy">
           <Key>
@@ -3914,7 +4021,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CMSEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="CMSEntities3" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ApplicantFillings" EntityType="Self.ApplicantFilling" />
           <EntitySet Name="Beneficiaries" EntityType="Self.Beneficiary" />
           <EntitySet Name="Cases" EntityType="Self.Case" />
@@ -3922,6 +4029,7 @@
           <EntitySet Name="CaseTypes" EntityType="Self.CaseType" />
           <EntitySet Name="Chiefs" EntityType="Self.Chief" />
           <EntitySet Name="Clans" EntityType="Self.Clan" />
+          <EntitySet Name="ComplainedForTypes" EntityType="Self.ComplainedForType" />
           <EntitySet Name="Complaints" EntityType="Self.Complaint" />
           <EntitySet Name="Conditions" EntityType="Self.Condition" />
           <EntitySet Name="Countries" EntityType="Self.Country" />
@@ -3956,6 +4064,10 @@
           <EntitySet Name="RentLeases" EntityType="Self.RentLeas" />
           <EntitySet Name="Roles" EntityType="Self.Role" />
           <EntitySet Name="Sections" EntityType="Self.Section" />
+          <EntitySet Name="ServiceFeedbacks" EntityType="Self.ServiceFeedback" />
+          <EntitySet Name="Services" EntityType="Self.Service" />
+          <EntitySet Name="ServiceStatus" EntityType="Self.ServiceStatu" />
+          <EntitySet Name="ServiceTypes" EntityType="Self.ServiceType" />
           <EntitySet Name="SettlementHierachies" EntityType="Self.SettlementHierachy" />
           <EntitySet Name="Severities" EntityType="Self.Severity" />
           <EntitySet Name="Specialities" EntityType="Self.Speciality" />
@@ -4299,7 +4411,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CMSModelStoreContainer" CdmEntityContainer="CMSEntities1">
+        <EntityContainerMapping StorageEntityContainer="CMSModelStoreContainer" CdmEntityContainer="CMSEntities3">
           <EntitySetMapping Name="ApplicantFillings">
             <EntityTypeMapping TypeName="CMSModel.ApplicantFilling">
               <MappingFragment StoreEntitySet="ApplicantFillings">
@@ -4419,6 +4531,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ComplainedForTypes">
+            <EntityTypeMapping TypeName="CMSModel.ComplainedForType">
+              <MappingFragment StoreEntitySet="ComplainedForTypes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ComplaintType" ColumnName="ComplaintType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Complaints">
             <EntityTypeMapping TypeName="CMSModel.Complaint">
               <MappingFragment StoreEntitySet="Complaints">
@@ -4438,7 +4558,7 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Alternative_Contact" ColumnName="Alternative_Contact" />
                 <ScalarProperty Name="WhoseNumber" ColumnName="WhoseNumber" />
-                <ScalarProperty Name="ComplainedFor" ColumnName="ComplainedFor" />
+                <ScalarProperty Name="ComplainedForType" ColumnName="ComplainedForType" />
                 <ScalarProperty Name="IncidentDate" ColumnName="IncidentDate" />
                 <ScalarProperty Name="IncidentLocation" ColumnName="IncidentLocation" />
                 <ScalarProperty Name="NatureOfComplaint" ColumnName="NatureOfComplaint" />
@@ -4922,6 +5042,54 @@
               <MappingFragment StoreEntitySet="Sections">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceFeedbacks">
+            <EntityTypeMapping TypeName="CMSModel.ServiceFeedback">
+              <MappingFragment StoreEntitySet="ServiceFeedbacks">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+                <ScalarProperty Name="ServiceStatusId" ColumnName="ServiceStatusId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="MunicipalityId" ColumnName="MunicipalityId" />
+                <ScalarProperty Name="TribalAuthority" ColumnName="TribalAuthority" />
+                <ScalarProperty Name="ImageFile" ColumnName="ImageFile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Services">
+            <EntityTypeMapping TypeName="CMSModel.Service">
+              <MappingFragment StoreEntitySet="Services">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DwellerId" ColumnName="DwellerId" />
+                <ScalarProperty Name="ReferenceNumber" ColumnName="ReferenceNumber" />
+                <ScalarProperty Name="VillageId" ColumnName="VillageId" />
+                <ScalarProperty Name="ServiceTypeId" ColumnName="ServiceTypeId" />
+                <ScalarProperty Name="ServiceStatusId" ColumnName="ServiceStatusId" />
+                <ScalarProperty Name="AreaName" ColumnName="AreaName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="WardId" ColumnName="WardId" />
+                <ScalarProperty Name="SectionId" ColumnName="SectionId" />
+                <ScalarProperty Name="TribalAuthorityId" ColumnName="TribalAuthorityId" />
+                <ScalarProperty Name="HeadsmenId" ColumnName="HeadsmenId" />
+                <ScalarProperty Name="ImageFile" ColumnName="ImageFile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceStatus">
+            <EntityTypeMapping TypeName="CMSModel.ServiceStatu">
+              <MappingFragment StoreEntitySet="ServiceStatus">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceTypes">
+            <EntityTypeMapping TypeName="CMSModel.ServiceType">
+              <MappingFragment StoreEntitySet="ServiceTypes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

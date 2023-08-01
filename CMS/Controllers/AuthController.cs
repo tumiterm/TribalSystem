@@ -1,12 +1,11 @@
-﻿
-using CMS.App_Start;
+﻿using CMS.App_Start;
 using CMS.Helpers;
 using CMS.Mail_Config;
 using CMS.Models.DAL;
 using CMS.Models.Repositories;
-using CMS.Models.Repositories.Db;
 using CMS.Models.ViewModels;
 using System;
+using System.Dynamic;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -14,6 +13,8 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+
+
 
 namespace CMS.Controllers
 {
@@ -27,7 +28,7 @@ namespace CMS.Controllers
 
         }
 
-        [Authorize(Roles= "Administrator")]
+        //[Authorize(Roles= "Administrator")]
         public ActionResult ControlCentre()
         {
             return View();
@@ -182,11 +183,11 @@ namespace CMS.Controllers
 
                         using (CMSEntities dc = new CMSEntities())
                         {
-                            //var userData =  dc.Users.Where(a => a.Email == user.EmailID).FirstOrDefault();
                             var userData = await _userRepository.OnGetUser(user.EmailID);
 
                             if (userData != null)
                             {
+                              
                                 if (!userData.IsEmailVerified)
                                 {
                                     ViewBag.Message = "Please verify your email first";
@@ -429,6 +430,16 @@ namespace CMS.Controllers
             //Session.Abandon();
 
             return RedirectToAction("UserSignIn");
+        }
+
+        public async Task<ActionResult> UserList()
+        {
+            var user = from n in await _userRepository.RetrieveAllRecordsAsync()
+
+                             select n;
+
+            return View(user);
+
         }
 
     }

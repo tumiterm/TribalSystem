@@ -1,7 +1,7 @@
 ﻿using CMS.App_Start;
 using CMS.Models.DAL;
 using CMS.Models.Repositories;
-using CMS.Models.Repositories.Db;
+
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -18,13 +18,15 @@ namespace CMS.Controllers
         private CMSEntities db = new CMSEntities();
 
         private IRepository<Beneficiary> _beneficiaryRepository;
+        private IRepository<Dweller> _dwellerRepository;
 
         private Guid _dwellerId;
-
+         
         public BeneficiaryController()
         {
-            this._beneficiaryRepository = new BeneficiaryRepository(new CMSEntities()); 
-            
+            this._beneficiaryRepository = new BeneficiaryRepository(new CMSEntities());
+            this._dwellerRepository = new DwellerRepository(new CMSEntities());
+
         }
         public ActionResult Index()
         {
@@ -81,13 +83,18 @@ namespace CMS.Controllers
 
         public async Task<ActionResult>GetBeneficiaryById(Guid? benID)
         {
-            var beneficiary = await _beneficiaryRepository.RetrieveRecordAsync(benID);
 
-            if (beneficiary != null)
+            var beneficiary = await _beneficiaryRepository.RetrieveAllRecordsAsync();
+
+            var filterRecord = beneficiary.Where(x => x.DwellerId == benID).ToList();
+
+            if(beneficiary == null)
             {
-                return View(beneficiary);
+                return View("Error");
             }
-            return View();
+
+
+            return View(beneficiary);
         }
 
         public async Task<ActionResult> BeneficiaryList()

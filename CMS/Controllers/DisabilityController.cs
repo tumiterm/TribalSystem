@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Net;
 using System.Web.Mvc;
-using CMS.Models.Repositories.Db;
+
 using CMS.Models.Repositories;
 using CMS.Models.DAL;
 using System.Dynamic;
@@ -191,6 +191,36 @@ namespace CMS.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        [HttpGet]
+        public ActionResult DisabilityType()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DisabilityType(Disability model)
+        {
+
+            model.Id = Helpers.Helper.GenerateGuid();
+            model.CreatedOn = DateTime.Now;
+            model.CreatedBy = "";
+
+            if (ModelState.IsValid)
+            {
+                db.Disabilities.Add(model);
+
+                db.SaveChanges();
+
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            return View();
         }
     }
 }

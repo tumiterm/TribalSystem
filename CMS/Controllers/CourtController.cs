@@ -1,15 +1,12 @@
-﻿using System;
+﻿
+using CMS.App_Start;
+using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
-using CMS.App_Start;
-using CMS.Models;
-using CMS.Models.Repositories.Db;
 
 namespace CMS.Controllers
 {
@@ -55,6 +52,7 @@ namespace CMS.Controllers
 
             ViewBag.TypeId = getCourts;
 
+
             return View();
         }
 
@@ -75,7 +73,7 @@ namespace CMS.Controllers
                 return Json(new { Message = message, JsonRequestBehavior.AllowGet });
             }
 
-            ViewBag.TypeId = new SelectList(db.CourtTypes, "Id", "Type", court.TypeId);
+            ViewBag.TypeId = new SelectList(db.CaseTypes, "Id", "Type", court.TypeId);
 
             return View(court);
         }
@@ -132,7 +130,41 @@ namespace CMS.Controllers
             return View(court);
         }
 
-   
+        [HttpGet]
+        public ActionResult CourtTypes()
+        {
+            return View();  
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CourtTypes(CourtType model)
+        {
+
+            model.Id = Helpers.Helper.GenerateGuid();
+            model.CreatedOn = DateTime.Now; 
+            model.IsActive = true;
+            model.CreatedBy = "";
+
+            if (ModelState.IsValid)
+            {
+                db.CourtTypes.Add(model);
+
+                db.SaveChanges();
+
+                return RedirectToAction("AddCourt");
+
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            
+
+            return View();  
+        }
+
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

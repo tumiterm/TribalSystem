@@ -1,4 +1,4 @@
-﻿@model CMS.Models.Repositories.Db.PlotTbl
+﻿@model CMS.App_Start.PlotTbl
 
 <style>
     .note {
@@ -109,13 +109,13 @@
 
                             <div class="form-group col-md-4">
                                 <label for="inputRent">Lease Start Date</label>
-                                @Html.EditorFor(model => model.LeaseStartDate, new { htmlAttributes = new { @class = "form-control",@id="leaseStartPeriod" } })
+                                @Html.EditorFor(model => model.LeaseStartDate, new { htmlAttributes = new { @class = "form-control",@id="leaseStartPeriod", @type = "date" } })
                             </div>
 
 
                             <div class="form-group col-md-4">
                                 <label for="AmountPaid">Lease End Date</label>
-                                @Html.EditorFor(model => model.LeaseEndDate, new { htmlAttributes = new { @class = "form-control" ,@id="leaseEndPeriod"} })
+                                @Html.EditorFor(model => model.LeaseEndDate, new { htmlAttributes = new { @class = "form-control" ,@id="leaseEndPeriod", @type = "date" } })
                             </div>
 
                             <div class="form-group col-md-4">

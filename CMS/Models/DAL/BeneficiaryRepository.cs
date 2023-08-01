@@ -1,7 +1,7 @@
 ﻿using CMS.Models.Repositories;
 using CMS.App_Start;
 
-using CMS.Models.Repositories.Db;
+
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -17,6 +17,7 @@ namespace CMS.Models.DAL
         public BeneficiaryRepository(CMSEntities context)
         {
             this._context = context;
+            
            
         }
 

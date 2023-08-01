@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
+using System.Dynamic;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CMS.App_Start;
+using CMS.Helpers;
 using CMS.Models;
-using CMS.Models.Repositories.Db;
+using CMS.Models.DAL;
+
 
 namespace CMS.Controllers
 {
@@ -46,10 +48,14 @@ namespace CMS.Controllers
         // GET: Leadership/Create
         public ActionResult Create()
         {
+            
+
             ViewBag.ClanId = new SelectList(db.Clans, "Id", "Description");
             ViewBag.GenderId = new SelectList(db.Genders, "Id", "Gender1");
-            ViewBag.TribeId = new SelectList(db.Tribes, "Id", "description");
+            ViewBag.TribeId = new SelectList(db.Tribes, "Id", "Description");
             ViewBag.TitleId = new SelectList(db.UserTitles, "Id", "Title");
+            ViewBag.VillageId = new SelectList(db.Villages, "Id", "Name");
+
             return View();
         }
 
@@ -58,19 +64,50 @@ namespace CMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,LastName,TitleId,ClanId,TribeId,Cellphone1,Cellphone2,Email,Address,GenderId")] Chief leadership)
+        public ActionResult Create([Bind(Include = "Id,Name,LastName,TitleId,ClanId,TribeId,Cellphone1,Cellphone2,Email,Address,GenderId,VillageId,ID_Number,AppointedTill")] Chief leadership)
         {
-            if (ModelState.IsValid)
+
+            leadership.IsActive = true;
+
+            leadership.Id = Helper.GenerateGuid();
+
+            leadership.ModifiedBy = string.Empty;
+
+            leadership.CreatedOn = DateTime.Now;
+
+            leadership.CreatedBy = "";
+
+            leadership.AppointedBy = "";
+
+            if (!ModelState.IsValid)
             {
-                db.Chiefs.Add(leadership);
-                db.SaveChanges();
+
+                Chief chief = db.Chiefs.Add(leadership);
+
+                if(chief != null)
+                {
+                   int rc = db.SaveChanges();
+
+                    if(rc > 0)
+                    {
+                        //we are in
+                    }
+                    else
+                    {
+                        //sometji
+                    }
+                }
+
+                
+
                 return RedirectToAction("Index");
             }
 
             ViewBag.ClanId = new SelectList(db.Clans, "Id", "Description", leadership.ClanId);
             ViewBag.GenderId = new SelectList(db.Genders, "Id", "Gender1", leadership.GenderId);
-            ViewBag.TribeId = new SelectList(db.Tribes, "Id", "description", leadership.TribeId);
+            ViewBag.TribeId = new SelectList(db.Tribes, "Id", "Description", leadership.TribeId);
             ViewBag.TitleId = new SelectList(db.UserTitles, "Id", "Title", leadership.TitleId);
+            ViewBag.VillageId = new SelectList(db.Villages,"Id","Name",leadership.VillageId);
             return View(leadership);
         }
 

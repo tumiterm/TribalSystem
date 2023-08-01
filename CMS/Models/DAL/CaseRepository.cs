@@ -1,5 +1,5 @@
 ﻿using CMS.Models.Repositories;
-using CMS.Models.Repositories.Db;
+
 using CMS.App_Start;
 
 using System;
@@ -63,7 +63,9 @@ namespace CMS.Models.DAL
 
         public void UpdateRecord(Case record)
         {
+
             _context.Entry(record).State = EntityState.Modified;
+
         }
     }
 }

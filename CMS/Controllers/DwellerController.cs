@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using CMS.App_Start;
 using CMS.Models.DAL;
 using CMS.Models.Repositories;
-using CMS.Models.Repositories.Db;
+
 using Microsoft.Reporting.WebForms;
 
 namespace CMS.Controllers
@@ -124,7 +124,7 @@ namespace CMS.Controllers
                     $"Kind Regards.");
 
 
-                return RedirectToAction("RegisterDweller");
+                return RedirectToAction("DwellerCollection");
                 
             }
 
@@ -258,9 +258,9 @@ namespace CMS.Controllers
 
             return View(dweller);
         }
+    
 
-
-        public ActionResult Delete(int? id)
+    public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -403,5 +403,6 @@ namespace CMS.Controllers
             return retrivedRecord;
             
         }
+
     }
 }

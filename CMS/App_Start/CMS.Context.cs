@@ -9,12 +9,11 @@
 
 namespace CMS.App_Start
 {
-    using CMS.Models.Repositories.Db;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CMSEntities: DbContext
+    public partial class CMSEntities : DbContext
     {
         public CMSEntities()
             : base("name=CMSEntities")
@@ -33,6 +32,7 @@ namespace CMS.App_Start
         public virtual DbSet<CaseType> CaseTypes { get; set; }
         public virtual DbSet<Chief> Chiefs { get; set; }
         public virtual DbSet<Clan> Clans { get; set; }
+        public virtual DbSet<ComplainedForType> ComplainedForTypes { get; set; }
         public virtual DbSet<Complaint> Complaints { get; set; }
         public virtual DbSet<Condition> Conditions { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
@@ -67,6 +67,10 @@ namespace CMS.App_Start
         public virtual DbSet<RentLeas> RentLeases { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Section> Sections { get; set; }
+        public virtual DbSet<ServiceFeedback> ServiceFeedbacks { get; set; }
+        public virtual DbSet<Service> Services { get; set; }
+        public virtual DbSet<ServiceStatu> ServiceStatus { get; set; }
+        public virtual DbSet<ServiceType> ServiceTypes { get; set; }
         public virtual DbSet<SettlementHierachy> SettlementHierachies { get; set; }
         public virtual DbSet<Severity> Severities { get; set; }
         public virtual DbSet<Speciality> Specialities { get; set; }

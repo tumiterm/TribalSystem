@@ -1,4 +1,5 @@
-﻿@using CMS.Models.Repositories.Db;
+﻿@using CMS.App_Start
+
 @model dynamic
 
 
@@ -31,10 +32,8 @@
     <style>
         #AuthorityName,
         #Telephone,
-        #Address
-        {
+        #Address {
             border-color: #000000;
-            
         }
 
         #POBox, #ProvinceId, #ImageFile {
@@ -61,7 +60,9 @@
                 <div class="col-xl-12 col-md-12 mb-4">
                     <div class="card border-left-primary shadow h-100 py-2">
                         <div class="card-body">
-                            <form>
+                            @*@using (Html.BeginForm("AddCountry", "Country", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                @Html.AntiForgeryToken()*@
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label for="inputName">Tribal Name</label>
@@ -71,12 +72,13 @@
 
                                     <div class="form-group col-md-4">
                                         <label for="inputWard">Country</label>
-                                        @Html.DropDownList("CountryId", null, htmlAttributes: new { @class = "form-control",@id= "CountryId" })
+                                        @Html.DropDownList("CountryId", ViewBag.CountryId as SelectList, htmlAttributes: new { @class = "form-control", @id = "country" })
+
                                     </div>
 
                                     <div class="form-group col-md-4">
                                         <label for="inputWard">Province</label>
-                                        @Html.DropDownList("ProvinceId", null, htmlAttributes: new { @class = "form-control",@id= "ProvinceId" })
+                                        @Html.DropDownList("ProvinceId", ViewBag.ProvinceId as SelectList, htmlAttributes: new { @class = "form-control", @id = "province" })
                                     </div>
                                 </div>
                                 <div class="form-row">
@@ -92,7 +94,7 @@
 
                                     <div class="form-group col-md-4">
                                         <label for="inputProvince">Tribal Logo</label>
-                                        <input class="form-control text-box" type="file" name="FileBase" id="ImageFile" required />
+                                        <input class="form-control text-box" type="file" name="PostedFile" id="ImageFile" required />
                                     </div>
                                 </div>
 
@@ -113,14 +115,15 @@
                                     </div>
 
                                 </div>
-                            </form>
-                            <div style="background-color:whitesmoke; border-bottom-color:darkblue;" class="mt-1 mb-1">
-                                <button type="submit" onclick="return validateData()" id="btnSubmit" value="Create" class="btn btn-outline-success"><i class="fa fa-save"></i> Save</button>
-                                <button type="button" id="btnReset" class="btn btn-outline-warning pull-right"><i class="fa fa-redo"></i> Reset</button>
-                                <button type="button" id="btnClose" class="btn btn-outline-danger float-right"><i class="fa fa-window-close"></i> Close</button>
-                            </div>
 
+                                <div style="background-color:whitesmoke; border-bottom-color:darkblue;" class="mt-1 mb-1">
+                                    <button type="submit" onclick="return validateData()" id="btnSubmit" value="Create" class="btn btn-outline-success"><i class="fa fa-save"></i> Save</button>
+                                    <button type="button" id="btnReset" class="btn btn-outline-warning pull-right"><i class="fa fa-redo"></i> Reset</button>
+                                    <button type="button" id="btnClose" class="btn btn-outline-danger float-right"><i class="fa fa-window-close"></i> Close</button>
+                                </div>
+                            @*}*@
                         </div>
+
                     </div>
                 </div>
                 <br />
@@ -188,34 +191,36 @@
 
         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
-                <table class="table table-striped table-dark">
-                    <tr>
-                        <th>Name</th>
-                        <th>Country</th>
-                        <th>Province</th>
-                        <th>Telephone</th>
+                <div class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <table class="table thead-dark table-striped" >
+                        <tr>
+                            <th>Name</th>
+                            <th>Country</th>
+                            <th>Province</th>
+                            <th>Telephone</th>
 
-                    </tr>
+                            <th>Action</th>
 
-                    @foreach (TribalAuthority tribal in Model.TribalList)
-                    {
-                <tr>
-                    <td>@tribal.AuthorityName</td>
-                    <td>@tribal.Country.Country1</td>
-                    <td>@tribal.Province.Province1</td>
-                    <td>@tribal.Telephone</td>
-                    <td></td>
-                    <td>
-                        <li class="btn btn-outline-warning "><a href="@Url.Action("ModifyTribalRecord", "TribalAuthority", new { tribalId =tribal.Id})"><i class="fa fa-edit"></i> Modify</a></li>
-                        <li class="btn btn-outline-danger "><a href="@Url.Action("Delete", "TribalAuthority", new { id =tribal.Id})"><i class="fa fa-trash"></i> Delete</a></li>
-                    </td>
+                        </tr>
+
+                        @foreach (TribalAuthority tribal in Model.TribalList)
+                        {
+                            <tr>
+                                <td>@tribal.AuthorityName</td>
+                                <td>@tribal.Country.Country1</td>
+                                <td>@tribal.Province.Province1</td>
+                                <td>@tribal.Telephone</td>
+                                <td>
+                                    <li class="btn btn-outline-warning "><a href="@Url.Action("ModifyTribalRecord", "TribalAuthority", new { tribalId =tribal.Id})"><i class="fa fa-edit"></i> Modify</a></li>
+                                    <li class="btn btn-outline-danger "><a href="@Url.Action("Delete", "TribalAuthority", new { id =tribal.Id})"><i class="fa fa-trash"></i> Delete</a></li>
+                                </td>
 
 
-                </tr>
-                    }
-                </table>
+                            </tr>
+                        }
+                    </table>
+                </div>
             </div>
-        </div>
     </div>
 </div>
 

@@ -1,0 +1,89 @@
+﻿@model IEnumerable<CMS.App_Start.Service>
+@using GridMvc.Html
+
+@{
+    ViewBag.Title = "Index";
+
+
+}
+
+<p class="row">
+    <li class="btn btn-outline-secondary ml-2"><a href="@Url.Action("LodgeServiceDelivery", "Service")"><i class="fas fa-plus"></i> Lodge Service Incident</a></li>
+    <li class="btn btn-outline-danger mr-2 float-right"><a href="@Url.Action("ServiceDelivery", "Service")"><i class="fa fa-window-close"></i> Close</a></li>
+
+</p>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">List of All Service</h6>
+    </div>
+    <div class="card-body">
+        <div class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table thead-dark table-striped" id="DwellerTbl">
+                <thead>
+                    <tr>
+                        <th>
+                            Reference Number
+                        </th>
+                        <th>
+                            Area Name
+                        </th>
+                        <th>
+                            Description
+                        </th>
+                        <th>
+                            Dweller
+                        </th>
+                       
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ReferenceNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AreaName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DwellerId)
+                        </td>
+                        
+                        <td class="btn-group">
+                            <li class="btn btn-outline-success "><a href="@Url.Action("ModifyService", "Service", new { id = item.Id})"><i class="fa fa-edit"></i> Modify</a></li>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="cdn.datatables.net/1.11.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+
+    <script>
+
+        $(function () {
+
+            $(document).ready(function () {
+                $('#DwellerTbl').DataTable();
+            });
+
+        });
+
+    </script>
+}
+

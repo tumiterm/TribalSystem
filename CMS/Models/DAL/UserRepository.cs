@@ -1,12 +1,14 @@
 ﻿using CMS.App_Start;
 using CMS.Models.Repositories;
-using CMS.Models.Repositories.Db;
+
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Http.Results;
+using User = CMS.App_Start.User;
 
 namespace CMS.Models.DAL
 {
@@ -55,13 +57,13 @@ namespace CMS.Models.DAL
         {
             var isValid = await _context.Users.Where(x => x.Email == email).FirstOrDefaultAsync();
 
-            return isValid!=null;
+            return isValid != null;
         }
 
-       public async Task<User> OnGetUser(string username)
+        public async Task<User> OnGetUser(string username)
         {
 
-            return await _context.Users.Where(x => x.Email == username).SingleOrDefaultAsync();
+               return await _context.Users.Where(x => x.Email == username).SingleOrDefaultAsync();
         }
 
         private bool disposed = false;

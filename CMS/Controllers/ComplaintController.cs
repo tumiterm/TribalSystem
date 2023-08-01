@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using CMS.Models.Repositories.Db;
+
 using System.ComponentModel;
 using CMS.Models.Repositories;
 using CMS.Models.DAL;
 using CMS.App_Start;
+using static CMS.Helpers.Enums;
 
 namespace CMS.Controllers
 {
@@ -29,7 +30,7 @@ namespace CMS.Controllers
         {
             var complaints = from n in await _complaintRepository.RetrieveAllRecordsAsync()
 
-                             where n.IsActive
+                             
 
                              select n;
 
@@ -75,52 +76,16 @@ namespace CMS.Controllers
                                                         };
 
 
-            var eRaceData = from eRace e in Enum.GetValues(typeof(eRace))
+            
 
-                            select new
-                            {
-                                ID = (int)e,
+            ViewBag.GenderId = new SelectList(db.Genders, "ID", "Gender1");
 
-                                Name = e.ToString()
-                            };
+            ViewBag.ComplainedForTypeId = new SelectList(db.ComplainedForTypes, "ID", "ComplaintType");
 
-            var eComplainData = from eComplFor e in Enum.GetValues(typeof(eComplFor))
-
-                            select new
-                            {
-                                ID = (int)e,
-
-                                Name = e.ToString()
-                            };
-
-            var eGenderData = from eGender e in Enum.GetValues(typeof(eGender))
-
-                                select new
-                                {
-                                    ID = (int)e,
-
-                                    Name = e.ToString()
-                                };
+            ViewBag.RaceId = new SelectList(db.Races, "ID", "Race1");
 
 
-            var eStatusData = from eStatus e in Enum.GetValues(typeof(eStatus))
-
-                              select new
-                              {
-                                  ID = (int)e,
-
-                                  Name = e.ToString()
-                              };
-
-            ViewBag.GenderId = new SelectList(eGenderData, "ID", "Name");
-
-            ViewBag.ComplForId = new SelectList(eComplainData, "ID", "Name");
-
-            ViewBag.RaceId = new SelectList(eRaceData, "ID", "Name");
-
-            ViewBag.RaceId = new SelectList(eRaceData, "ID", "Name");
-
-            ViewBag.StatusId = new SelectList(eStatusData, "ID", "Name");
+            ViewBag.StatusId = new SelectList(db.CaseStatus, "ID", "Description");
 
 
 
@@ -138,7 +103,6 @@ namespace CMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                complaint.CaseStatus = (int)eStatus.Open;
 
                 complaint.Id = Guid.NewGuid();
 
@@ -194,7 +158,32 @@ namespace CMS.Controllers
 
             return View(complaint);
         }
-        public async Task<ActionResult> Delete(Guid? id)
+
+        [HttpGet]
+        public async Task<ActionResult> ComplainedFor()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ComplainedFor(Complaint complaint)
+        {
+            if (ModelState.IsValid)
+            {
+                complaint.Id = Helpers.Helper.GenerateGuid();
+
+                _complaintRepository.InsertRecordAsync(complaint);
+
+                await _complaintRepository.SaveAsync();
+
+                return RedirectToAction("LodgeComplaint");
+            }
+
+            return View(complaint);
+        }
+
+    public async Task<ActionResult> Delete(Guid? id)
         {
             if (id == null)
             {
@@ -230,51 +219,8 @@ namespace CMS.Controllers
             }
             base.Dispose(disposing);
         }
-    }
 
-    public enum eRace : int
-    {
-        African = 0,
-        White = 1,
-        Indian = 2,
-        Colored = 3,
-        Other = 4
-    }
+        
 
-    public enum eComplFor : int
-    {
-        Myself,
-        Organization,
-        Someone
-    }
-
-    public enum eGender : int
-    {
-        Male,
-        Female,
-        Other
-    }
-
-    public enum eStatus : int
-    {
-        Open,
-        [Description("In Progress")]
-        In_Progress,
-        Deferred,
-        Pending,
-        Closed
-    }
-
-    public enum eLanguage : int
-    {
-        Setswana,
-        English,
-        Afrikaans,
-        SePedi,
-        Siswati,
-        Sesotho,
-        IsiZulu,
-        IsiNdebele,
-        Xhonga
-    }
+    } 
 }

@@ -19,7 +19,7 @@ namespace CMS.Mail_Config {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class EmailInfo {
@@ -61,7 +61,7 @@ namespace CMS.Mail_Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to fortunetel.
+        ///   Looks up a localized string similar to Forek@2020P@55w0rd.
         /// </summary>
         public static string Password {
             get {
@@ -70,7 +70,7 @@ namespace CMS.Mail_Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to smtp.gmail.com.
+        ///   Looks up a localized string similar to smtp.forek.co.za.
         /// </summary>
         public static string Smtp_Host {
             get {
@@ -88,7 +88,7 @@ namespace CMS.Mail_Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to fortuneismaname@gmail.com.
+        ///   Looks up a localized string similar to ifoliphant@forekinstitute.co.za.
         /// </summary>
         public static string Username {
             get {

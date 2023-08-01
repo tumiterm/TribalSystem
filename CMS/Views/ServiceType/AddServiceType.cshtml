@@ -1,0 +1,90 @@
+﻿@model CMS.App_Start.ServiceType
+
+@{
+    ViewBag.Title = "Add Service Type";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <style>
+        .note {
+            text-align: center;
+            height: 50px;
+            background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+            color: #fff;
+            font-weight: bold;
+            line-height: 50px;
+        }
+
+        .form-content {
+            padding: 5%;
+            border: 1px solid #ced4da;
+            margin-bottom: 2%;
+        }
+
+        .form-control {
+            border-radius: 1.5rem;
+        }
+
+        .btnSubmit {
+            border: none;
+            border-radius: 1.5rem;
+            padding: 1%;
+            width: 20%;
+            cursor: pointer;
+            background: #0062cc;
+            color: #fff;
+        }
+    </style>
+    <link href="~/Content/bootstrap-chosen.css" rel="stylesheet" />
+
+
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+</head>
+
+@using (Html.BeginForm("AddServiceType", "ServiceType", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <body>
+        <div class="container register-form">
+            <div class="form">
+                <div class="note">
+                    <p> Add Service Type</p>
+                </div>
+                <br />
+
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" name="Type" placeholder="Enter Service Type ..." />
+                    </div>
+                </div>
+
+                <button type="submit" id="btnSubmit" value="Create" class="btn btn-outline-success pull-right"><i class="fa fa-plus-circle"></i> Save</button>
+                <button type="button" id="btnReset" class="btn btn-outline-warning pull-right"><i class="fa fa-redo"></i> Reset</button>
+                <br />
+                <hr />
+            </div>
+
+        </div>
+    </body>
+
+}
+
+
+</html>
+
+

@@ -30,7 +30,7 @@ namespace CMS.App_Start
         public string Email { get; set; }
         public string Alternative_Contact { get; set; }
         public string WhoseNumber { get; set; }
-        public int ComplainedFor { get; set; }
+        public int ComplainedForType { get; set; }
         public string IncidentDate { get; set; }
         public string IncidentLocation { get; set; }
         public string NatureOfComplaint { get; set; }

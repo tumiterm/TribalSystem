@@ -12,7 +12,7 @@ using CMS.App_Start;
 using CMS.Models;
 using CMS.Models.DAL;
 using CMS.Models.Repositories;
-using CMS.Models.Repositories.Db;
+
 
 
 namespace CMS.Controllers
@@ -244,13 +244,43 @@ namespace CMS.Controllers
             }
             base.Dispose(disposing);
         }
-    }
 
-    public enum eRentalCycle
-    {
-        Monthly,
-        Quarterly,
-        Annually,
-        Arranged_Payment_Cycle
+        //[HttpGet]
+        //public ActionResult RentalCycle()
+        //{
+        //    return View();
+        //}
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult RentalCycle(PlotTbl model)
+        //{
+
+        //    model.Id = Helpers.Helper.GenerateGuid();
+
+
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.PlotTbls.Add(model);
+
+        //        db.SaveChanges();
+
+        //        return RedirectToAction("PropertyRegistration");
+
+        //    }
+        //    else
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+
+        public enum eRentalCycle
+         {
+            Monthly,
+            Quarterly,
+            Annually,
+            Arranged_Payment_Cycle
+         }
+
+       }
     }
-}

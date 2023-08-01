@@ -1,12 +1,11 @@
-﻿@model CMS.Models.Repositories.Db.Complaint
+﻿@model CMS.App_Start.Complaint
 
 <link href="~/Content/StyleForm.css" rel="stylesheet" />
 <link href="~/Content/bootstrap-chosen.css" rel="stylesheet" />
 <style>
     #fullName, #lastName, #race, #id_number,
     #dob, #age, #cellphone, #gender, #nat,
-    #headsmen, #village
-    {
+    #headsmen, #village {
         border-color: #000000
     }
 
@@ -37,10 +36,11 @@
         </div>
 
     </nav>
-    <button type="button" class="btn btn-success float-right"><i class="fa fa-comment"></i> Existing Complaints</button>
+    
+    <a href="~/Complaint/RegisteredComplaints" class="btn btn-success float-right"><i class="fa fa-home">Existing Compaints</i></a>
 
     <div class="note mt-3 mb-3">
-        <p> Complaint Application</p>
+        <p>Complaints Registration Information</p>
     </div>
     <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
@@ -51,7 +51,7 @@
                         <div class="alert alert-primary" role="alert">
                             <div class="form-group col-md-4">
                                 <label for="inputRoomNum">Complaint For?</label>
-                                @Html.DropDownList("ComplForId", ViewBag.ComplForId as SelectList, htmlAttributes: new { @class = "form-control", @id = "complFor" })
+                                @Html.DropDownList("ComplainedForTypeId", ViewBag.ComplainedForTypeId as SelectList, htmlAttributes: new { @class = "form-control", @id = "complFor" })
                             </div>
                         </div>
                         <div class="form-row">
@@ -79,7 +79,7 @@
 
                             <div class="form-group col-md-3">
                                 <label for="inputRoomNum">Date of Birth</label>
-                                @Html.EditorFor(model => model.Date_of_Birth, new { htmlAttributes = new { @class = "form-control", @id = "dob",@type="date" } })
+                                @Html.EditorFor(model => model.Date_of_Birth, new { htmlAttributes = new { @class = "form-control", @id = "dob", @type = "date" } })
                             </div>
 
                             <div class="form-group col-md-3">
@@ -200,7 +200,7 @@
 
                             <div class="form-group col-md-9">
                                 <label for="VillType">Nature of Complaint</label>
-                                @Html.EditorFor(model => model.NatureOfComplaint, new { htmlAttributes = new { @class = "form-control",@id="nat" } })
+                                @Html.EditorFor(model => model.NatureOfComplaint, new { htmlAttributes = new { @class = "form-control", @id = "nat" } })
                             </div>
                         </div>
                     </div>
@@ -281,7 +281,7 @@
                         </div>
                     </div>
 
-                    <div class="container register-form">  
+                    <div class="container register-form">
                         <div class="row">
                             <div class="form-group col-md-6">
                                 <label id="towhoml" for="">Reported To?</label>
@@ -291,20 +291,20 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="inputRoomNum">Applicable Village</label>
-                                @Html.DropDownList("VillageId", null, htmlAttributes: new { @class = "form-control",@id="village" })
+                                @Html.DropDownList("VillageId", null, htmlAttributes: new { @class = "form-control", @id = "village" })
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="inputRoomNum">Applicable Headsmen</label>
-                                @Html.DropDownList("HeadsmenId", null, htmlAttributes: new { @class = "form-control" ,@id="headsmen"})
+                                @Html.DropDownList("HeadsmenId", null, htmlAttributes: new { @class = "form-control", @id = "headsmen" })
                             </div>
                         </div>
 
-                            <div style="background-color:whitesmoke" class="mt-3 pull-right">
-                                <button type="submit" id="btnSubmit" value="Create" onclick="return validateData()" class="btn btn-outline-success pull-right"><i class="fa fa-comment"></i> Lodge Complaint</button>
-                                <button type="button" id="btnReset" class="btn btn-outline-warning pull-right"><i class="fa fa-redo"></i> Reset</button>
-                                <button type="button" id="btnReset" class="btn btn-outline-danger float-right"><i class="fa fa-window-close"></i> Close</button>
-                            </div>
+                        <div style="background-color:whitesmoke" class="mt-3 pull-right">
+                            <button type="submit" id="btnSubmit" value="Create" onclick="return validateData()" class="btn btn-outline-success pull-right"><i class="fa fa-comment"></i> Lodge Complaint</button>
+                            <button type="button" id="btnReset" class="btn btn-outline-warning pull-right"><i class="fa fa-redo"></i> Reset</button>
+                            <button type="button" id="btnReset" class="btn btn-outline-danger float-right"><i class="fa fa-window-close"></i> Close</button>
                         </div>
+                    </div>
                     <br />
                 </div>
             </div>
@@ -414,9 +414,9 @@
 
                             return;
                         }
-                        
+
                         else {
-                    
+
                             return;
                         }
                     });

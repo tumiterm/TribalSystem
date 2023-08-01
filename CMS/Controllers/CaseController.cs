@@ -8,7 +8,7 @@ using System.Web.Mvc;
 using CMS.App_Start;
 using CMS.Models.DAL;
 using CMS.Models.Repositories;
-using CMS.Models.Repositories.Db;
+
 
 namespace CMS.Controllers
 {
@@ -123,7 +123,7 @@ namespace CMS.Controllers
 
             ViewBag.CaseTypeId = new SelectList(db.CaseTypes, "Id", "Description", @case.CaseTypeId);
 
-            ViewBag.CourtType = new SelectList(db.Courts, "Id", "Name", @case.CourtType);
+            ViewBag.Court = new SelectList(db.Courts, "Id", "Name", @case.CourtType);
 
             ViewBag.PaymentForId = new SelectList(db.PaymentFors, "Id", "Pay", @case.PaymentForId);
 
@@ -161,7 +161,7 @@ namespace CMS.Controllers
 
             ViewBag.CaseTypeId = new SelectList(db.CaseTypes, "Id", "Description");
 
-            ViewBag.CourtType = new SelectList(db.CourtTypes, "Id", "Type");
+            ViewBag.CourtType = new SelectList(db.Courts, "Id", "Name");
 
             ViewBag.PaymentForId = new SelectList(db.PaymentFors, "Id", "Pay");
 
@@ -176,13 +176,14 @@ namespace CMS.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> CaseRegistry(Case @case)
         {
+
             if (ModelState.IsValid)
             {
                 _caseRepository.UpdateRecord(@case);
 
                 await _caseRepository.SaveAsync();
-                
-                return RedirectToAction("Index");
+
+                return View(@case);
             }
             ViewBag.PersonFillingId = new SelectList(db.ApplicantFillings, "Id", "Description", @case.PersonFillingId);
 
@@ -192,7 +193,7 @@ namespace CMS.Controllers
 
             ViewBag.CaseTypeId = new SelectList(db.CaseTypes, "Id", "Description", @case.CaseTypeId);
 
-            ViewBag.CourtType = new SelectList(db.CourtTypes, "Id", "Type", @case.CourtType);
+            ViewBag.CourtType = new SelectList(db.Courts, "Id", "Name", @case.CourtType);
 
             ViewBag.PaymentForId = new SelectList(db.PaymentFors, "Id", "Pay", @case.PaymentForId);
 
@@ -237,6 +238,97 @@ namespace CMS.Controllers
             db.SaveChanges();
 
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult AddCaseStatus()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddCaseStatus(CaseStatu model)
+        {
+
+            model.Id = Helpers.Helper.GenerateGuid();
+            model.CreatedOn = DateTime.Now;
+            model.IsActive = true;
+            model.CreatedBy = "";
+
+            if (ModelState.IsValid)
+            {
+                db.CaseStatus.Add(model);
+
+                db.SaveChanges();
+
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult AddCaseType()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddCaseType(CaseType model)
+        {
+
+            model.Id = Helpers.Helper.GenerateGuid();
+
+            if (ModelState.IsValid)
+            {
+                db.CaseTypes.Add(model);
+
+                db.SaveChanges();
+
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            return View();
+        }
+
+
+        [HttpGet]
+        public ActionResult AddCasePriority()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddCasePriority(Case model)
+        {
+
+            model.Id = Helpers.Helper.GenerateGuid();
+            model.CreatedOn = DateTime.Now;
+            model.IsActive = true;
+            model.CreatedBy = "";
+
+            if (ModelState.IsValid)
+            {
+                db.Cases.Add(model);
+
+                db.SaveChanges();
+
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            return View();
         }
 
         protected override void Dispose(bool disposing)

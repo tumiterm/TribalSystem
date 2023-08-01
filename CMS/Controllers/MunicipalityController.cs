@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using CMS.Models.Repositories.Db;
+
 using CMS.Models.Repositories;
 using CMS.Models.DAL;
 using CMS.App_Start;
@@ -118,6 +118,8 @@ namespace CMS.Controllers
                 return RedirectToAction("ModifyMunicipality",new { id = municipality.Id });
             }
 
+           
+
             ViewBag.CountryId = new SelectList(db.Countries, "Id", "Country1", municipality.CountryId);
             ViewBag.Id = new SelectList(db.Municipalities, "Id", "Name", municipality.Id);  ViewBag.Id = new SelectList(db.Municipalities, "Id", "Name", municipality.Id);
             ViewBag.ProvinceId = new SelectList(db.Provinces, "Id", "Province1", municipality.ProvinceId);
@@ -209,5 +211,6 @@ namespace CMS.Controllers
             }
             base.Dispose(disposing);
         }
+       
     }
 }

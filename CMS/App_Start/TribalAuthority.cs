@@ -11,13 +11,18 @@ namespace CMS.App_Start
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Web;
+
     public partial class TribalAuthority
     {
         public System.Guid Id { get; set; }
         public string AuthorityName { get; set; }
         public string Telephone { get; set; }
         public string ImageFile { get; set; }
+
+        [NotMapped]
+        public HttpPostedFileBase FileBase { get; set; }
         public string Address { get; set; }
         public string POBox { get; set; }
         public System.Guid CountryId { get; set; }

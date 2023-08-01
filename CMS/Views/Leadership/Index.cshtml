@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CMS.Models.Repositories.Db.Chief>
+﻿@model IEnumerable<CMS.App_Start.Chief>
 @using GridMvc.Html
 
 @{
@@ -48,7 +48,6 @@
        c.Add(x => x.Name).Titled("Full Name").Filterable(true).Sortable(true);
        c.Add(x => x.Cellphone1).Titled("Phone").Filterable(true).Sortable(true);
        c.Add(x => x.Email).Titled("Email").Filterable(true).Sortable(true);
-       c.Add(x => x.Tribe.description).Titled("Tribe").Sortable(true);
        c.Add().Encoded(false).Sanitized(false).SetWidth(20).
        RenderValueAs(o => Html.ActionLink("Update", "Edit", new { id = o.Id }, new { @class = "btn btn-outline-primary" }));
 

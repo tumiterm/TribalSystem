@@ -3,7 +3,7 @@ using System.Data.Entity;
 using System.Threading.Tasks;
 using System.Net;
 using System.Web.Mvc;
-using CMS.Models.Repositories.Db;
+
 using CMS.Models.DAL;
 using CMS.Models.Repositories;
 using System.Linq;
@@ -59,54 +59,61 @@ namespace CMS.Controllers
 
             mymodel.TribalList = list;
 
-            IEnumerable<SelectListItem> geoLocation = db.Countries 
+            IEnumerable<SelectListItem> geoLocation = db.Countries
                                                        .Select(c => new SelectListItem
-                                                        {
-                                                            Value = c.Id.ToString(),
-                                                            Text = c.Country1
-                                                        });
+                                                       {
+                                                           Value = c.Id.ToString(),
+                                                           Text = c.Country1
+                                                       });
 
-            ViewBag.CountryId = geoLocation;
+
 
             ViewBag.ProvinceId = new SelectList(db.Provinces, "Id", "Province1");
+            ViewBag.CountryId = new SelectList(geoLocation, "Value", "Text");
 
             return View(mymodel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public async Task<ActionResult> RegisterTribalAuth(TribalAuthority tribalAuthority)
-        //{
-        //    string fileName = Path.GetFileNameWithoutExtension(tribalAuthority.FileBase.FileName);
+        public async Task<ActionResult> RegisterTribalAuth(TribalAuthority tribalAuthority)
+        {
+            UploadImage(tribalAuthority);
 
-        //    string extension = Path.GetExtension(tribalAuthority.FileBase.FileName);
+            if (ModelState.IsValid)
+            {
+                tribalAuthority.Id = Helpers.Helper.GenerateGuid();
 
-        //    fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                _tribalRepository.InsertRecordAsync(tribalAuthority);
 
-        //    tribalAuthority.ImageFile = "~/TribalImage/" + fileName;
+                await _tribalRepository.SaveAsync();
 
-        //    fileName = Path.Combine(Server.MapPath("~/TribalImage/"), fileName);
+                return RedirectToAction("ModifyTribalRecord", new { @tribalId = tribalAuthority.Id });
+            }
 
-        //    tribalAuthority.FileBase.SaveAs(fileName);
+            ViewBag.CountryId = new SelectList(_tribalRepository.OnGetCountry(), "Id", "Country1", tribalAuthority.CountryId);
 
+            ViewBag.ProvinceId = new SelectList(_tribalRepository.OnGetProvince(), "Id", "Province1", tribalAuthority.ProvinceId);
 
-        //    if (ModelState.IsValid)
-        //    {
-        //        tribalAuthority.Id = Helpers.Helper.GenerateGuid();
+            return View(tribalAuthority);
+        }
 
-        //        _tribalRepository.InsertRecordAsync(tribalAuthority);
+        private void UploadImage(TribalAuthority tribalAuthority)
+        {
 
-        //        await _tribalRepository.SaveAsync();
+            string fileName = Path.GetFileNameWithoutExtension(tribalAuthority.FileBase.FileName);
 
-        //        return RedirectToAction("ModifyTribalRecord", new { @tribalId = tribalAuthority.Id });
-        //    }
+            string extension = Path.GetExtension(tribalAuthority.FileBase.FileName);
 
-        //    ViewBag.CountryId = new SelectList(_tribalRepository.OnGetCountry(), "Id", "Country1", tribalAuthority.CountryId);
+            fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
 
-        //    ViewBag.ProvinceId = new SelectList(_tribalRepository.OnGetProvince(), "Id", "Province1", tribalAuthority.ProvinceId);
+            tribalAuthority.ImageFile = "~/TribalImage/" + fileName;
 
-        //    return View(tribalAuthority);
-        //}
+            fileName = Path.Combine(Server.MapPath("~/TribalImage/"), fileName);
+
+            tribalAuthority.FileBase.SaveAs(fileName);
+        }
+
         public async Task<ActionResult> ModifyTribalRecord(Guid? tribalId)
         {
             if (tribalId == null)
@@ -170,6 +177,8 @@ namespace CMS.Controllers
             return RedirectToAction("Index");
         }
 
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -178,5 +187,7 @@ namespace CMS.Controllers
             }
             base.Dispose(disposing);
         }
+
+        
     }
 }

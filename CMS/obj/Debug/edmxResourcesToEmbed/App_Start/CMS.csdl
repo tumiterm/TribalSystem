@@ -138,6 +138,13 @@
     <NavigationProperty Name="Chiefs" Relationship="Self.FK_Chief_Clan" FromRole="Clans" ToRole="Chiefs" />
     <NavigationProperty Name="Headsmen" Relationship="Self.FK_Headsmen_Clan" FromRole="Clans" ToRole="Headsmen" />
   </EntityType>
+  <EntityType Name="ComplainedForType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="ComplaintType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
   <EntityType Name="Complaint">
     <Key>
       <PropertyRef Name="Id" />
@@ -158,7 +165,7 @@
     <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Alternative_Contact" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
     <Property Name="WhoseNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="ComplainedFor" Type="Int32" Nullable="false" />
+    <Property Name="ComplainedForType" Type="Int32" Nullable="false" />
     <Property Name="IncidentDate" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="IncidentLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="NatureOfComplaint" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -713,6 +720,50 @@
     <NavigationProperty Name="PlotTbls" Relationship="Self.FK_PlotTbl_Section" FromRole="Sections" ToRole="PlotTbls" />
     <NavigationProperty Name="Properties" Relationship="Self.FK_Property_Section" FromRole="Sections" ToRole="Properties" />
     <NavigationProperty Name="Villages" Relationship="Self.FK_Village_Section" FromRole="Sections" ToRole="Villages" />
+  </EntityType>
+  <EntityType Name="ServiceFeedback">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="ServiceId" Type="Guid" Nullable="false" />
+    <Property Name="ServiceStatusId" Type="Guid" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MunicipalityId" Type="Guid" Nullable="false" />
+    <Property Name="TribalAuthority" Type="Guid" Nullable="false" />
+    <Property Name="ImageFile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Service">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="DwellerId" Type="Guid" Nullable="false" />
+    <Property Name="ReferenceNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="VillageId" Type="Guid" Nullable="false" />
+    <Property Name="ServiceTypeId" Type="Guid" Nullable="false" />
+    <Property Name="ServiceStatusId" Type="Guid" Nullable="false" />
+    <Property Name="AreaName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="WardId" Type="Guid" Nullable="false" />
+    <Property Name="SectionId" Type="Guid" Nullable="false" />
+    <Property Name="TribalAuthorityId" Type="Guid" Nullable="false" />
+    <Property Name="HeadsmenId" Type="Guid" Nullable="false" />
+    <Property Name="ImageFile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ServiceStatu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ServiceType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
   </EntityType>
   <EntityType Name="SettlementHierachy">
     <Key>
@@ -1843,7 +1894,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="CMSEntities1" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="CMSEntities3" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="ApplicantFillings" EntityType="Self.ApplicantFilling" />
     <EntitySet Name="Beneficiaries" EntityType="Self.Beneficiary" />
     <EntitySet Name="Cases" EntityType="Self.Case" />
@@ -1851,6 +1902,7 @@
     <EntitySet Name="CaseTypes" EntityType="Self.CaseType" />
     <EntitySet Name="Chiefs" EntityType="Self.Chief" />
     <EntitySet Name="Clans" EntityType="Self.Clan" />
+    <EntitySet Name="ComplainedForTypes" EntityType="Self.ComplainedForType" />
     <EntitySet Name="Complaints" EntityType="Self.Complaint" />
     <EntitySet Name="Conditions" EntityType="Self.Condition" />
     <EntitySet Name="Countries" EntityType="Self.Country" />
@@ -1885,6 +1937,10 @@
     <EntitySet Name="RentLeases" EntityType="Self.RentLeas" />
     <EntitySet Name="Roles" EntityType="Self.Role" />
     <EntitySet Name="Sections" EntityType="Self.Section" />
+    <EntitySet Name="ServiceFeedbacks" EntityType="Self.ServiceFeedback" />
+    <EntitySet Name="Services" EntityType="Self.Service" />
+    <EntitySet Name="ServiceStatus" EntityType="Self.ServiceStatu" />
+    <EntitySet Name="ServiceTypes" EntityType="Self.ServiceType" />
     <EntitySet Name="SettlementHierachies" EntityType="Self.SettlementHierachy" />
     <EntitySet Name="Severities" EntityType="Self.Severity" />
     <EntitySet Name="Specialities" EntityType="Self.Speciality" />

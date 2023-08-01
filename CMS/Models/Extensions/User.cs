@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 
-namespace CMS.Models.Repositories.Db
+namespace CMS.App_Start
 {
     [MetadataType(typeof(UserMetaData))]
     public partial class User
