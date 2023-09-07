@@ -147,7 +147,7 @@ namespace CMS.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken] 
         public async Task<ActionResult> ModifyRecord(Beneficiary beneficiary)
         {
             if (ModelState.IsValid)

@@ -18,6 +18,8 @@ namespace CMS.Controllers
             return View();
         }
 
+        //public ActionResult 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddPaymentType(PaymentType model)

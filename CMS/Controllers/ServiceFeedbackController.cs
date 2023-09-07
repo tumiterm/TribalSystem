@@ -53,7 +53,7 @@ namespace CMS.Controllers
 
             dynamic servicefeedbackModel = new ExpandoObject();
 
-            ViewBag.DwellerId = new SelectList(db.Dwellers, "Value", "Text");
+            ViewBag.DwellerId = new SelectList(db.Dwellers, "Value", "Text", getDwellers);
 
             ViewBag.ServiceStatusId = new SelectList(db.ServiceStatus, "Id", "Status");
 
@@ -61,7 +61,7 @@ namespace CMS.Controllers
 
             ViewBag.TribalAuthority = new SelectList(db.TribalAuthorities, "Id", "AuthorityName");
 
-            servicefeedbackModel.Service = filterRecord;
+            servicefeedbackModel.Services = filterRecord;
 
             ViewBag.ServiceId = serviceId;
 
@@ -78,8 +78,8 @@ namespace CMS.Controllers
             {
                 ViewData["Description"] = service.Description;
 
-
                 ViewData["ReferenceNumber"] = service.ReferenceNumber;
+
             }
 
             return service;
